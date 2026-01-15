@@ -1,0 +1,254 @@
+:root {
+    /* Background Colors */
+    --bg-color: #000000;
+    --card-bg: #001100;
+    --card-hover: #002200;
+    --input-bg: #001100;
+    
+    /* Text Colors */
+    --text-color: #00ff00;
+    --text-secondary: #00aa00;
+    
+    /* Primary Colors */
+    --primary-color: #00ff00;
+    --primary-hover: #00cc00;
+    
+    /* Secondary Colors */
+    --secondary-color: #002200;
+    --secondary-hover: #003300;
+    
+    /* Border Colors */
+    --border-color: #004400;
+    
+    /* Status Colors */
+    --success-color: #00ff00;
+    --warning-color: #00aa00;
+    --error-color: #ff0000;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Scrollbar styling for matrix theme */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #004400;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #006600;
+}
+
+/* Focus states for matrix theme */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3);
+}
+
+/* Selection styling */
+::selection {
+    background-color: var(--primary-color);
+    color: black;
+}
+
+/* Matrix theme specific adjustments */
+.sidebar {
+    background-color: #000000;
+    border-right: 1px solid var(--border-color);
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Enhanced contrast for cards in matrix theme */
+.deck-card, .card-item, .preview-card {
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+.deck-card:hover, .card-item:hover {
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+/* Study card styling for matrix theme */
+.card-content {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    border: 1px solid var(--border-color);
+}
+
+/* Matrix digital effect for buttons */
+.btn-primary {
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.btn-primary:hover {
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+/* Rating buttons for matrix theme */
+.rating-btn[data-rating="1"] {
+    background: #330000;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+}
+
+.rating-btn[data-rating="2"] {
+    background: #332200;
+    border: 1px solid #ffaa00;
+    color: #ffaa00;
+}
+
+.rating-btn[data-rating="3"] {
+    background: #002200;
+    border: 1px solid #00aa00;
+    color: #00aa00;
+}
+
+.rating-btn[data-rating="4"] {
+    background: #003300;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.rating-btn:hover {
+    text-shadow: 0 0 5px currentColor;
+}
+
+/* Fix selected category text color */
+.category-item.active {
+    background: var(--primary-color);
+    color: #000000;
+}
+
+/* Fix button text colors */
+.btn-primary {
+    background: var(--primary-color);
+    color: #000000;
+    text-shadow: none;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    color: #000000;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Fix flip card button specifically */
+#flip-card-btn {
+    background: var(--primary-color);
+    color: #000000;
+}
+
+#flip-card-btn:hover {
+    background: var(--primary-hover);
+    color: #000000;
+}
+
+/* Fix toast notification text color */
+.toast {
+    color: #000000;
+}
+
+.toast-info {
+    background: var(--primary-color);
+    color: #000000;
+}
+
+.toast-success {
+    background: var(--success-color);
+    color: #000000;
+}
+
+.toast-warning {
+    background: var(--warning-color);
+    color: #000000;
+}
+
+.toast-error {
+    background: var(--error-color);
+    color: #ffffff;
+}
+
+/* Fix add button text color */
+.add-btn {
+    background: var(--primary-color);
+    color: #000000;
+}
+
+.add-btn:hover {
+    background: var(--primary-hover);
+    color: #000000;
+}
+
+/* Matrix theme overrides for deck action links */
+/* Matrix theme overrides for deck action links */
+.deck-action-link {
+    color: #00ff00; /* Matrix green for secondary links */
+    border-color: var(--border-color);
+}
+
+.deck-action-link:hover {
+    color: #00ff00;
+}
+
+.deck-action-link.primary {
+    background: var(--primary-color);
+    color: #000000; /* Black text on green primary button */
+}
+
+.deck-action-link.primary:hover {
+    background: var(--primary-hover);
+    color: #000000;
+}
+
+/* Study mode button active state for matrix theme */
+.study-mode-btn.active {
+    background: var(--primary-color);
+    color: #000000;
+}
+
+:root {
+    /* Background Colors */
+    --bg-color: #000000;
+    --card-bg: #001100;
+    --card-hover: #002200;
+    --input-bg: #001100;
+    
+    /* Text Colors */
+    --text-color: #00ff00;
+    --text-secondary: #00aa00;
+    
+    /* Primary Colors */
+    --primary-color: #00ff00;
+    --primary-hover: #00cc00;
+    
+    /* Secondary Colors */
+    --secondary-color: #002200;
+    --secondary-hover: #003300;
+    
+    /* Border Colors */
+    --border-color: #004400;
+    
+    /* Status Colors */
+    --success-color: #00ff00;
+    --warning-color: #00aa00;
+    --error-color: #ff0000;
+    
+    /* Cloze Colors */
+    --cloze-border-color: #00ff00;
+    --cloze-bg-color: rgba(0, 255, 0, 0.02);
+    --cloze-blank-bg: rgba(0, 255, 0, 0.1);
+}
+
+

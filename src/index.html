@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindforge - Flashcard Learning</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/themes/dark.css" id="theme-css">
+  </head>
+  <body>
+
+    <div class="app-container">
+      <!-- Sidebar Navigation -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <div class="header-top">
+            <h1>Mindforge</h1>
+            <button id="hamburger-menu-btn" class="hamburger-btn">⋯</button>
+          </div>
+          <div class="theme-selector">
+            <select id="theme-select">
+              <option value="matrix">Matrix</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="sidebar-stats">
+            <span class="stat-label">Daily Commitment</span>
+            <div class="sidebar-stat">
+              <span class="stat-label">Streak:</span>
+              <span id="current-streak" class="stat-value">0</span>
+              <span class="stat-label">Record:</span>
+              <span id="record-streak" class="stat-value">0</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sidebar-content">
+          <div class="categories-section">
+            <div class="section-header">
+              <h3>Categories</h3>
+              <button id="add-category-btn" class="add-btn">+</button>
+            </div>
+            <div id="categories-list" class="categories-list">
+              <!-- Categories will be populated here -->
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+
+        <div id="welcome-screen" class="screen active">
+          <div class="home-overview">
+            <h2>Welcome to Mindforge</h2>
+            <p>Create categories and decks to start building your knowledge.</p>
+            <p>Quick access to all your study materials and direct links.</p>
+            
+            <div class="overview-section">
+              <h3>All Decks</h3>
+              <div id="all-decks-container" class="deck-links-grid">
+                <!-- Deck links will be populated here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="category-screen" class="screen">
+          <div class="screen-header">
+            <h2 id="category-title">Category Name</h2>
+            <div class="category-actions">
+              <button id="add-deck-btn" class="btn-primary">Add Deck</button>
+              <button id="import-deck-btn" class="btn-secondary">Import Deck</button>
+            </div>
+          </div>
+          <div id="decks-list" class="decks-grid">
+            <!-- Decks will be populated here -->
+          </div>
+        </div>
+
+        <div id="preview-screen" class="screen">
+          <div class="screen-header">
+            <h2 id="preview-title">Preview: Deck Name</h2>
+            <div class="preview-actions">
+              <span id="preview-count">Showing X of Y cards</span>
+            </div>
+          </div>
+          <div id="preview-content" class="preview-content">
+            <!-- Preview cards will be populated here -->
+          </div>
+          <div id="preview-more" class="preview-more" style="display: none;">
+            <button id="load-more-btn" class="btn-secondary">Load More Cards...</button>
+          </div>
+        </div>
+
+        <div id="study-screen" class="screen">
+          <div class="study-header">
+            <div class="study-info">
+              <span id="study-progress">Card 1 of 10</span>
+              <select id="study-mode-select">
+                <option value="front-to-back">Front → Back</option>
+                <option value="back-to-front">Back → Front</option>
+              </select>
+            </div>
+            <button id="end-study-btn" class="btn-secondary">End Study</button>
+          </div>
+          
+          <div class="study-mode-buttons" style="display: none;">
+            <div class="study-mode-selection">
+              <button id="show-full-answer-btn" class="study-mode-btn">Show Full Answer</button>
+              <button id="reveal-by-sentence-btn" class="study-mode-btn">Reveal by Sentence</button>  
+              <button id="hidden-words-btn" class="study-mode-btn">Hidden Words</button>
+            </div>
+          </div>
+
+          <div class="study-card">
+            <div id="study-card-content" class="card-content">
+              <div id="study-card-image" class="card-image"></div>
+              <div id="study-card-text" class="card-text"></div>
+            </div>
+            <button id="flip-card-btn" class="btn-primary">Show Answer</button>
+          </div>
+
+          <div id="study-rating" class="rating-section" style="display: none;">
+            <p>How well did you know this?</p>
+            <div class="rating-buttons">
+              <button class="rating-btn" data-rating="1">Nope! (1)</button>
+              <button class="rating-btn" data-rating="2">Getting there (2)</button>
+              <button class="rating-btn" data-rating="3">Almost (3)</button>
+              <button class="rating-btn" data-rating="4">Perfect (4)</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Hamburger Menu Dropdown -->
+    <div id="hamburger-menu" class="hamburger-menu">
+      <div class="menu-item" data-action="statistics">
+        <span class="menu-icon">📊</span>
+        Statistics
+      </div>
+      <div class="menu-item" data-action="create-backup">
+        <span class="menu-icon">💾</span>
+        Create Backup
+      </div>
+      <div class="menu-item" data-action="import-data">
+        <span class="menu-icon">📥</span>
+        Import Data
+      </div>
+      <div class="menu-item" data-action="settings">
+        <span class="menu-icon">⚙️</span>
+        Settings
+      </div>
+      <div class="menu-separator"></div>
+      <div class="menu-item" data-action="keyboard-shortcuts">
+        <span class="menu-icon">⌨️</span>
+        Keyboard Shortcuts
+      </div>
+      <div class="menu-item" data-action="about">
+        <span class="menu-icon">ℹ️</span>
+        About Mindforge
+      </div>
+    </div>
+
+    <!-- Modal for adding/editing items -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-title">Add Item</h3>
+          <button id="modal-close" class="close-btn">&times;</button>
+        </div>
+        <div id="modal-body" class="modal-body">
+          <!-- Modal content will be populated from templates -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Templates for Modal Content -->
+    <template id="keyboard-shortcuts-template">
+      <div class="shortcuts-content">
+        <h4>General</h4>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Ctrl + N</span>
+          <span class="shortcut-desc">New Category</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Ctrl + D</span>
+          <span class="shortcut-desc">New Deck</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Ctrl + K</span>
+          <span class="shortcut-desc">New Card</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Ctrl + S</span>
+          <span class="shortcut-desc">Start Study Session</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Ctrl + E</span>
+          <span class="shortcut-desc">Export Data</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Escape</span>
+          <span class="shortcut-desc">Close Modal/End Study</span>
+        </div>
+
+        <h4>Study Mode</h4>
+        <div class="shortcut-item">
+          <span class="shortcut-key">Space / Enter</span>
+          <span class="shortcut-desc">Flip Card</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">1</span>
+          <span class="shortcut-desc">Nope!</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">2</span>
+          <span class="shortcut-desc">Getting there</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">3</span>
+          <span class="shortcut-desc">Almost</span>
+        </div>
+        <div class="shortcut-item">
+          <span class="shortcut-key">4</span>
+          <span class="shortcut-desc">Perfect</span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" data-action="close">Close</button>
+      </div>
+    </template>
+
+    <template id="about-template">
+      <div class="about-content">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">Mindforge</h2>
+          <p style="color: var(--text-secondary);">Version 1.0.0</p>
+        </div>
+        
+        <p>Mindforge is a powerful flashcard application designed for visual learning with spaced repetition algorithms.</p>
+        
+        <h4>Features</h4>
+        <ul>
+          <li>Visual flashcards with image support</li>
+          <li>Intelligent spaced repetition</li>
+          <li>Multiple study modes</li>
+          <li>Organized categories and decks</li>
+          <li>Dark and light themes</li>
+          <li>Offline functionality</li>
+          <li>Data backup and import</li>
+        </ul>
+
+        <h4>Perfect For</h4>
+        <ul>
+          <li>Learning plant identification</li>
+          <li>Medical terminology</li>
+          <li>Foreign languages</li>
+          <li>Historical facts</li>
+          <li>Any visual learning task</li>
+        </ul>
+
+        <p style="margin-top: 2rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+          Built with modern web technologies for optimal performance.
+        </p>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" data-action="close">Close</button>
+      </div>
+    </template>
+
+    <template id="add-category-template">
+      <div class="form-group">
+        <label for="category-name">Category Name</label>
+        <input type="text" id="category-name" name="name" placeholder="e.g., Native Plants, Historical Quotes" required>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="create">Create Category</button>
+      </div>
+    </template>
+
+    <template id="edit-category-template">
+      <div class="form-group">
+        <label for="category-name">Category Name</label>
+        <input type="text" id="category-name" name="name" required>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="delete">Delete</button>
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="save">Save Changes</button>
+      </div>
+    </template>
+
+    <template id="add-deck-template">
+      <div class="form-group">
+        <label for="deck-name">Deck Name</label>
+        <input type="text" id="deck-name" name="name" placeholder="e.g., Spring Wildflowers, Presidents" required>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="create">Create Deck</button>
+      </div>
+    </template>
+
+    <template id="add-card-template">
+      <div class="form-group">
+        <label for="card-image">Image (optional)</label>
+        <input type="file" id="card-image" name="image" accept="image/*">
+        <div id="image-preview"></div>
+      </div>
+      <div class="form-group">
+        <label for="card-front">Front (Question)</label>
+        <textarea id="card-front" name="front" placeholder="What do you want to remember or identify?" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="card-back">Back (Answer)</label>
+        <textarea id="card-back" name="back" placeholder="The answer or information to remember" required></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="add">Add Card</button>
+      </div>
+    </template>
+
+    <template id="edit-card-template">
+      <div class="form-group">
+        <label for="card-image">Image (optional)</label>
+        <input type="file" id="card-image" name="image" accept="image/*">
+        <div id="image-preview"></div>
+      </div>
+      <div class="form-group">
+        <label for="card-front">Front (Question)</label>
+        <textarea id="card-front" name="front" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="card-back">Back (Answer)</label>
+        <textarea id="card-back" name="back" required></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="btn-danger" data-action="delete">Delete Card</button>
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="save">Save Changes</button>
+      </div>
+    </template>
+
+    <template id="import-data-template">
+      <div class="form-group">
+        <label for="import-file">Select Mindforge backup file</label>
+        <input type="file" id="import-file" accept=".json" required>
+      </div>
+      <div class="form-group">
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+          <strong>Warning:</strong> Importing will replace all current data. 
+          Make sure to export your current data first if you want to keep it.
+        </p>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="import">Import Data</button>
+      </div>
+    </template>
+
+    <template id="study-summary-template">
+      <div class="study-summary">
+        <h3>Study Session Complete!</h3>
+        <div class="summary-stats">
+          <div class="stat-item">
+            <span class="stat-value" id="cards-studied">0</span>
+            <span class="stat-label">Cards Studied</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="accuracy">0%</span>
+            <span class="stat-label">Accuracy</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value" id="duration">0</span>
+            <span class="stat-label">Minutes</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="study-again">Study Again</button>
+        <button class="btn-primary" data-action="back">Back to Deck</button>
+      </div>
+    </template>
+
+    <template id="confirm-delete-template">
+      <div id="delete-message">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-danger" data-action="delete">Delete</button>
+      </div>
+    </template>
+
+    <template id="getting-started-template">
+      <h3>Welcome to Mindforge! 🧠</h3>
+      <p>Get started by creating your first category. Categories help organize your flashcards by topic.</p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>Native Plants</li>
+        <li>Historical Quotes</li>
+        <li>Foreign Language</li>
+        <li>Medical Terms</li>
+      </ul>
+      <p>After creating a category, you can add decks and flashcards to start learning!</p>
+      <br>
+      <p><em>Tip: Use keyboard shortcuts to speed up your workflow:</em></p>
+      <ul>
+        <li><strong>Ctrl+N</strong> - New category</li>
+        <li><strong>Ctrl+D</strong> - New deck</li>
+        <li><strong>Ctrl+K</strong> - New card</li>
+      </ul>
+      <div class="form-actions">
+        <button class="btn-primary" data-action="create">Create First Category</button>
+      </div>
+    </template>
+
+    <template id="initialization-error-template">
+      <div class="init-error-container">
+        <h1 class="init-error-title">Initialization Error</h1>
+        <p class="init-error-message">
+          Mindforge failed to initialize properly. This might be due to browser compatibility issues or corrupted data.
+        </p>
+        <p class="init-error-details" id="error-details">
+          <!-- Error message will be inserted here -->
+        </p>
+        <div>
+          <button onclick="location.reload()" class="init-error-btn init-error-btn-primary">
+            Reload Application
+          </button>
+          <button onclick="localStorage.clear(); location.reload()" class="init-error-btn init-error-btn-danger">
+            Clear Data & Reload
+          </button>
+        </div>
+      </div>
+    </template>
+
+    <template id="import-deck-template">
+      <div class="form-group">
+        <label for="deck-csv-file">Select CSV file to import</label>
+        <input type="file" id="deck-csv-file" accept=".csv" required>
+      </div>
+      <div class="form-group">
+        <label for="new-deck-name">New Deck Name</label>
+        <input type="text" id="new-deck-name" placeholder="Enter name for the imported deck" required>
+      </div>
+      <div class="form-group">
+        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+          CSV format: "Front","Back" with header row. Newlines should be escaped as \n
+        </p>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="import">Import Deck</button>
+      </div>
+    </template>
+
+    <template id="deck-menu-template">
+      <div class="deck-context-menu">
+        <div class="menu-item" data-action="preview-deck">
+          <span class="menu-icon">👁️</span>
+          Preview Deck
+        </div>
+        <div class="menu-item" data-action="add-card">
+          <span class="menu-icon">➕</span>
+          Add Card
+        </div>
+        <div class="menu-item" data-action="export-deck">
+          <span class="menu-icon">📤</span>
+          Export Deck
+        </div>
+        <div class="menu-item" data-action="show-id">
+          <span class="menu-icon">🔗</span>
+          Show ID
+        </div>
+        <div class="menu-item" data-action="reset-deck-stats">
+          <span class="menu-icon">🔄</span>
+          Reset Deck Stats
+        </div>
+        <div class="menu-item" data-action="delete-deck">
+          <span class="menu-icon">🗑️</span>
+          Delete Deck
+        </div>
+      </div>
+    </template>
+
+    <template id="category-menu-template">
+      <div class="category-context-menu">
+        <div class="menu-item" data-action="edit-category">
+          <span class="menu-icon">✏️</span>
+          Edit Category
+        </div>
+        <div class="menu-item" data-action="delete-category">
+          <span class="menu-icon">🗑️</span>
+          Delete Category
+        </div>
+      </div>
+    </template>
+
+    <template id="statistics-template">
+      <div class="statistics-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="mastery-value">0%</div>
+            <div class="stat-label">Mastery</div>
+            <div class="stat-description">Cards currently rated at 4</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="days-studied-value">0</div>
+            <div class="stat-label">Days Studied</div>
+            <div class="stat-description">Days with 10+ cards completed</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="time-studied-value">0</div>
+            <div class="stat-label">Time Studied</div>
+            <div class="stat-description">Focused study time only</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="unique-cards-value">0</div>
+            <div class="stat-label">Unique Cards</div>
+            <div class="stat-description">Different cards studied</div>
+          </div>
+          
+          <div class="stat-card">
+            <div class="stat-value" id="total-cards-value">0</div>
+            <div class="stat-label">Total Card Studies</div>
+            <div class="stat-description">All study instances</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-primary" data-action="close">Close</button>
+      </div>
+    </template>
+
+    <template id="settings-template">
+      <div class="settings-content">
+        <div class="form-group">
+          <label for="cards-per-session">Cards per study session</label>
+          <input type="number" id="cards-per-session" min="1" max="50" value="10">
+          <p class="setting-description">Number of cards to include in each study session (1-50)</p>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-secondary" data-action="cancel">Cancel</button>
+        <button class="btn-primary" data-action="save">Save Settings</button>
+      </div>
+    </template>
+
+    <!-- Scripts - keep at bottom of file -->
+    <script src="js/indexedDB-manager.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/category-manager.js"></script>
+    <script src="js/card-manager.js"></script>
+    <script src="js/study-manager.js"></script>
+    <script src="js/app.js"></script>
+
+  </body>
+</html>

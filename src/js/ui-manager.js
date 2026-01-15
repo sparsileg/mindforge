@@ -1,0 +1,911 @@
+// UI management for Mindforge
+
+class UIManager {
+    constructor() {
+        this.currentScreen = 'welcome';
+        this.currentCategory = null;
+        this.currentDeck = null;
+        this.modal = null;
+        this.themeSelect = null;
+        this.hamburgerMenu = null;
+        this.hamburgerBtn = null;
+    }
+
+    init() {
+        this.modal = document.getElementById('modal');
+        this.themeSelect = document.getElementById('theme-select');
+        this.hamburgerMenu = document.getElementById('hamburger-menu');
+        this.hamburgerBtn = document.getElementById('hamburger-menu-btn');
+        
+        this.setupEventListeners();
+        this.loadTheme();
+        this.updateSidebarStats();
+    }
+
+    setupEventListeners() {
+        // Theme selector
+        this.themeSelect.addEventListener('change', (e) => {
+            this.changeTheme(e.target.value);
+        });
+
+        // Modal close
+        document.getElementById('modal-close').addEventListener('click', () => {
+            this.closeModal();
+        });
+
+        // Close modal when clicking outside
+        this.modal.addEventListener('click', (e) => {
+            if (e.target === this.modal) {
+                this.closeModal();
+            }
+        });
+
+        // ESC key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.closeModal();
+            }
+            if (e.key === 'Escape' && this.hamburgerMenu.classList.contains('active')) {
+                this.closeHamburgerMenu();
+            }
+        });
+
+        // Hamburger menu toggle
+        this.hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleHamburgerMenu();
+        });
+
+        // Hamburger menu items
+        this.hamburgerMenu.addEventListener('click', (e) => {
+            const menuItem = e.target.closest('.menu-item');
+            if (menuItem) {
+                const action = menuItem.dataset.action;
+                this.handleHamburgerMenuAction(action);
+                this.closeHamburgerMenu();
+            }
+        });
+
+        // Close hamburger menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!this.hamburgerMenu.contains(e.target) && !this.hamburgerBtn.contains(e.target)) {
+                this.closeHamburgerMenu();
+            }
+        });
+
+        // Make Mindforge title clickable to go home
+        const mindforgeTitle = document.querySelector('.header-top h1');
+        if (mindforgeTitle) {
+            mindforgeTitle.addEventListener('click', () => {
+                if (window.routerManager) {
+                    window.routerManager.navigate('/');
+                }
+            });
+        }
+    }
+
+    // Theme management
+    loadTheme() {
+        const settings = window.dataManager.getSettings();
+        const theme = settings.theme || 'dark';
+        this.themeSelect.value = theme;
+        this.applyTheme(theme);
+    }
+
+    changeTheme(theme) {
+        window.dataManager.updateSettings({ theme });
+        this.applyTheme(theme);
+    }
+
+    applyTheme(theme) {
+        const themeLink = document.getElementById('theme-css');
+        themeLink.href = `css/themes/${theme}.css`;
+    }
+
+    // Screen management
+    showScreen(screenId, data = {}) {
+        // Hide all screens
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+
+        // Show target screen
+        const targetScreen = document.getElementById(screenId);
+        if (targetScreen) {
+            targetScreen.classList.add('active');
+            this.currentScreen = screenId;
+
+            // Update screen content based on data
+            this.updateScreenContent(screenId, data);
+            
+            // Render overview if showing welcome screen
+            if (screenId === 'welcome-screen') {
+                this.renderHomeOverview();
+            }
+        }
+    }
+
+    updateScreenContent(screenId, data) {
+        switch (screenId) {
+        case 'category-screen':
+            this.updateCategoryScreen(data);
+            break;
+        case 'study-screen':
+            this.updateStudyScreen(data);
+            break;
+        }
+    }
+
+    updateCategoryScreen(data) {
+        if (data.category) {
+            this.currentCategory = data.category;
+            document.getElementById('category-title').textContent = data.category.name;
+            this.renderDecks(data.category.decks);
+        }
+    }
+
+    updateStudyScreen(data) {
+        // Study screen will be handled by StudyManager
+    }
+
+    // Render functions
+    renderCategories(categories) {
+        const container = document.getElementById('categories-list');
+        container.innerHTML = '';
+
+        categories.forEach(category => {
+            const categoryEl = document.createElement('div');
+            categoryEl.className = 'category-item';
+            categoryEl.dataset.categoryId = category.id;
+            
+            const deckCount = category.decks.length;
+            const totalCards = category.decks.reduce((sum, deck) => sum + deck.cards.length, 0);
+            
+            categoryEl.innerHTML = `
+        <div class="category-info">
+            <div class="category-name">${category.name}</div>
+            <div class="category-stats">${deckCount} decks • ${totalCards} cards</div>
+        </div>
+        <button class="category-menu-btn" data-category-id="${category.id}">⋯</button>
+        `;
+
+            // Click handler for category selection (but not menu button)
+            categoryEl.addEventListener('click', (e) => {
+                if (!e.target.closest('.category-menu-btn')) {
+                    window.categoryManager.selectCategory(category.id);
+                }
+            });
+
+            // Add click handler for menu button
+            const menuBtn = categoryEl.querySelector('.category-menu-btn');
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.showCategoryMenu(e, category.id);
+            });
+
+            container.appendChild(categoryEl);
+        });
+        
+        // Refresh home overview if we're on the welcome screen
+        if (this.currentScreen === 'welcome-screen') {
+            this.renderHomeOverview();
+        }
+    }
+
+	renderDecks(decks) {
+		const container = document.getElementById('decks-list');
+		container.innerHTML = '';
+
+		if (decks.length === 0) {
+			container.innerHTML = `
+				<div class="empty-state">
+					<p>No decks yet. Create your first deck to get started!</p>
+				</div>
+			`;
+			return;
+		}
+
+		decks.forEach(deck => {
+			const deckEl = document.createElement('div');
+			deckEl.className = 'deck-card';
+			deckEl.dataset.deckId = deck.id;
+
+			const cardCount = deck.cards.length;
+			const stats = calculateAdvancedStudyStats(deck.cards);
+
+			deckEl.innerHTML = `
+				<div class="deck-card-header">
+					<h3>${deck.name}</h3>
+					<button class="deck-menu-btn" data-deck-id="${deck.id}">⋯</button>
+				</div>
+				<p>${cardCount} total cards</p>
+				<p>${stats.readyToStudy} ready to study</p>
+				<p>${stats.newCards} new • ${stats.learningCards} learning • ${stats.graduatedCards} graduated</p>
+			`; 
+
+            // Add click handler for deck (but not menu button) - go directly to study
+            deckEl.addEventListener('click', (e) => {
+                if (!e.target.closest('.deck-menu-btn')) {
+                    window.studyManager.startStudySession(this.currentCategory.id, deck.id);
+                }
+            });
+
+			// Add click handler for menu button
+			const menuBtn = deckEl.querySelector('.deck-menu-btn');
+			menuBtn.addEventListener('click', (e) => {
+				e.stopPropagation(); // Prevent deck selection
+				this.showDeckMenu(e, deck.id);
+			});
+
+			container.appendChild(deckEl);
+		});
+	}
+
+    // Modal management
+    showModal(title, content, actions = []) {
+        document.getElementById('modal-title').textContent = title;
+        document.getElementById('modal-body').innerHTML = content;
+
+        // Add action buttons
+        if (actions.length > 0) {
+            const actionsHTML = actions.map(action => 
+                `<button class="${action.class || 'btn-primary'}" data-action="${action.action}">${action.text}</button>`
+            ).join('');
+            
+            document.getElementById('modal-body').innerHTML += `
+                <div class="form-actions">${actionsHTML}</div>
+            `;
+
+            // Add event listeners for action buttons
+            actions.forEach(action => {
+                const button = document.querySelector(`[data-action="${action.action}"]`);
+                if (button && action.handler) {
+                    button.addEventListener('click', action.handler);
+                }
+            });
+        }
+
+        this.modal.classList.add('active');
+    }
+
+    closeModal() {
+        this.modal.classList.remove('active');
+        // Clear modal content
+        setTimeout(() => {
+            document.getElementById('modal-body').innerHTML = '';
+        }, 300);
+    }
+
+    // Utility functions
+    showToast(message, type = 'info') {
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        // Animate in
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+
+		// Remove after configured duration
+		setTimeout(() => {
+			toast.classList.remove('show');
+			setTimeout(() => {
+				if (toast.parentNode) {
+					toast.parentNode.removeChild(toast);
+				}
+			}, MINDFORGE_CONFIG.ANIMATION_DURATION);
+		}, MINDFORGE_CONFIG.TOAST_DURATION);
+    }
+
+    // Update active category in sidebar
+    updateActiveSidebarItem(categoryId) {
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.classList.remove('active');
+        });
+
+        if (categoryId) {
+            const activeItem = document.querySelector(`[data-category-id="${categoryId}"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+    }
+
+    // Get current context
+    getCurrentContext() {
+        return {
+            screen: this.currentScreen,
+            category: this.currentCategory,
+            deck: this.currentDeck
+        };
+    }
+
+    // Hamburger menu management
+    toggleHamburgerMenu() {
+        if (this.hamburgerMenu.classList.contains('active')) {
+            this.closeHamburgerMenu();
+        } else {
+            this.openHamburgerMenu();
+        }
+    }
+
+    openHamburgerMenu() {
+        // Position the menu relative to the hamburger button
+        const btnRect = this.hamburgerBtn.getBoundingClientRect();
+        this.hamburgerMenu.style.position = 'fixed';
+        this.hamburgerMenu.style.top = (btnRect.bottom + 5) + 'px';
+        this.hamburgerMenu.style.left = (btnRect.right - 200) + 'px'; // 200px is menu width
+        
+        this.hamburgerMenu.classList.add('active');
+        this.hamburgerBtn.classList.add('active');
+    }
+
+    closeHamburgerMenu() {
+        this.hamburgerMenu.classList.remove('active');
+        this.hamburgerBtn.classList.remove('active');
+    }
+
+    handleHamburgerMenuAction(action) {
+        switch (action) {
+        case 'statistics':
+            this.showStatistics();
+            break;
+        case 'create-backup':
+            this.createBackup();
+            break;
+        case 'import-data':
+            window.mindforgeApp.showImportModal();
+            break;
+        case 'settings':
+            this.showSettings();
+            break;
+        case 'keyboard-shortcuts':
+            this.showKeyboardShortcuts();
+            break;
+        case 'about':
+            this.showAbout();
+            break;
+        }
+    }
+
+    async createBackup() {
+        try {
+            const data = await window.dataManager.exportData();
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const filename = `mindforge-backup-${timestamp}.json`;
+            
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            URL.revokeObjectURL(url);
+            this.showToast('Backup created successfully', 'success');
+        } catch (error) {
+            this.showToast('Error creating backup: ' + error.message, 'error');
+        }
+    }
+
+    showKeyboardShortcuts() {
+        const template = document.getElementById('keyboard-shortcuts-template');
+        const content = template.content.cloneNode(true);
+        
+        const actions = [
+            {
+                text: 'Close',
+                class: 'btn-primary',
+                action: 'close',
+                handler: () => this.closeModal()
+            }
+        ];
+
+        this.showTemplateModal('Keyboard Shortcuts', content, actions);
+    }
+
+    showAbout() {
+        const template = document.getElementById('about-template');
+        const content = template.content.cloneNode(true);
+        
+        const actions = [
+            {
+                text: 'Close',
+                class: 'btn-primary',
+                action: 'close',
+                handler: () => this.closeModal()
+            }
+        ];
+
+        this.showTemplateModal('About Mindforge', content, actions);
+    }
+
+    showTemplateModal(title, templateContent, actions = []) {
+        document.getElementById('modal-title').textContent = title;
+        
+        // Clear and populate modal body
+        const modalBody = document.getElementById('modal-body');
+        modalBody.innerHTML = '';
+        modalBody.appendChild(templateContent);
+
+        // Add event listeners for action buttons
+        actions.forEach(action => {
+            const button = modalBody.querySelector(`[data-action="${action.action}"]`);
+            if (button && action.handler) {
+                button.addEventListener('click', action.handler);
+            }
+        });
+
+        this.modal.classList.add('active');
+    }
+	
+    showDeckMenu(event, deckId) {
+        // Remove existing menu
+        const existingMenu = document.querySelector('.deck-context-menu');
+        if (existingMenu) {
+            existingMenu.remove();
+        }
+
+        // Create menu from template
+        const template = document.getElementById('deck-menu-template');
+        const menuContent = template.content.cloneNode(true);
+        const menu = menuContent.querySelector('.deck-context-menu');
+
+        // Hide preview option if deck has no cards
+        const deck = window.dataManager.findDeck(this.currentCategory.id, deckId);
+        if (!deck || deck.cards.length === 0) {
+            const previewItem = menu.querySelector('[data-action="preview-deck"]');
+            if (previewItem) {
+                previewItem.style.display = 'none';
+            }
+        }
+        
+        // Position menu near the clicked button
+        const btnRect = event.target.getBoundingClientRect();
+        menu.style.left = (btnRect.right - 160) + 'px'; // 160px is menu width
+        menu.style.top = (btnRect.bottom + 5) + 'px';
+
+        // Add event listeners
+        menu.addEventListener('click', (e) => {
+            const action = e.target.closest('.menu-item')?.dataset.action;
+            if (action === 'export-deck') {
+                window.categoryManager.exportDeckById(deckId);
+            } else if (action === 'delete-deck') {
+                window.categoryManager.confirmDeleteDeck(deckId);
+            } else if (action === 'preview-deck') {
+                window.categoryManager.previewDeck(deckId);
+            } else if (action === 'reset-deck-stats') {
+                window.categoryManager.confirmResetDeckStats(deckId);
+            } else if (action === 'add-card') {
+                window.categoryManager.addCardToDeck(deckId);
+            } else if (action === 'show-id') {
+                this.showDeckIdInfo(deckId);
+            }
+            menu.remove();
+        });
+
+        // Close menu when clicking elsewhere
+        setTimeout(() => {
+            document.addEventListener('click', () => {
+                menu.remove();
+            }, { once: true });
+        }, 100);
+
+        document.body.appendChild(menu);
+    }
+
+
+    async showPreviewScreen(category, deck) {
+        this.currentCategory = category;
+        this.currentDeck = deck;
+        
+        document.getElementById('preview-title').textContent = `Preview: ${deck.name}`;
+        
+        // Initialize preview state
+        this.previewState = {
+            categoryId: category.id,
+            deckId: deck.id,
+            allCards: deck.cards,
+            displayedCards: 0,
+            batchSize: MINDFORGE_CONFIG.CARDS_PER_PREVIEW_BATCH
+        };
+        
+        // Clear previous content
+        document.getElementById('preview-content').innerHTML = '';
+        
+        // Load first batch
+        await this.loadPreviewBatch();
+        
+        this.showScreen('preview-screen');
+    }    
+
+
+    async loadPreviewBatch() {
+        const state = this.previewState;
+        const container = document.getElementById('preview-content');
+        const moreButton = document.getElementById('preview-more');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        
+        // Calculate cards for this batch
+        const startIndex = state.displayedCards;
+        const endIndex = Math.min(startIndex + state.batchSize, state.allCards.length);
+        const batchCards = state.allCards.slice(startIndex, endIndex);
+        
+        // Render batch cards
+        for (const card of batchCards) {
+            const cardEl = document.createElement('div');
+            cardEl.className = 'preview-card';
+            
+            // Prepare content
+            const frontContent = card.front || '';
+            const backContent = parseSimpleMarkdown(card.back || '');
+            const imageHtml = card.image ? 
+                  `<div class="preview-card-image">${await this.getImageHtml(card.image)}</div>` : '';
+            
+            cardEl.innerHTML = `
+        <button class="preview-card-delete" onclick="window.uiManager.deleteCardFromPreview('${card.id}')" title="Delete card">🗑️</button>
+        <div class="preview-card-front">
+            <div class="preview-card-label">Front</div>
+            ${imageHtml}
+            <div class="preview-card-content">${frontContent}</div>
+        </div>
+        <div class="preview-card-back">
+           <div class="preview-card-label">Back</div>
+           <div class="preview-card-content">${backContent}</div>
+        </div>
+        `;
+
+            // Add click handler for editing (but not delete button)
+            cardEl.addEventListener('click', (e) => {
+                if (!e.target.closest('.preview-card-delete')) {
+                    this.editCardFromPreview(card.id);
+                }
+            });
+
+            container.appendChild(cardEl);
+        }
+        
+        // Update state
+        state.displayedCards = endIndex;
+        
+        // Update count display
+        document.getElementById('preview-count').textContent = 
+            `Showing ${state.displayedCards} of ${state.allCards.length} cards`;
+        
+        // Show/hide load more button
+        if (state.displayedCards < state.allCards.length) {
+            moreButton.style.display = 'block';
+            
+            // Remove existing event listener and add new one
+            const newBtn = loadMoreBtn.cloneNode(true);
+            loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
+            newBtn.addEventListener('click', () => this.loadPreviewBatch());
+        } else {
+            moreButton.style.display = 'none';
+        }
+    }
+
+
+    async getImageHtml(imagePath) {
+        if (!imagePath) return '';
+        
+        const dataUrl = await window.cardManager.getImageDataUrl(imagePath);
+        if (dataUrl) {
+            return `<img src="${dataUrl}" alt="Card image">`;
+        }
+        return '<p style="color: var(--text-secondary); font-style: italic;">Image not found</p>';
+    }
+    
+
+    editCardFromPreview(cardId) {
+        const state = this.previewState;
+        if (!state) return;
+        
+        // Store current preview state
+        this.previewEditState = {
+            returnToPreview: true,
+            categoryId: state.categoryId,
+            deckId: state.deckId,
+            cardId: cardId
+        };
+        
+        // Use existing card edit functionality
+        window.cardManager.editCard(state.categoryId, state.deckId, cardId);
+    }
+
+
+    deleteCardFromPreview(cardId) {
+        const state = this.previewState;
+        if (!state) return;
+        
+        const card = state.allCards.find(c => c.id === cardId);
+        if (!card) return;
+
+        const frontPreview = card.front.length > 100 ? 
+              card.front.substring(0, 100) + '...' : card.front;
+
+        const template = document.getElementById('confirm-delete-template');
+        const content = template.content.cloneNode(true);
+        
+        // Populate the delete message
+        content.getElementById('delete-message').innerHTML = `
+        <p>Are you sure you want to delete this card?</p>
+        <div style="background: var(--card-bg); padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+            <strong>Front:</strong> ${frontPreview}
+        </div>
+        <p><strong>This action cannot be undone.</strong></p>
+    `;
+        
+        const actions = [
+            {
+                action: 'cancel',
+                handler: () => this.closeModal()
+            },
+            {
+                action: 'delete',
+                handler: () => this.handleDeleteCardFromPreview(cardId)
+            }
+        ];
+
+        this.showTemplateModal('Confirm Delete', content, actions);
+    }
+
+
+    handleDeleteCardFromPreview(cardId) {
+        const state = this.previewState;
+        if (!state) return;
+        
+        const deleted = window.dataManager.deleteCard(state.categoryId, state.deckId, cardId);
+        
+        if (deleted) {
+            this.closeModal();
+            this.showToast('Card deleted successfully', 'success');
+            
+            // Refresh the preview screen
+            const category = window.dataManager.findCategory(state.categoryId);
+            const deck = window.dataManager.findDeck(state.categoryId, state.deckId);
+            
+            if (category && deck) {
+                this.showPreviewScreen(category, deck);
+            }
+            
+            // Update sidebar stats
+            window.categoryManager.renderCategories();
+        } else {
+            this.showToast('Error deleting card', 'error');
+        }
+    }
+
+
+    showStatistics() {
+        const template = document.getElementById('statistics-template');
+        const content = template.content.cloneNode(true);
+        
+        // Get statistics data
+        const stats = window.dataManager.getStatistics();
+        
+        // Populate the values
+        content.getElementById('mastery-value').textContent = stats.mastery + '%';
+        content.getElementById('days-studied-value').textContent = stats.daysStudied;
+        content.getElementById('time-studied-value').textContent = formatTimeStudied(stats.timeStudied);
+        content.getElementById('unique-cards-value').textContent = stats.uniqueCardsStudied;
+        content.getElementById('total-cards-value').textContent = stats.totalCardInstances;
+        
+        const actions = [
+            {
+                text: 'Close',
+                class: 'btn-primary',
+                action: 'close',
+                handler: () => this.closeModal()
+            }
+        ];
+
+        this.showTemplateModal('Statistics', content, actions);
+    }
+
+    updateSidebarStats() {
+        // Check if streak should be reset to 0 due to gap
+        window.dataManager.checkStreakValidity();
+        
+        const stats = window.dataManager.getStatistics();
+        document.getElementById('current-streak').textContent = stats.currentStreak;
+        document.getElementById('record-streak').textContent = stats.recordStreak;
+    }
+
+    showDeckIdInfo(deckId) {
+        const deck = window.dataManager.findDeck(this.currentCategory.id, deckId);
+        if (!deck) return;
+        
+        const categoryId = this.currentCategory.id;
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        const studyUrl = `${baseUrl}#/study/${categoryId}/${deckId}`;
+        const previewUrl = `${baseUrl}#/preview/${categoryId}/${deckId}`;
+        
+        const content = `
+        <div class="deck-id-info">
+            <p><strong>Deck:</strong> ${deck.name}</p>
+            <p><strong>Category ID:</strong> ${categoryId}</p>
+            <p><strong>Deck ID:</strong> ${deckId}</p>
+        </div>
+        
+        <div class="deck-id-urls">
+            <p><strong>Direct Study URL:</strong></p>
+            <input type="text" value="${studyUrl}" readonly>
+        </div>
+        
+        <div class="deck-id-urls">
+            <p><strong>Direct Preview URL:</strong></p>
+            <input type="text" value="${previewUrl}" readonly>
+        </div>
+        
+        <p class="deck-id-note">
+            Copy these URLs to bookmark or share specific decks.
+        </p>
+    `;
+        
+        const actions = [
+            {
+                text: 'Close',
+                class: 'btn-primary',
+                action: 'close',
+                handler: () => this.closeModal()
+            }
+        ];
+
+        this.showModal('Deck Information', content, actions);
+        
+        // Select text in inputs when clicked
+        setTimeout(() => {
+            document.querySelectorAll('input[readonly]').forEach(input => {
+                input.addEventListener('click', () => input.select());
+            });
+        }, 100);
+    }
+
+    renderHomeOverview() {
+        const container = document.getElementById('all-decks-container');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        
+        const categories = window.dataManager.getCategories();
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        
+        if (categories.length === 0) {
+            container.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                <p>No decks yet. Create your first category and deck to get started!</p>
+            </div>
+        `;
+            return;
+        }
+        
+        categories.forEach(category => {
+            if (category.decks.length === 0) return; // Skip categories with no decks
+            
+            const categorySection = document.createElement('div');
+            categorySection.className = 'overview-section';
+            
+            const categoryTitle = document.createElement('h3');
+            categoryTitle.textContent = category.name;
+            categorySection.appendChild(categoryTitle);
+            
+            const deckList = document.createElement('div');
+            deckList.className = 'category-deck-list';
+            
+            category.decks.forEach(deck => {
+                const stats = calculateAdvancedStudyStats(deck.cards);
+                const studyUrl = `${baseUrl}#/study/${category.id}/${deck.id}`;
+                const previewUrl = `${baseUrl}#/preview/${category.id}/${deck.id}`;
+                
+                const deckLine = document.createElement('div');
+                deckLine.className = 'deck-line';
+                
+                deckLine.innerHTML = `
+                <div class="deck-info">
+                    <div class="deck-name">${deck.name}</div>
+                    <div class="deck-stats">${deck.cards.length} cards • ${stats.readyToStudy} ready to study</div>
+                </div>
+                <div class="deck-actions">
+                    <a href="${studyUrl}" class="deck-action-link primary">Study</a>
+                    <a href="${previewUrl}" class="deck-action-link">Preview</a>
+                </div>
+            `;
+                
+                deckList.appendChild(deckLine);
+            });
+            
+            categorySection.appendChild(deckList);
+            container.appendChild(categorySection);
+        });
+    }
+
+    showSettings() {
+        const template = document.getElementById('settings-template');
+        const content = template.content.cloneNode(true);
+        
+        // Populate current settings
+        const settings = window.dataManager.getSettings();
+        content.getElementById('cards-per-session').value = settings.cardsPerSession || 10;
+        
+        const actions = [
+            {
+                action: 'cancel',
+                handler: () => this.closeModal()
+            },
+            {
+                action: 'save',
+                handler: () => this.handleSaveSettings()
+            }
+        ];
+
+        this.showTemplateModal('Settings', content, actions);
+    }
+
+    handleSaveSettings() {
+        const cardsPerSession = parseInt(document.getElementById('cards-per-session').value);
+        
+        // Validate input
+        if (isNaN(cardsPerSession) || cardsPerSession < 1 || cardsPerSession > 50) {
+            this.showToast('Cards per session must be between 1 and 50', 'error');
+            return;
+        }
+        
+        // Update settings
+        window.dataManager.updateSettings({
+            cardsPerSession: cardsPerSession
+        });
+        
+        this.closeModal();
+        this.showToast('Settings saved successfully', 'success');
+    }
+
+    showCategoryMenu(event, categoryId) {
+        // Remove existing menu
+        const existingMenu = document.querySelector('.category-context-menu');
+        if (existingMenu) {
+            existingMenu.remove();
+        }
+
+        // Create menu from template
+        const template = document.getElementById('category-menu-template');
+        const menuContent = template.content.cloneNode(true);
+        const menu = menuContent.querySelector('.category-context-menu');
+        
+        // Position menu near the clicked button
+        const btnRect = event.target.getBoundingClientRect();
+        menu.style.left = (btnRect.right - 160) + 'px'; // 160px is menu width
+        menu.style.top = (btnRect.bottom + 5) + 'px';
+
+        // Add event listeners
+        menu.addEventListener('click', (e) => {
+            const action = e.target.closest('.menu-item')?.dataset.action;
+            if (action === 'edit-category') {
+                window.categoryManager.editCategory(categoryId);
+            } else if (action === 'delete-category') {
+                window.categoryManager.confirmDeleteCategory(categoryId);
+            }
+            menu.remove();
+        });
+
+        // Close menu when clicking elsewhere
+        setTimeout(() => {
+            document.addEventListener('click', () => {
+                menu.remove();
+            }, { once: true });
+        }, 100);
+
+        document.body.appendChild(menu);
+    }
+
+}
+
+// Create global instance
+window.uiManager = new UIManager();
