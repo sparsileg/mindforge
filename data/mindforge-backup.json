@@ -1,0 +1,3945 @@
+{
+  "data": {
+    "settings": {
+      "theme": "matrix",
+      "defaultStudyMode": "front-to-back",
+      "cardsPerSession": 12
+    },
+    "categories": [
+      {
+        "id": "mfetgr5o9vojrz7rd",
+        "name": "Memorize",
+        "createdAt": "2025-09-11T02:56:02.172Z",
+        "decks": [
+          {
+            "id": "mfetgxp2m597fl3deq",
+            "name": "Scriptures",
+            "createdAt": "2025-09-11T02:56:10.646Z",
+            "cards": [
+              {
+                "id": "mfethl2stfygz7p9s1",
+                "front": "How God changed the hearts of people",
+                "back": "Alma 5:7\nAlma speaking of his forefathers to the people of Zarahemla\n\nBehold, he changed their hearts; yea, he awakened them out of a deep sleep, and they awoke unto God. Behold, they were in the midst of darkness; nevertheless, their souls were illuminated by the light of the everlasting word;",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-06",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 114378341424697740000,
+                "createdAt": "2025-09-11T02:56:40.948Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfethxuio5oz8jo8jkb",
+                "front": "A man, not knowing his master",
+                "back": "Mosiah 5:13\nKing Benjamin, speaking to his people\n\nFor how knoweth a man the master whom he has not served, and who is a stranger unto him, and is far from the thoughts and intents of his heart?",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5.121239910820612e+22,
+                "createdAt": "2025-09-11T02:56:57.499Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfeti6ibasl4un6fo47",
+                "front": "Have unity and love toward each other",
+                "back": "Philippians 2:2-5 (NRSV)\nPaul, speaking to the Philippians\n\n... be of the same mind, having the same love, being in full accord and of one mind. Do nothing from selfish ambition or empty conceit, but in humility regard others as better than yourselves. Let each of you look not to your own interests but to the interests of others. Let the same mind be in you that was[a] in Christ Jesus …",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 3.474037410676345e+26,
+                "createdAt": "2025-09-11T02:57:08.724Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetigh35hei3mrawwx",
+                "front": "He is the light and the life of the world;",
+                "back": "Mosiah 16:9\nAbinadi, speaking to King Noah and his priests\n\nHe is the light and the life of the world; yea, a light that is endless, that can never be darkened; yea, and also a life which is endless, that there can be no more death.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 4.722757066426919e+28,
+                "createdAt": "2025-09-11T02:57:21.639Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetiryi99gk28ihrrm",
+                "front": "Counsel to the people of Gideon",
+                "back": "Alma 7:23-24\nAlma, to the people of Gideon\n\nAnd now I would that ye should be humble, and be submissive and gentle; easy to be entreated; full of patience and long-suffering; being temperate in all things; being diligent in keeping the commandments of God at all times; asking for whatsoever things ye stand in need, both spiritual and temporal; always returning thanks unto God for whatsoever things ye do receive. And see that ye have faith, hope, and charity, and then ye will always abound in good works.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 24864856831456030000,
+                "createdAt": "2025-09-11T02:57:36.522Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetj1cmo1444f90jnh",
+                "front": "And he shall go forth, suffering pains",
+                "back": "Alma 7:11-12\nAlma, speaking to the people in Gideon\n\nAnd he shall go forth, suffering pains and afflictions and temptations of every kind; and this that the word might be fulfilled which saith he will take upon him the pains and the sicknesses of his people. And he will take upon him death, that he may loose the bands of death which bind his people; and he will take upon him their infirmities, that his bowels may be filled with mercy, according to the flesh, that he may know according to the flesh how to succor his people according to their infirmities.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1.0547858128425875e+26,
+                "createdAt": "2025-09-11T02:57:48.694Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetjbt8boeh9a23vxf",
+                "front": "We shall reap a reward for our works",
+                "back": "Alma 9:28\nAlma, speaking to the wicked people of Ammonihah\n\nTherefore, prepare ye the way of the Lord, for the time is at hand that all men shall reap a reward of their works, according to that which they have been—if they have been righteous they shall reap the salvation of their souls, according to the power and deliverance of Jesus Christ; and if they have been evil they shall reap the damnation of their souls, according to the power and captivation of the devil.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 255453859121558660,
+                "createdAt": "2025-09-11T02:58:02.252Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetjlpbccnni530erd",
+                "front": "What is Zion?",
+                "back": "Moses 7:18\nEnoch’s revelation\n\nAnd the Lord called his people Zion, because they were of one heart and one mind, and dwelt in righteousness; and there was no poor among them.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 26962830268641,
+                "createdAt": "2025-09-11T02:58:15.071Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetjvai6zymqoyre18",
+                "front": "Service to both man and God",
+                "back": "Mosiah 2:17\nKing Benjamin, speaking to his people\n\nAnd behold, I tell you these things that ye may learn wisdom; that ye may learn that when ye are in the service of your fellow beings ye are only in the service of your God.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 570533488484440,
+                "createdAt": "2025-09-11T02:58:27.498Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetk8g7jz2fgnndb7o",
+                "front": "temple ordinances cannot be lightly passed over",
+                "back": "D&amp;C 128:15\nJoseph Smith providing instruction regarding baptism of the dead in a letter from Nauvoo on Sept 6, 1842\n\nAnd now, my dearly beloved brethren and sisters, let me assure you that these are principles in relation to the dead and the living that cannot be lightly passed over, as pertaining to our salvation. For their salvation is necessary and essential to our salvation, as Paul says concerning the fathers—that they without us cannot be made perfect—neither can we without our dead be made perfect.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 277007790218,
+                "createdAt": "2025-09-11T02:58:44.551Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetkmel6qxgeqifm3",
+                "front": "charity",
+                "back": "Moroni 7:45-48\nMoroni, writing the teachings of his father Mormon\n\nAnd charity suffereth long, and is kind, and envieth not, and is not puffed up, seeketh not her own, is not easily provoked, thinketh no evil, and rejoiceth not in iniquity but rejoiceth in the truth, beareth all things, believeth all things, hopeth all things, endureth all things.\n\nWherefore, my beloved brethren, if ye have not charity, ye are nothing, for charity never faileth. Wherefore, cleave unto charity, which is the greatest of all, for all things must fail—\n\nBut charity is the pure love of Christ, and it endureth forever; and whoso is found possessed of it at the last day, it shall be well with him.\n\nWherefore, my beloved brethren, pray unto the Father with all the energy of heart, that ye may be filled with this love, which he hath bestowed upon all who are true followers of his Son, Jesus Christ; that ye may become the sons of God; that when he shall appear we shall be like him, for we shall see him as he is; that we may have this hope; that we may be purified even as he is pure. Amen.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2025-12-27",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 13091105398,
+                "createdAt": "2025-09-11T02:59:02.637Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetkxo801f503kany4w",
+                "front": "All things witness of God",
+                "back": "Alma 30:44\nAlma testifies to Korihor when Korihor demands a sign\n\n… all things denote there is a God; yea, even the earth, and all things that are upon the face of it, yea, and its motion, yea, and also all the planets which move in their regular form do witness that there is a Supreme Creator.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1274235835002,
+                "createdAt": "2025-09-11T02:59:17.240Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetlamzg2q7m77a2nw",
+                "front": "… Try the virtue of the word of God.",
+                "back": "Alma 31:5\nAlma preparing to teach the Zoramites (Stand of Rameumpton)\n\nAnd now, as the preaching of the word had a great tendency to lead the people to do that which was just—yea, it had had more powerful effect upon the minds of the people than the sword, or anything else, which had happened unto them—therefore Alma thought it was expedient that they should try the virtue of the word of God.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 26962830268641,
+                "createdAt": "2025-09-11T02:59:34.043Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetlmeirz84fjemhis",
+                "front": "The Lord is my refuge",
+                "back": "Psalm 91:1-2\n\nHe that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty. I will say of the Lord, He is my refuge and my fortress: my God; in him will I trust.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-03",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 60219084830,
+                "createdAt": "2025-09-11T02:59:49.290Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetlvcqk3tc2dz7qfs",
+                "front": "Stripling warrior character",
+                "back": "Alma 53:20-21\n\n… they were men who were true at all times in whatsoever thing they were entrusted. Yea, they were men of truth and soberness, for they had been taught to keep the commandments of God and to walk uprightly before him.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 2624454047028424,
+                "createdAt": "2025-09-11T03:00:00.890Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetm53d4kq0glvmcco",
+                "front": "Build your foundation",
+                "back": "Helaman 5:12\nHelaman speaking to his sons Nephi and Lehi\n\nAnd now, my sons, remember, remember that it is upon the rock of our Redeemer, who is Christ, the Son of God, that ye must build your foundation; that when the devil shall send forth his mighty winds, yea, his shafts in the whirlwind, yea, when all his hail and his mighty storm shall beat upon you, it shall have no power over you to drag you down to the gulf of misery and endless wo, because of the rock upon which ye are built, which is a sure foundation, a foundation whereon if men build they cannot fall.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 24864856831456030000,
+                "createdAt": "2025-09-11T03:00:13.514Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetmkt023fp6xjxdwz",
+                "front": "Priesthood is governed by righteousness",
+                "back": "Doctrine and covenants 121:33-40\n\n33 How long can rolling waters remain impure? What power shall stay the heavens? As well might man stretch forth his puny arm to stop the Missouri river in its decreed course, or to turn it up stream, as to hinder the Almighty from pouring down knowledge from heaven upon the heads of the Latter-day Saints. \n\n34 Behold, there are many called, but few are chosen. And why are they not chosen? 35 Because their hearts are set so much upon the things of this world, and aspire to the honors of men, that they do not learn this one lesson— 36 That the rights of the priesthood are inseparably connected with the powers of heaven, and that the powers of heaven cannot be controlled nor handled only upon the principles of righteousness. \n\n37 That they may be conferred upon us, it is true; but when we undertake to cover our sins, or to gratify our pride, our vain ambition, or to exercise control or dominion or compulsion upon the souls of the children of men, in any degree of unrighteousness, behold, the heavens withdraw themselves; the Spirit of the Lord is grieved; and when it is withdrawn, Amen to the priesthood or the authority of that man. 38 Behold, ere he is aware, he is left unto himself, to kick against the pricks, to persecute the saints, and to fight against God. \n\n39 We have learned by sad experience that it is the nature and disposition of almost all men, as soon as they get a little authority, as they suppose, they will immediately begin to exercise unrighteous dominion. 40 Hence many are called, but few are chosen.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5861484841009,
+                "createdAt": "2025-09-11T03:00:33.876Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetn0667ffdq62fdvr",
+                "front": "Qualities and blessings of holders of the priesthood",
+                "back": "Doctrine and covenants 121:41-46\n\n41 No power or influence can or ought to be maintained by virtue of the priesthood, only by persuasion, by long-suffering, by gentleness and meekness, and by love unfeigned; 42 By kindness, and pure knowledge, which shall greatly enlarge the soul without hypocrisy, and without guile—\n\n43 Reproving betimes with sharpness, when moved upon by the Holy Ghost; and then showing forth afterwards an increase of love toward him whom thou hast reproved, lest he esteem thee to be his enemy; 44 That he may know that thy faithfulness is stronger than the cords of death.\n\n45 Let thy bowels also be full of charity towards all men, and to the household of faith, and let virtue garnish thy thoughts unceasingly; then shall thy confidence wax strong in the presence of God; and the doctrine of the priesthood shall distil upon thy soul as the dews from heaven. 46 The Holy Ghost shall be thy constant companion, and thy scepter an unchanging scepter of righteousness and truth; and thy dominion shall be an everlasting dominion, and without compulsory means it shall flow unto thee forever and ever.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-07",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 13091105398,
+                "createdAt": "2025-09-11T03:00:53.790Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetnba9m8mrfnx48h",
+                "front": "God is merciful",
+                "back": "Isaiah 54:7, 8, 10\n\n7 For a small moment have I forsaken thee; but with great mercies will I gather thee. 8 In a little wrath I hid my face from thee for a moment; but with everlasting kindness will I have mercy on thee, saith the Lord thy Redeemer. 10 For the mountains shall depart, and the hills be removed; but my kindness shall not depart from thee, neither shall the covenant of my peace be removed, saith the Lord that hath mercy on thee.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-11",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 60219084830,
+                "createdAt": "2025-09-11T03:01:08.193Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetnkyiuwnvweshdhm",
+                "front": "Mormon, and our, calling as disciples",
+                "back": "3 Nephi 5:13\nMormon introducing himself as the writer of the records\n\nBehold, I am a disciple of Jesus Christ, the Son of God. I have been called of him to declare his word among his people, that they might have everlasting life.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 618672278,
+                "createdAt": "2025-09-11T03:01:20.730Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetnv5gjbe3mta43qr",
+                "front": "Everything Jesus does, is for us.",
+                "back": "2 Nephi 26:24\n\nHe doeth not anything save it be for the benefit of the world; for he loveth the world, even that he layeth down his own life that he may draw all men unto him.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 2845892478,
+                "createdAt": "2025-09-11T03:01:33.940Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfeto42wrwv4r7esn5",
+                "front": "Weakness into strength",
+                "back": "Ether 12:27\nMoroni worrying about the weakness of his words\n\nAnd if men come unto me I will show unto them their weakness. I give unto men weakness that they may be humble; and my grace is sufficient for all men that humble themselves before me; for if they humble themselves before me, and have faith in me, then will I make weak things become strong unto them.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 228594702221,
+                "createdAt": "2025-09-11T03:01:45.512Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetoesefowzdny855p",
+                "front": "The Lord will clothe me in righteousness",
+                "back": "Isaiah 61:10\n\nI will greatly rejoice in the Lord, my soul shall be joyful in my God; for he hath clothed me with the garments of salvation, he hath covered me with the robe of righteousness …",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-06",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 13091105398,
+                "createdAt": "2025-09-11T03:01:59.390Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetomzei8dovq28tqb",
+                "front": "What the Lord requires",
+                "back": "Micah 6:8\n\nHe hath shewed thee, O man, what is good; and what doth the Lord require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 201895834947247680,
+                "createdAt": "2025-09-11T03:02:10.010Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetozldhpyn1g1my2",
+                "front": "Serve in the marvelous work",
+                "back": "Doctrine &amp;amp; Covenants 4\nRevelation given through Joseph Smith the Prophet to his father, Joseph Smith Sr., at Harmony, Pennsylvania, February 1829\n\nNow behold, a marvelous work is about to come forth among the children of men.\n\nTherefore, O ye that embark in the service of God, see that ye serve him with all your heart, might, mind and strength, that ye may stand blameless before God at the last day.\n\nTherefore, if ye have desires to serve God ye are called to the work;\n\nFor behold the field is white already to harvest; and lo, he that thrusteth in his sickle with his might, the same layeth up in store that he perisheth not, but bringeth salvation to his soul;\n\nAnd faith, hope, charity and love, with an eye single to the glory of God, qualify him for the work.\n\nRemember faith, virtue, knowledge, temperance, patience, brotherly kindness, godliness, charity, humility, diligence.\n\nAsk, and ye shall receive; knock, and it shall be opened unto you. Amen.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 16176132680433,
+                "createdAt": "2025-09-11T03:02:26.353Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetp8l61zualnk2aqt",
+                "front": "Why we attend church",
+                "back": "Moroni 6:5-6\n\nAnd the church did meet together oft, to fast and to pray, and to speak one with another concerning the welfare of their souls.\n\nAnd they did meet together oft to partake of bread and wine, in remembrance of the Lord Jesus.\n\nAlma 6:6\n\n… the children of God were commanded that they should gather themselves together oft, and join in fasting and mighty prayer in behalf of the welfare of the souls of those who knew not God.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 26962830268641,
+                "createdAt": "2025-09-11T03:02:38.010Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetphsb3mqvljzr2fx",
+                "front": "Name of modern church",
+                "back": "D&amp;C 115:4\n\nFor thus shall my church be called in the last days, even The Church of Jesus Christ of Latter-day Saints.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 2845892478,
+                "createdAt": "2025-09-11T03:02:49.931Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetpr3igepaivhfzph",
+                "front": "Wonderful, Counsellor, etc.",
+                "back": "Isaiah 9:6-7\n\nFor unto us a child is born, unto us a son is given: and the government shall be upon his shoulder: and his name shall be called Wonderful, Counsellor, The mighty God, The everlasting Father, The Prince of Peace.\n\nOf the increase of his government and peace there shall be no end, upon the throne of David, and upon his kingdom, to order it, and to establish it with judgment and with justice from henceforth even for ever.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1021815436486234600,
+                "createdAt": "2025-09-11T03:03:01.998Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetq16cid8aiyfsy0b",
+                "front": "Don’t question God",
+                "back": "Ecclesiastes 5:2\n\nDo not be quick with your mouth, do not be hasty in your heart to utter anything before God. God is in heaven, and you are on earth. (NIV)",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 198337284204,
+                "createdAt": "2025-09-11T03:03:15.060Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetqbwf6kjujjpp2fv",
+                "front": "Call to God and he will answer",
+                "back": "Jeremiah 33:3\n\nCall unto me, and I will answer thee, and shew thee great and mighty things, which thou knowest not.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2025-12-29",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 618672278,
+                "createdAt": "2025-09-11T03:03:28.959Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetqn8qgedry56ilrd",
+                "front": "Be strong because the Lord is with you",
+                "back": "Joshua 1:9\n\nBe strong and of a good courage; be not afraid, neither be thou dismayed: for the Lord thy God is with thee whithersoever thou goest.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 2624454047028424,
+                "createdAt": "2025-09-11T03:03:43.658Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetqz5kqvqrcuhkw8",
+                "front": "Be faithful, tribulation brings blessings",
+                "back": "D&amp;C 58:2-4\n\n… he that is faithful in tribulation, the reward of the same is greater in the kingdom of heaven.\n\nYe cannot behold with your natural eyes, for the present time, the design of your God concerning those things which shall come hereafter, and the glory which shall follow after much tribulation.\n\nFor after much tribulation come the blessings…",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 2286612744448,
+                "createdAt": "2025-09-11T03:03:59.096Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetra2lk1kbzhoavka",
+                "front": "Be anxiously engaged",
+                "back": "D&amp;C 58:26-28\n\nFor behold, it is not meet that I should command in all things; for he that is compelled in all things, the same is a slothful and not a wise servant; wherefore he receiveth no reward.\n\nVerily I say, men should be anxiously engaged in a good cause, and do many things of their own free will, and bring to pass much righteousness;\n\nFor the power is in them, wherein they are agents unto themselves…",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1566570345900,
+                "createdAt": "2025-09-11T03:04:13.245Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetrm8a72vlrjx7gw",
+                "front": "We are surrounded by divine help",
+                "back": "2 Kings 6:15-17\n\nAnd when the servant of the man of God was risen early, and gone forth, behold, an host compassed the city both with horses and chariots. And his servant said unto him, Alas, my master! how shall we do?\n\nAnd he answered, Fear not: for they that be with us are more than they that be with them.\n\nAnd Elisha prayed, and said, Lord, I pray thee, open his eyes, that he may see. And the Lord opened the eyes of the young man; and he saw: and, behold, the mountain was full of horses and chariots of fire round about Elisha.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 9519256888081,
+                "createdAt": "2025-09-11T03:04:29.002Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfetrwlnzhthh3imcq",
+                "front": "Man’s mortal life is brief and then forgotten",
+                "back": "Psalms 103:15-16\n\n15 As for man, his days are as grass: as a flower of the field, so he flourisheth. 16 For the wind passeth over it, and it is gone; and the place thereof shall know it no more.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-16",
+                "nextReview": "2055-08-27",
+                "interval": 10815,
+                "createdAt": "2025-09-11T03:04:42.443Z",
+                "easeFactor": 2.75,
+                "graduationStep": 2
+              },
+              {
+                "id": "mfets5nksx08o6ouqz",
+                "front": "… blessed and happy state …",
+                "back": "Mosiah 2:41\n\nAnd moreover, I would desire that ye should consider on the blessed and happy state of those that keep the commandments of God. For behold, they are blessed in all things, both temporal and spiritual; and if they hold out faithful to the end they are received into heaven, that thereby they may dwell with God in a state of never-ending happiness. O remember, remember that these things are true; for the Lord God hath spoken it.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 22856033473818,
+                "createdAt": "2025-09-11T03:04:54.176Z",
+                "easeFactor": 4,
+                "graduationStep": 2
+              },
+              {
+                "id": "mgodsux84cjnh3jaccy",
+                "front": "Obey or sacrifice?",
+                "back": "1 Samuel 15:22\n\nAnd Samuel said, Hath the Lord as great delight in burnt offerings and sacrifices, as in obeying the voice of the Lord? Behold, to obey is better than sacrifice, and to hearken than the fat of rams.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-16",
+                "nextReview": "2039-02-17",
+                "interval": 4780,
+                "easeFactor": 2.050000000000002,
+                "graduationStep": 2,
+                "createdAt": "2025-10-13T00:14:57.164Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "midusjh1u11kt7crx5",
+                "front": "Be not weary in well-doing",
+                "back": "D&amp;C 64:33-34\nSeptember 11, 1831\nKirtland, Ohio to a group of elders preparing to go to Missouri\n\n\nWherefore, be not weary in well-doing, for ye are laying the foundation of a great work. And out of small things proceedeth that which is great.\n\nBehold, the Lord requireth the heart and a willing mind; and the willing and obedient shall eat the good of the land of Zion in these last days.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-13",
+                "nextReview": "2027-06-07",
+                "interval": 510,
+                "easeFactor": 2.0999999999999996,
+                "graduationStep": 2,
+                "createdAt": "2025-11-25T00:44:32.533Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "mkag4moa22diun0afxd",
+                "front": "Do all things through Christ",
+                "back": "Philippians 4:13\n\nI can do all things through Christ who strengtheneth me.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-15",
+                "nextReview": "2026-01-18",
+                "interval": 3,
+                "easeFactor": 2.0999999999999996,
+                "graduationStep": 2,
+                "createdAt": "2026-01-12T00:50:08.458Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "mkag55mei84p713dp9k",
+                "front": "Nothing is impossible with God",
+                "back": "Luke 1:37\nThe angel declaring Mary's pregnancy and the pregnancy of her cousin Elizabeth.\n\nFor with God nothing shall be impossible.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-16",
+                "nextReview": "2026-01-17",
+                "interval": 1,
+                "easeFactor": 2,
+                "graduationStep": 2,
+                "createdAt": "2026-01-12T00:50:33.014Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              }
+            ]
+          },
+          {
+            "id": "mfnfqswskye2rshr3bn",
+            "name": "Quotes",
+            "createdAt": "2025-09-17T03:41:51.964Z",
+            "cards": [
+              {
+                "id": "mfnfqswtdx95p7p7pa5",
+                "front": "Knowledge through dialogue",
+                "back": "One learns the essence of knowledge through dialogue. from the Sanskrit Bhagavad Gita\n\n“Vade vade jayate tattvabodhah”\nವಡೆ ವಡೆ ಜಾಯ್ತೆ ತತ್ತ್ವಬೋಧಹ್",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5.121239910820612e+22,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.965Z"
+              },
+              {
+                "id": "mfnfqswujt92h5n6m",
+                "front": "Constitution guarantees fundamental rights",
+                "back": "Barnette vs WV Board of Education, 1943. Jehovah’s witnesses refused to repeat the Pledge of Allegiance, alleging it was idolatry. Supreme court opinion written by Justice Robert H. Jackson.\n\n“If there is any fixed star in our constitutional constellation, it is that no official, high or petty, can prescribe what shall be orthodox in politics, nationalism, religion, or other matters of opinion or force citizens to confess by word or act their faith therein.”\n\n“The very purpose of a Bill of Rights was to withdraw certain subjects from the vicissitudes of political controversy, to place them beyond the reach of majorities and officials and to establish them as legal principles to be applied by the courts. One’s right to life, liberty, and property, to free speech, a free press, freedom of worship and assembly, and other fundamental rights may not be submitted to vote; they depend on the outcome of no elections.”",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 4.852014739075902e+26,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.966Z"
+              },
+              {
+                "id": "mfnfqswvmcejpicruq",
+                "front": "Occam’s razor",
+                "back": "William of Occam, English Fransiscan friar and philosopher, died 1347\n\nPluralitas non est ponenda, sine necessitate (Do not multiply entities beyond necessity.)",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1.1133130240914375e+22,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.967Z"
+              },
+              {
+                "id": "mfnfqswwuzvooarhla",
+                "front": "C.S. Lewis on God building a palace",
+                "back": "From “Mere Christianity”\n\nImagine yourself as a living house. God comes in to rebuild that house. At first, perhaps, you can understand what He is doing. He is getting the drains right and stopping the leaks in the roof and so on; you knew that those jobs needed doing and so you are not surprised. But presently He starts knocking the house about in a way that hurts abominably and does not seem to make any sense. What on earth is He up to? The explanation is that He is building quite a different house from the one you thought of - throwing out a new wing here, putting on an extra floor there, running up towers, making courtyards. You thought you were being made into a decent little cottage: but He is building a palace.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 24864856831456030000,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.968Z"
+              },
+              {
+                "id": "mfnfqswxcqf9ws4reym",
+                "front": "Galileo on using our reason",
+                "back": "Galileo Galilei\nDied 1642\n\nI do not feel obliged to believe that the same God who has endowed us with sense, reason, and intellect has intended us to forgo their use.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-15",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 255453859121558660,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.969Z"
+              },
+              {
+                "id": "mfnfqswxdqpei7tie8o",
+                "front": "Constant learning",
+                "back": "Alain de Botton (Swiss-born British author)\n\nAnyone who isn’t embarrassed of who they were last year probably isn’t learning enough.",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1021815436486234600,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.969Z"
+              },
+              {
+                "id": "mfnfqswyiqxxqc83y49",
+                "front": "Believe in the gospel",
+                "back": "St. Augustine of Hippo, died 430\n\nIf you believe what you like in the gospel, and reject what you don’t like, it is not the gospel you believe, but yourself.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 12072488616330750,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.970Z"
+              },
+              {
+                "id": "mfnfqswzn7sxki2cccj",
+                "front": "The fleeting nature of time and the inevitability of change",
+                "back": "Ovid, from Metamorpheses\nRoman poet, died ~18AD\n\nNothing in all the world remains unchanged. All things are in a state of flux, all shapes receive a changing nature. Time itself glides on with constant motion, ever as a flowing river. Neither river nor the fleeting hour can stop its constant course. But, as each wave drives on a wave, as each is pressed by that which follows, and must press on that before it, so the moments fly, and others follow, so they are renewed. The moment which moved on before is past, and that which was not, now exists in time, and every moment comes, goes, and is replaced.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 1021815436554236200,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.971Z"
+              },
+              {
+                "id": "mfnfqswze4jk7efmgdm",
+                "front": "David O. McKay on motherhood",
+                "back": "Motherhood is the greatest potential influence either for good or ill in human life. The mother’s image is the first that stamps itself on the unwritten page of the young child’s mind. It is her caress that first awakens a sense of security, her kiss, the first realization of affection; her sympathy and tenderness, the first assurance that there is love in the world.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 107851321074565,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.971Z"
+              },
+              {
+                "id": "mfnfqsx0fudd9luw3pc",
+                "front": "Neal A. Maxwell on the Book of Mormon",
+                "back": "The Book of Mormon is like a vast mansion, with gardens, towers, courtyards, and wings. My tour of it has never been completed. Some rooms I have yet to enter, and there are more felicitous fireplaces waiting to warm me. Even the rooms I have glimpsed contain further furnishings and rich detail yet to be savored. There are panels inlaid with incredible insights, and design and décor dating from Eden. There are even sumptuous banquet tables painstakingly prepared by predecessors which await all of us.\n\nYet we as church members sometimes behave like hurried tourists scarcely venturing beyond the entry hall. May we come to feel, as a whole people, beckoned beyond the entry hall. May we go inside far enough to hear clearly the whispered truths from those who have slumbered – which whisperings will awaken in us individually a life of discipleship as never before.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 26962830268641,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.972Z"
+              },
+              {
+                "id": "mfnfqsx1bprjd0s7g09",
+                "front": "Neal A. Maxwell on learning from the imperfections of others.",
+                "back": "[Sometimes we forget] the fact that the Church is “for the perfecting of the saints” (Ephesians 4:12); it is not a well-provisioned rest home for the already perfected.\n\nLikewise, unremembered by some is the reality that in the kingdom we are each other’s clinical material; the Lord allows us to practice on each other, even in our imperfections. And each of us knows what it is like to be worked on by a “student” rather than a senior surgeon. Each of us, however unintentionally, has also inflicted some pain.\n\nBesides, if the choice is between reforming other Church members or ourselves, is there really any question about where we should begin?\n\n[https://tinyurl.com/9bw7ek6n]",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 277007790218,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.973Z"
+              },
+              {
+                "id": "mfnfqsx2bppc3rbfb8v",
+                "front": "Ambrose Bierce defines Christian",
+                "back": "Ambrose Bierce\ndied ~1914\n\nChristian, n.: one who believes that the New Testament is a divinely inspired book admirably suited to the spiritual needs of his neighbor.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 277007790218,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.974Z"
+              },
+              {
+                "id": "mfnfqsx3fnhrd02fer6",
+                "front": "Tradition definition",
+                "back": "Gustav Mahler\nComposer and opera director\nDied 1911\n\nTradition is not the worship of ashes, but the preservation of fire.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 60219084830,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.975Z"
+              },
+              {
+                "id": "mfnfqsx3ehbuigcqld",
+                "front": "A person’s worth even if they have done something bad",
+                "back": "Helen Prejean\nCatholic nun and anti-death penalty activist who has witnessed many executions\n\nI’ve learned a crucial, really important life lesson: that everybody’s worth more than the worst thing they’ve ever done in their life, and that everybody can be more.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 255453859121558660,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.975Z",
+                "hiddenWordsDifficulty": 1,
+                "recentRatings": [
+                  4
+                ]
+              },
+              {
+                "id": "mfnfqsx42vgr9f55bix",
+                "front": "Failure and growth",
+                "back": "Buzz Aldrin\nApollo astronaut and moon-walker\n\nFailure is not a sign of weakness. It is a sign that you are alive and growing.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 26962830268641,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.976Z"
+              },
+              {
+                "id": "mfnfqsx5t973m5du63",
+                "front": "Steve Jobs leadership principle",
+                "back": "Steve Jobs\n\nMy job is to **not** be easy on people. My job is to make them better.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 124029019235748,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.977Z"
+              },
+              {
+                "id": "mfnfqsx66osik1t594t",
+                "front": "Differences are minimal with an eternal perspective",
+                "back": "Mister Rogers, died 2003\n\nOur world hangs like a magnificent jewel in the vastness of space. Every one of us is a part of that jewel. A facet of that jewel. And in the perspective of infinity, our differences are infinitesimal.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-16",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5861484841009,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.978Z"
+              },
+              {
+                "id": "mfnfqsx7ef3xx017mg7",
+                "front": "Live and Learn",
+                "back": "Mahatma Gandhi, died 1948\n\nLive as if you were to die tomorrow. Learn as if you were to live forever.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 13091105398,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.979Z"
+              },
+              {
+                "id": "mfnfqsx8a8j7wblx53n",
+                "front": "Gettysburg Address",
+                "back": "Abraham Lincoln, died 1865\nNovember 19, 1863\n\nFour score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.\n\nNow we are engaged in a great civil war, testing whether that nation, or any nation so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.\n\nBut, in a larger sense, we can not dedicate – we can not consecrate – we can not hallow – this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. \n\nIt is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us – that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion – that we here highly resolve that these dead shall not have died in vain – that this nation, under God, shall have a new birth of freedom – and that government of the people, by the people, for the people, shall not perish from the earth.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5861484841009,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.980Z"
+              },
+              {
+                "id": "mfnfqsx9jb1uwnqayu",
+                "front": "Declaration of Independence",
+                "back": "IN CONGRESS, JULY 4, 1776\n\nThe unanimous Declaration of the thirteen united States of America.\n\nWhen in the Course of human events it becomes necessary for one people to dissolve the political bands which have connected them with another and to assume among the powers of the earth, the separate and equal station to which the Laws of Nature and of Nature’s God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.\n\nWe hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness. — That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, — That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it, and to institute new Government, laying its foundation on such principles and organizing its powers in such form, as to them shall seem most likely to effect their Safety and Happiness.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 5405403659012181000,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.981Z"
+              },
+              {
+                "id": "mfnfqsx9ob6skng0pai",
+                "front": "Preamble to the Constitution",
+                "back": "Philadelphia, Pennsylvania\nSeptember 17, 1787\n\nWe the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 124029019235748,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.981Z",
+                "hiddenWordsDifficulty": 1,
+                "recentRatings": [
+                  4
+                ]
+              },
+              {
+                "id": "mfnfqsxajyyc1rrubit",
+                "front": "Wabi-sabi",
+                "back": "Wabi, which roughly means ‘the elegant beauty of humble simplicity’ or “subdued, austere beauty”, and sabi, which means ‘the passing of time and subsequent deterioration’ or “rustic patina”, were combined to form a sense unique to Japan and pivotal to Japanese culture.\n\nWabi-sabi derives from the Buddhist teaching of the three marks of existence (三法印, sanbōin), which include impermanence (無常, mujō), suffering (苦, ku), and emptiness or absence of self-nature (空, kū).\n\nCharacteristics of wabi-sabi aesthetics and principles include asymmetry, roughness, simplicity, economy, austerity, modesty, intimacy, and the appreciation of natural objects and the forces of nature.\n\nWabi-sabi has been described as “the most conspicuous and characteristic feature” of what we think of as traditional Japanese beauty. Andrew Juniper writes that, “If an object or expression can bring about, within us, a sense of serene melancholy and a spiritual longing, then that object could be said to be wabi-sabi.” According to Richard Powell, “Wabi-sabi nurtures all that is authentic by acknowledging three simple realities: nothing lasts, nothing is finished, and nothing is perfect.”\n\nIn one sense, wabi-sabi can be seen as a form of training. The student learns to observe and appreciate the simplest, most natural elements, such as fading autumn leaves. Over time, wabi-sabi reshapes perception so that even a chipped vase or a cracked bowl becomes meaningful and beautiful, not despite the flaw but because of it.\n\nRather than seeing dents or uneven shapes as mistakes, they are viewed as a creation of nature – much as moss would grow on an uneven wall or a tree would curve in the wind.\n\nThe dents and scratches we all bear are reminders of experience, and to erase them would be to ignore the complexities and realities of life. We mirror the ethos of wabi-sabi if we acknowledge that we are mortal, that we are ever-changing, and that we are not perfect.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-15",
+                "nextReview": "11642-06-24",
+                "interval": 3512332,
+                "easeFactor": 3.85,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.982Z"
+              },
+              {
+                "id": "mfnfqsxbnkoygo94dj8",
+                "front": "Reagan’s hope for American society",
+                "back": "Ronald Reagan 1981 speech\n\nWe hold out the exciting prospect of an orderly, compassionate, pluralistic society - an archipelago of prospering communities and divergent institutions - a place where a free and energetic people can work out their own destiny under God.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-08",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 255453859121558660,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.983Z"
+              },
+              {
+                "id": "mfnfqsxcath86vhz1k",
+                "front": "How Much Time",
+                "back": "Marius F Robbertze\n\nTime we say, they told me to imagine my life as an hourglass,\nsand slipping through my hands, but I have always found this idea out of reach and hard to understand.\nDo not get me wrong, I have a great imagination.\nI can see the glass if I close my eyes.\nThe problem is that I can never see how much sand it has inside.\nI could have years or months or moments left.\nI could catch tomorrow’s sunrise and it could be the last one I see.\nI could look into your eyes and it could be the last time that they meet.\nSo tell me, how do I manage my time when its measure cannot be known?\nWhat do I do with this life, the only one I own?\nI could have years or months or moments left.\nA century with you or just a second.\nTo hold your hand, tell me how to make the most of my little bit of sand.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 570533488484440,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.984Z"
+              },
+              {
+                "id": "mfnfqsxd3gyau5ji1l9",
+                "front": "Fixing with gold",
+                "back": "There’s a Japanese practice called Kintsugi, which is the art of repairing broken pottery with gold leaf, transforming what some may consider broken into something more beautiful than it was before.\n\nKintsugi is not just a repair technique; it embodies a philosophy that embraces imperfection and the history of an object. Instead of hiding the damage, kintsugi highlights it, celebrating the object's journey and the beauty found in its flaws. This philosophy aligns with the Japanese aesthetic of wabi-sabi, which values the beauty of impermanence and imperfection.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-15",
+                "nextReview": "2026-01-16",
+                "interval": 1,
+                "easeFactor": 3.35,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:41:51.985Z"
+              },
+              {
+                "id": "mfnfvetjrq9ewffgy2",
+                "front": "This work will fill the earth",
+                "back": "Joseph Smith, 1842\n\nThe standard of truth has been erected; No unhallowed hand can stop the work from progressing; persecutions may rage, mobs may combine, armies may assemble, calumny may defame, but the truth of God will go forth boldly, nobly, and independent, till it has penetrated every continent, visited every clime, swept every country, and sounded in every ear, till the purposes of God shall be accomplished, and the great Jehovah shall say the work is done.",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-14",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 508231206996,
+                "easeFactor": 4,
+                "graduationStep": 2,
+                "createdAt": "2025-09-17T03:45:26.983Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": [
+                  2
+                ]
+              },
+              {
+                "id": "mfopzgvhrszu0p8e99d",
+                "front": "Permissive society lacks tolerance",
+                "back": "Neal A. Maxwell\nThat Ye May Believe, 1992\n\nAn otherwise permissive society, which tolerates almost everything, usually will not tolerate speech that challenges its iniquity.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2026-01-13",
+                "nextReview": "NaN-NaN-NaN",
+                "interval": 77203641566,
+                "easeFactor": 3.949999999999999,
+                "graduationStep": 2,
+                "createdAt": "2025-09-18T01:16:18.605Z"
+              },
+              {
+                "id": "mfxgtwtfshiycrk9qf9",
+                "front": "Buddhist three marks of existence (三法印, sanbōin)",
+                "back": "The Japanese philosophy of the three marks of existence (sanbōin) is influenced by Zen Buddhism, with traces of Confucianism.\n\nImpermanence.\nEverything in existence, from thoughts and emotions to physical bodies and the world, is in constant flux, embodying impermanence. Japanese Buddhism embraces this transience, finding bittersweet beauty in fleeting moments like cherry blossoms or a tea ceremony, transforming impermanence into a source of deep appreciation rather than attachment.\n\nSuffering/Unsatisfactoriness.\nAll existence is inherently unsatisfactory due to its impermanence, as even pleasant experiences cannot provide lasting fulfillment, leading to subtle dissatisfaction or obvious suffering like pain and loss. Zen practice emphasizes acceptance of this reality, suggesting that suffering arises from resisting experience rather than simply existing with it. The teaching suggests that as long as we're attached to impermanent things, we'll experience fundamental unsatisfaction.\n\nEmptiness/Non-self.\nThere is no fixed \"self\"; what we perceive as \"self\" is a fluid process of changing physical and mental components, like a river rather than a rock. Japanese Buddhism embraces this by surrendering the self to God’s compassion, relying on \"other-power\" over \"self-power,\" fostering a devotional connection with the divine.\n\nPurpose and Application.\nJapanese Buddhism’s sanbōin teachings emphasize impermanence, unsatisfactoriness, and no-self to foster social harmony and proper relationships, integrating these concepts into daily life. Far from depressing, this understanding liberates by releasing futile efforts to cling to the impermanent, seek lasting satisfaction, or defend a non-existent fixed self, leading to wisdom, acceptance, and freedom from suffering.",
+                "image": null,
+                "difficulty": 2,
+                "lastStudied": "2026-01-15",
+                "nextReview": "2026-01-16",
+                "interval": 1,
+                "easeFactor": 1.3,
+                "graduationStep": 2,
+                "createdAt": "2025-09-24T04:09:58.371Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "id": "mg7gv5jkv069s59njfk",
+                "front": "Russell M. Nelson on faithful women\nOctober 2015",
+                "back": "Today, let me add that we need women who know how to make important things happen by their faith and who are courageous defenders of morality and families in a sin-sick world. We need women who are devoted to shepherding God’s children along the covenant path toward exaltation; women who know how to receive personal revelation, who understand the power and peace of the temple endowment; women who know how to call upon the powers of heaven to protect and strengthen children and families; women who teach fearlessly.",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-16",
+                "nextReview": "2083-02-25",
+                "interval": 20859,
+                "easeFactor": 2.0499999999999985,
+                "graduationStep": 2,
+                "createdAt": "2025-10-01T04:08:38.096Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "mimhne2p2d54ir3iff",
+                "front": "George Orwell on pacifism",
+                "back": "George Orwell\n\n\nThose who ‘abjure’ violence can only do so because others are committing violence on their behalf.",
+                "image": null,
+                "difficulty": 4,
+                "lastStudied": "2025-12-30",
+                "nextReview": "2040-08-21",
+                "interval": 5348,
+                "easeFactor": 2.9499999999999997,
+                "graduationStep": 2,
+                "createdAt": "2025-12-01T01:46:32.833Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "mjae3zfi2dsgu87uop4",
+                "front": "True self-esteem",
+                "back": "Jordan Peterson\n\n\nThere's nothing that gives a person more esteem than to see that they're useful and necessary.",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-16",
+                "nextReview": "2026-03-27",
+                "interval": 70,
+                "easeFactor": 2.1999999999999993,
+                "graduationStep": 2,
+                "createdAt": "2025-12-17T19:13:56.766Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              },
+              {
+                "id": "mjbsnmqrxba8t3wzvpj",
+                "front": "How to compliment",
+                "back": "Jordan Peterson\n\n\nMost people respond extraordinarily powerfully to being told exactly what they did well. And that applies especially to children.",
+                "image": null,
+                "difficulty": 3,
+                "lastStudied": "2026-01-13",
+                "nextReview": "2026-01-30",
+                "interval": 17,
+                "easeFactor": 2.2999999999999994,
+                "graduationStep": 2,
+                "createdAt": "2025-12-18T18:48:54.243Z",
+                "hiddenWordsDifficulty": 0,
+                "recentRatings": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "statistics": {
+      "daysStudied": 420,
+      "totalTimeStudied": 7779,
+      "uniqueCardsStudied": 72,
+      "totalCardInstances": 7833,
+      "studySessions": [
+        {
+          "date": "2025-09-23",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetp8l61zualnk2aqt",
+            "mfetozldhpyn1g1my2",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-09-23",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsxcath86vhz1k",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-09-24",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsx42vgr9f55bix",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-09-29",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetjvai6zymqoyre18",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetkmel6qxgeqifm3",
+            "mfetm53d4kq0glvmcco",
+            "mfetlmeirz84fjemhis",
+            "mfetoesefowzdny855p",
+            "mfeto42wrwv4r7esn5",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb"
+          ]
+        },
+        {
+          "date": "2025-09-29",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx9jb1uwnqayu",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-09-29",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswxdqpei7tie8o"
+          ]
+        },
+        {
+          "date": "2025-09-30",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetnkyiuwnvweshdhm",
+            "mfetlamzg2q7m77a2nw",
+            "mfetmkt023fp6xjxdwz",
+            "mfetnba9m8mrfnx48h",
+            "mfetn0667ffdq62fdvr",
+            "mfetkxo801f503kany4w",
+            "mfetomzei8dovq28tqb",
+            "mfetnv5gjbe3mta43qr",
+            "mfetp8l61zualnk2aqt",
+            "mfetozldhpyn1g1my2"
+          ]
+        },
+        {
+          "date": "2025-09-30",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-10-02",
+          "cardsStudied": 10,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqbwf6kjujjpp2fv",
+            "mfetrwlnzhthh3imcq",
+            "mfets5nksx08o6ouqz",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf"
+          ]
+        },
+        {
+          "date": "2025-10-02",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx42vgr9f55bix",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswyiqxxqc83y49"
+          ]
+        },
+        {
+          "date": "2025-10-03",
+          "cardsStudied": 10,
+          "timeSpent": 21,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfetqn8qgedry56ilrd",
+            "mfetrm8a72vlrjx7gw",
+            "mfetrwlnzhthh3imcq",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf"
+          ]
+        },
+        {
+          "date": "2025-10-03",
+          "cardsStudied": 10,
+          "timeSpent": 16,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswzn7sxki2cccj"
+          ]
+        },
+        {
+          "date": "2025-10-04",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqz5kqvqrcuhkw8",
+            "mfetra2lk1kbzhoavka",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-10-04",
+          "cardsStudied": 10,
+          "timeSpent": 18,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfvetjrq9ewffgy2",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswyiqxxqc83y49"
+          ]
+        },
+        {
+          "date": "2025-10-05",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetphsb3mqvljzr2fx",
+            "mfetpr3igepaivhfzph",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-10-05",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd",
+            "mfetjvai6zymqoyre18",
+            "mfetk8g7jz2fgnndb7o"
+          ]
+        },
+        {
+          "date": "2025-10-05",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx0fudd9luw3pc"
+          ]
+        },
+        {
+          "date": "2025-10-06",
+          "cardsStudied": 10,
+          "timeSpent": 4,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfeto42wrwv4r7esn5",
+            "mfetoesefowzdny855p",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-10-06",
+          "cardsStudied": 10,
+          "timeSpent": 20,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3ehbuigcqld",
+            "mg7gv5jkv069s59njfk",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla"
+          ]
+        },
+        {
+          "date": "2025-10-07",
+          "cardsStudied": 10,
+          "timeSpent": 4,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetomzei8dovq28tqb",
+            "mfetnv5gjbe3mta43qr",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-10-07",
+          "cardsStudied": 10,
+          "timeSpent": 16,
+          "wasDistracted": false,
+          "cardIds": [
+            "mg7gv5jkv069s59njfk",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx1bprjd0s7g09"
+          ]
+        },
+        {
+          "date": "2025-10-08",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqn8qgedry56ilrd",
+            "mfetra2lk1kbzhoavka",
+            "mfetjbt8boeh9a23vxf",
+            "mfeti6ibasl4un6fo47",
+            "mfetkxo801f503kany4w",
+            "mfetnv5gjbe3mta43qr",
+            "mfetnba9m8mrfnx48h",
+            "mfetigh35hei3mrawwx",
+            "mfetphsb3mqvljzr2fx",
+            "mfetjlpbccnni530erd"
+          ]
+        },
+        {
+          "date": "2025-10-08",
+          "cardsStudied": 10,
+          "timeSpent": 15,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswtdx95p7p7pa5",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswzn7sxki2cccj"
+          ]
+        },
+        {
+          "date": "2025-10-09",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfets5nksx08o6ouqz",
+            "mfetm53d4kq0glvmcco",
+            "mfetq16cid8aiyfsy0b",
+            "mfeti6ibasl4un6fo47",
+            "mfetnkyiuwnvweshdhm",
+            "mfetphsb3mqvljzr2fx",
+            "mfetp8l61zualnk2aqt",
+            "mfetpr3igepaivhfzph",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2025-10-09",
+          "cardsStudied": 10,
+          "timeSpent": 18,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswujt92h5n6m",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswze4jk7efmgdm"
+          ]
+        },
+        {
+          "date": "2025-10-10",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetrm8a72vlrjx7gw",
+            "mfetrwlnzhthh3imcq",
+            "mfethl2stfygz7p9s1",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetjlpbccnni530erd",
+            "mfetra2lk1kbzhoavka",
+            "mfetlmeirz84fjemhis",
+            "mfetqn8qgedry56ilrd",
+            "mfetnv5gjbe3mta43qr",
+            "mfetphsb3mqvljzr2fx"
+          ]
+        },
+        {
+          "date": "2025-10-10",
+          "cardsStudied": 10,
+          "timeSpent": 17,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx5t973m5du63",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswwuzvooarhla",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswyiqxxqc83y49"
+          ]
+        },
+        {
+          "date": "2025-10-11",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetjbt8boeh9a23vxf",
+            "mfetjvai6zymqoyre18",
+            "mfetlmeirz84fjemhis",
+            "mfets5nksx08o6ouqz",
+            "mfeti6ibasl4un6fo47",
+            "mfetm53d4kq0glvmcco",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetigh35hei3mrawwx",
+            "mfetqn8qgedry56ilrd",
+            "mfetiryi99gk28ihrrm"
+          ]
+        },
+        {
+          "date": "2025-10-11",
+          "cardsStudied": 10,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswvmcejpicruq",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-10-12",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswyiqxxqc83y49"
+          ]
+        },
+        {
+          "date": "2025-10-12",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetoesefowzdny855p",
+            "mfetjlpbccnni530erd",
+            "mfetp8l61zualnk2aqt",
+            "mfeti6ibasl4un6fo47",
+            "mfetrm8a72vlrjx7gw",
+            "mfeto42wrwv4r7esn5",
+            "mfetn0667ffdq62fdvr",
+            "mfetj1cmo1444f90jnh",
+            "mfetozldhpyn1g1my2"
+          ]
+        },
+        {
+          "date": "2025-10-13",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetm53d4kq0glvmcco",
+            "mfetqn8qgedry56ilrd",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetpr3igepaivhfzph",
+            "mfetra2lk1kbzhoavka",
+            "mfetjbt8boeh9a23vxf",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetp8l61zualnk2aqt"
+          ]
+        },
+        {
+          "date": "2025-10-13",
+          "cardsStudied": 10,
+          "timeSpent": 28,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfvetjrq9ewffgy2",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx3ehbuigcqld"
+          ]
+        },
+        {
+          "date": "2025-10-14",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetpr3igepaivhfzph",
+            "mfetlamzg2q7m77a2nw",
+            "mfetjvai6zymqoyre18",
+            "mfethl2stfygz7p9s1",
+            "mfetlmeirz84fjemhis",
+            "mfetiryi99gk28ihrrm",
+            "mfetmkt023fp6xjxdwz",
+            "mfetnba9m8mrfnx48h",
+            "mfetnkyiuwnvweshdhm",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2025-10-14",
+          "cardsStudied": 10,
+          "timeSpent": 16,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx66osik1t594t",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx2bppc3rbfb8v"
+          ]
+        },
+        {
+          "date": "2025-10-15",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfethl2stfygz7p9s1",
+            "mfetigh35hei3mrawwx",
+            "mfetlamzg2q7m77a2nw",
+            "mfetomzei8dovq28tqb",
+            "mfetjvai6zymqoyre18",
+            "mfetp8l61zualnk2aqt",
+            "mfetlmeirz84fjemhis",
+            "mfetrm8a72vlrjx7gw",
+            "mfetj1cmo1444f90jnh"
+          ]
+        },
+        {
+          "date": "2025-10-15",
+          "cardsStudied": 10,
+          "timeSpent": 13,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswyiqxxqc83y49",
+            "mfopzgvhrszu0p8e99d"
+          ]
+        },
+        {
+          "date": "2025-10-17",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetoesefowzdny855p",
+            "mfetozldhpyn1g1my2",
+            "mfetqn8qgedry56ilrd",
+            "mfetigh35hei3mrawwx",
+            "mfetj1cmo1444f90jnh",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetm53d4kq0glvmcco",
+            "mfethl2stfygz7p9s1",
+            "mfetra2lk1kbzhoavka"
+          ]
+        },
+        {
+          "date": "2025-10-17",
+          "cardsStudied": 10,
+          "timeSpent": 17,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswwuzvooarhla"
+          ]
+        },
+        {
+          "date": "2025-10-19",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetkmel6qxgeqifm3",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetigh35hei3mrawwx",
+            "mfetjbt8boeh9a23vxf",
+            "mfetnkyiuwnvweshdhm",
+            "mfetnba9m8mrfnx48h",
+            "mfetmkt023fp6xjxdwz",
+            "mfetqz5kqvqrcuhkw8",
+            "mfets5nksx08o6ouqz"
+          ]
+        },
+        {
+          "date": "2025-10-19",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfethl2stfygz7p9s1",
+            "mfetpr3igepaivhfzph",
+            "mfetlmeirz84fjemhis",
+            "mfetm53d4kq0glvmcco",
+            "mfethxuio5oz8jo8jkb",
+            "mfetra2lk1kbzhoavka",
+            "mfetlamzg2q7m77a2nw",
+            "mfetigh35hei3mrawwx",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2025-10-19",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswujt92h5n6m",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswzn7sxki2cccj"
+          ]
+        },
+        {
+          "date": "2025-10-20",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetqbwf6kjujjpp2fv",
+            "mfethl2stfygz7p9s1",
+            "mfetlamzg2q7m77a2nw",
+            "mfethxuio5oz8jo8jkb",
+            "mfetnv5gjbe3mta43qr",
+            "mfets5nksx08o6ouqz",
+            "mfetkxo801f503kany4w",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetjbt8boeh9a23vxf"
+          ]
+        },
+        {
+          "date": "2025-10-20",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswyiqxxqc83y49",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswxdqpei7tie8o"
+          ]
+        },
+        {
+          "date": "2025-10-21",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfethxuio5oz8jo8jkb",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetigh35hei3mrawwx",
+            "mfetra2lk1kbzhoavka",
+            "mfetkmel6qxgeqifm3",
+            "mfetq16cid8aiyfsy0b",
+            "mfetj1cmo1444f90jnh",
+            "mfethl2stfygz7p9s1",
+            "mfetjvai6zymqoyre18"
+          ]
+        },
+        {
+          "date": "2025-10-21",
+          "cardsStudied": 10,
+          "timeSpent": 17,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx9ob6skng0pai"
+          ]
+        },
+        {
+          "date": "2025-10-22",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqbwf6kjujjpp2fv",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetjbt8boeh9a23vxf",
+            "mfetp8l61zualnk2aqt",
+            "mfetpr3igepaivhfzph",
+            "mfetjvai6zymqoyre18",
+            "mfetigh35hei3mrawwx",
+            "mfeti6ibasl4un6fo47",
+            "mfetoesefowzdny855p",
+            "mfetozldhpyn1g1my2"
+          ]
+        },
+        {
+          "date": "2025-10-22",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswze4jk7efmgdm"
+          ]
+        },
+        {
+          "date": "2025-10-23",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetp8l61zualnk2aqt",
+            "mfetiryi99gk28ihrrm",
+            "mfetra2lk1kbzhoavka",
+            "mfetkxo801f503kany4w",
+            "mfetrm8a72vlrjx7gw",
+            "mfethxuio5oz8jo8jkb",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetkmel6qxgeqifm3",
+            "mfetjvai6zymqoyre18",
+            "mfetjbt8boeh9a23vxf"
+          ]
+        },
+        {
+          "date": "2025-10-23",
+          "cardsStudied": 10,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswwuzvooarhla",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx9ob6skng0pai"
+          ]
+        },
+        {
+          "date": "2025-10-24",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetj1cmo1444f90jnh",
+            "mfeti6ibasl4un6fo47",
+            "mfets5nksx08o6ouqz",
+            "mfetomzei8dovq28tqb",
+            "mfethxuio5oz8jo8jkb",
+            "mfetra2lk1kbzhoavka",
+            "mfetpr3igepaivhfzph",
+            "mfetrwlnzhthh3imcq",
+            "mfetiryi99gk28ihrrm"
+          ]
+        },
+        {
+          "date": "2025-10-24",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx66osik1t594t",
+            "mfnfqswxdqpei7tie8o"
+          ]
+        },
+        {
+          "date": "2025-10-25",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetj1cmo1444f90jnh",
+            "mfetq16cid8aiyfsy0b",
+            "mfetomzei8dovq28tqb",
+            "mfetlamzg2q7m77a2nw",
+            "mfethxuio5oz8jo8jkb",
+            "mfetjlpbccnni530erd",
+            "mfetpr3igepaivhfzph",
+            "mfetqn8qgedry56ilrd",
+            "mfetjvai6zymqoyre18",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2025-10-25",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswtdx95p7p7pa5",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsx9ob6skng0pai"
+          ]
+        },
+        {
+          "date": "2025-10-26",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethl2stfygz7p9s1",
+            "mfetnv5gjbe3mta43qr",
+            "mfetozldhpyn1g1my2",
+            "mfetqz5kqvqrcuhkw8",
+            "mfeto42wrwv4r7esn5",
+            "mfetoesefowzdny855p",
+            "mfethxuio5oz8jo8jkb",
+            "mfetnba9m8mrfnx48h",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfeti6ibasl4un6fo47"
+          ]
+        },
+        {
+          "date": "2025-10-26",
+          "cardsStudied": 10,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsxajyyc1rrubit",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswtdx95p7p7pa5"
+          ]
+        },
+        {
+          "date": "2025-10-27",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqz5kqvqrcuhkw8",
+            "mfetozldhpyn1g1my2",
+            "mfetrwlnzhthh3imcq",
+            "mfetomzei8dovq28tqb",
+            "mfets5nksx08o6ouqz",
+            "mfetrm8a72vlrjx7gw",
+            "mfeti6ibasl4un6fo47",
+            "mfetra2lk1kbzhoavka",
+            "mfetnba9m8mrfnx48h",
+            "mfetiryi99gk28ihrrm"
+          ]
+        },
+        {
+          "date": "2025-10-27",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsxbnkoygo94dj8",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsxajyyc1rrubit"
+          ]
+        },
+        {
+          "date": "2025-10-28",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetoesefowzdny855p",
+            "mfethxuio5oz8jo8jkb",
+            "mfetlmeirz84fjemhis",
+            "mfetqz5kqvqrcuhkw8",
+            "mgodsux84cjnh3jaccy",
+            "mfetp8l61zualnk2aqt",
+            "mfetnv5gjbe3mta43qr",
+            "mfeti6ibasl4un6fo47",
+            "mfetnba9m8mrfnx48h",
+            "mfetrm8a72vlrjx7gw"
+          ]
+        },
+        {
+          "date": "2025-10-28",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswxdqpei7tie8o"
+          ]
+        },
+        {
+          "date": "2025-10-29",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetozldhpyn1g1my2",
+            "mfeti6ibasl4un6fo47",
+            "mfetj1cmo1444f90jnh",
+            "mgodsux84cjnh3jaccy",
+            "mfetomzei8dovq28tqb",
+            "mfetrwlnzhthh3imcq",
+            "mfetigh35hei3mrawwx",
+            "mfetlamzg2q7m77a2nw",
+            "mfets5nksx08o6ouqz",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2025-10-29",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-10-30",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetra2lk1kbzhoavka",
+            "mfetnv5gjbe3mta43qr",
+            "mfetlmeirz84fjemhis",
+            "mfetnkyiuwnvweshdhm",
+            "mfetn0667ffdq62fdvr",
+            "mfetkxo801f503kany4w",
+            "mfeto42wrwv4r7esn5",
+            "mfethl2stfygz7p9s1",
+            "mfetrm8a72vlrjx7gw",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2025-10-30",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswxcqf9ws4reym",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswvmcejpicruq"
+          ]
+        },
+        {
+          "date": "2025-10-31",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetkmel6qxgeqifm3",
+            "mfetpr3igepaivhfzph",
+            "mfethl2stfygz7p9s1",
+            "mfethxuio5oz8jo8jkb",
+            "mfetj1cmo1444f90jnh",
+            "mfetqz5kqvqrcuhkw8",
+            "mfeti6ibasl4un6fo47",
+            "mfetigh35hei3mrawwx",
+            "mfetq16cid8aiyfsy0b",
+            "mfetomzei8dovq28tqb"
+          ]
+        },
+        {
+          "date": "2025-10-31",
+          "cardsStudied": 10,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswzn7sxki2cccj",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx8a8j7wblx53n"
+          ]
+        },
+        {
+          "date": "2025-11-01",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetnba9m8mrfnx48h",
+            "mfethl2stfygz7p9s1",
+            "mfetmkt023fp6xjxdwz",
+            "mgodsux84cjnh3jaccy",
+            "mfeti6ibasl4un6fo47",
+            "mfetnv5gjbe3mta43qr",
+            "mfeto42wrwv4r7esn5",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetjbt8boeh9a23vxf",
+            "mfetjvai6zymqoyre18"
+          ]
+        },
+        {
+          "date": "2025-11-01",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsx1bprjd0s7g09",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfvetjrq9ewffgy2"
+          ]
+        },
+        {
+          "date": "2025-11-02",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetozldhpyn1g1my2",
+            "mfetkmel6qxgeqifm3",
+            "mfetm53d4kq0glvmcco",
+            "mfetjvai6zymqoyre18",
+            "mfetnv5gjbe3mta43qr",
+            "mfetoesefowzdny855p",
+            "mfetlamzg2q7m77a2nw",
+            "mfetqn8qgedry56ilrd",
+            "mfetq16cid8aiyfsy0b",
+            "mfetqz5kqvqrcuhkw8"
+          ]
+        },
+        {
+          "date": "2025-11-02",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsxbnkoygo94dj8",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsxajyyc1rrubit"
+          ]
+        },
+        {
+          "date": "2025-11-18",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetnkyiuwnvweshdhm",
+            "mfetigh35hei3mrawwx",
+            "mfethxuio5oz8jo8jkb",
+            "mfetj1cmo1444f90jnh",
+            "mfetnv5gjbe3mta43qr",
+            "mfetomzei8dovq28tqb",
+            "mfetrwlnzhthh3imcq",
+            "mfetrm8a72vlrjx7gw",
+            "mfetqbwf6kjujjpp2fv"
+          ]
+        },
+        {
+          "date": "2025-11-18",
+          "cardsStudied": 10,
+          "timeSpent": 280,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx66osik1t594t"
+          ]
+        },
+        {
+          "date": "2025-11-20",
+          "cardsStudied": 10,
+          "timeSpent": 71,
+          "wasDistracted": true,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetn0667ffdq62fdvr",
+            "mfets5nksx08o6ouqz",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetm53d4kq0glvmcco",
+            "mfetomzei8dovq28tqb",
+            "mfetigh35hei3mrawwx",
+            "mfeti6ibasl4un6fo47",
+            "mfetj1cmo1444f90jnh"
+          ]
+        },
+        {
+          "date": "2025-11-23",
+          "cardsStudied": 10,
+          "timeSpent": 419,
+          "wasDistracted": true,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetm53d4kq0glvmcco",
+            "mfetnv5gjbe3mta43qr",
+            "mfetlmeirz84fjemhis",
+            "mfetnba9m8mrfnx48h",
+            "mfetq16cid8aiyfsy0b",
+            "mfetn0667ffdq62fdvr",
+            "mfetkmel6qxgeqifm3",
+            "mfets5nksx08o6ouqz",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2025-11-23",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswtdx95p7p7pa5",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswxdqpei7tie8o",
+            "mg7gv5jkv069s59njfk"
+          ]
+        },
+        {
+          "date": "2025-11-24",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfeti6ibasl4un6fo47",
+            "mgodsux84cjnh3jaccy",
+            "mfetiryi99gk28ihrrm",
+            "mfetj1cmo1444f90jnh",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetn0667ffdq62fdvr",
+            "mfetigh35hei3mrawwx",
+            "mfetkmel6qxgeqifm3",
+            "mfethxuio5oz8jo8jkb",
+            "mfetrwlnzhthh3imcq"
+          ]
+        },
+        {
+          "date": "2025-11-24",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsx9jb1uwnqayu"
+          ]
+        },
+        {
+          "date": "2025-11-25",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfeti6ibasl4un6fo47",
+            "mfetlmeirz84fjemhis",
+            "mfetm53d4kq0glvmcco",
+            "mfetmkt023fp6xjxdwz",
+            "mfetkmel6qxgeqifm3",
+            "mfetozldhpyn1g1my2",
+            "mfetigh35hei3mrawwx",
+            "mfetqn8qgedry56ilrd",
+            "mfetn0667ffdq62fdvr"
+          ]
+        },
+        {
+          "date": "2025-11-25",
+          "cardsStudied": 10,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-11-26",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfetj1cmo1444f90jnh",
+            "mfetlamzg2q7m77a2nw",
+            "mfetq16cid8aiyfsy0b",
+            "mfetomzei8dovq28tqb",
+            "mfethxuio5oz8jo8jkb",
+            "mfetra2lk1kbzhoavka",
+            "mfetphsb3mqvljzr2fx",
+            "mfetpr3igepaivhfzph",
+            "mfetmkt023fp6xjxdwz"
+          ]
+        },
+        {
+          "date": "2025-11-26",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx3ehbuigcqld"
+          ]
+        },
+        {
+          "date": "2025-11-27",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfetra2lk1kbzhoavka",
+            "mfeti6ibasl4un6fo47",
+            "mfetnv5gjbe3mta43qr",
+            "mfetiryi99gk28ihrrm",
+            "mfetrm8a72vlrjx7gw",
+            "mfetkxo801f503kany4w",
+            "mfetnkyiuwnvweshdhm",
+            "mfetigh35hei3mrawwx",
+            "mfethxuio5oz8jo8jkb"
+          ]
+        },
+        {
+          "date": "2025-11-27",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqswvmcejpicruq",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsxajyyc1rrubit"
+          ]
+        },
+        {
+          "date": "2025-11-28",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetphsb3mqvljzr2fx",
+            "mfetj1cmo1444f90jnh",
+            "midusjh1u11kt7crx5",
+            "mfeti6ibasl4un6fo47",
+            "mfethxuio5oz8jo8jkb",
+            "mfetoesefowzdny855p",
+            "mfetjvai6zymqoyre18",
+            "mfetigh35hei3mrawwx",
+            "mfetnkyiuwnvweshdhm"
+          ]
+        },
+        {
+          "date": "2025-11-28",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-11-29",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetm53d4kq0glvmcco",
+            "mfetigh35hei3mrawwx",
+            "mfetlamzg2q7m77a2nw",
+            "mfetnkyiuwnvweshdhm",
+            "mfetj1cmo1444f90jnh",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetrm8a72vlrjx7gw",
+            "mfetomzei8dovq28tqb",
+            "mfetkxo801f503kany4w",
+            "mfeto42wrwv4r7esn5"
+          ]
+        },
+        {
+          "date": "2025-11-29",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx66osik1t594t",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-11-30",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetomzei8dovq28tqb",
+            "mfetigh35hei3mrawwx",
+            "mfetqn8qgedry56ilrd",
+            "mfetjlpbccnni530erd",
+            "mgodsux84cjnh3jaccy",
+            "mfetrm8a72vlrjx7gw",
+            "mfetj1cmo1444f90jnh",
+            "mfetp8l61zualnk2aqt",
+            "midusjh1u11kt7crx5",
+            "mfetozldhpyn1g1my2"
+          ]
+        },
+        {
+          "date": "2025-11-30",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsxajyyc1rrubit",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx66osik1t594t",
+            "mg7gv5jkv069s59njfk"
+          ]
+        },
+        {
+          "date": "2025-12-02",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetrm8a72vlrjx7gw",
+            "mfetm53d4kq0glvmcco",
+            "mfetra2lk1kbzhoavka",
+            "mfetpr3igepaivhfzph",
+            "mfetiryi99gk28ihrrm",
+            "midusjh1u11kt7crx5",
+            "mfetjlpbccnni530erd",
+            "mfetkxo801f503kany4w",
+            "mfetj1cmo1444f90jnh",
+            "mgodsux84cjnh3jaccy"
+          ]
+        },
+        {
+          "date": "2025-12-02",
+          "cardsStudied": 10,
+          "timeSpent": 13,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfvetjrq9ewffgy2",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsxbnkoygo94dj8",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswyiqxxqc83y49"
+          ]
+        },
+        {
+          "date": "2025-12-03",
+          "cardsStudied": 10,
+          "timeSpent": 19,
+          "wasDistracted": true,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfethxuio5oz8jo8jkb",
+            "mfetiryi99gk28ihrrm",
+            "mfetp8l61zualnk2aqt",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetpr3igepaivhfzph",
+            "mfeti6ibasl4un6fo47",
+            "mfetlamzg2q7m77a2nw",
+            "mfets5nksx08o6ouqz",
+            "mfetjvai6zymqoyre18"
+          ]
+        },
+        {
+          "date": "2025-12-03",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mimhne2p2d54ir3iff",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswyiqxxqc83y49",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsxajyyc1rrubit",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx42vgr9f55bix"
+          ]
+        },
+        {
+          "date": "2025-12-04",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfeti6ibasl4un6fo47",
+            "mfethl2stfygz7p9s1",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetpr3igepaivhfzph",
+            "mfetj1cmo1444f90jnh",
+            "mfethxuio5oz8jo8jkb",
+            "mfeto42wrwv4r7esn5",
+            "mfetiryi99gk28ihrrm",
+            "mfetigh35hei3mrawwx"
+          ]
+        },
+        {
+          "date": "2025-12-04",
+          "cardsStudied": 10,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswyiqxxqc83y49",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx66osik1t594t",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-12-05",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetqn8qgedry56ilrd",
+            "mfeto42wrwv4r7esn5",
+            "mgodsux84cjnh3jaccy",
+            "mfetiryi99gk28ihrrm",
+            "mfetomzei8dovq28tqb",
+            "mfetqbwf6kjujjpp2fv",
+            "mfeti6ibasl4un6fo47",
+            "mfetrm8a72vlrjx7gw",
+            "mfetn0667ffdq62fdvr",
+            "mfetpr3igepaivhfzph"
+          ]
+        },
+        {
+          "date": "2025-12-05",
+          "cardsStudied": 10,
+          "timeSpent": 3,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswzn7sxki2cccj"
+          ]
+        },
+        {
+          "date": "2025-12-06",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfets5nksx08o6ouqz",
+            "mfetm53d4kq0glvmcco",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetkxo801f503kany4w",
+            "mfetmkt023fp6xjxdwz",
+            "mfetnba9m8mrfnx48h",
+            "mfethxuio5oz8jo8jkb",
+            "mfetigh35hei3mrawwx",
+            "mfetozldhpyn1g1my2",
+            "mfetlamzg2q7m77a2nw"
+          ]
+        },
+        {
+          "date": "2025-12-06",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mimhne2p2d54ir3iff",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx3ehbuigcqld"
+          ]
+        },
+        {
+          "date": "2025-12-07",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetozldhpyn1g1my2",
+            "midusjh1u11kt7crx5",
+            "mfetjlpbccnni530erd",
+            "mfetj1cmo1444f90jnh",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetjvai6zymqoyre18",
+            "mfetigh35hei3mrawwx",
+            "mfetjbt8boeh9a23vxf",
+            "mfetmkt023fp6xjxdwz",
+            "mfetkmel6qxgeqifm3"
+          ]
+        },
+        {
+          "date": "2025-12-07",
+          "cardsStudied": 10,
+          "timeSpent": 4,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsx66osik1t594t",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx1bprjd0s7g09"
+          ]
+        },
+        {
+          "date": "2025-12-08",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetq16cid8aiyfsy0b",
+            "mfetoesefowzdny855p",
+            "mfethxuio5oz8jo8jkb",
+            "mfetigh35hei3mrawwx",
+            "mfetrm8a72vlrjx7gw",
+            "mfetj1cmo1444f90jnh",
+            "mgodsux84cjnh3jaccy",
+            "mfetm53d4kq0glvmcco",
+            "mfeti6ibasl4un6fo47",
+            "mfetkmel6qxgeqifm3"
+          ]
+        },
+        {
+          "date": "2025-12-08",
+          "cardsStudied": 10,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsx5t973m5du63",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx42vgr9f55bix"
+          ]
+        },
+        {
+          "date": "2025-12-09",
+          "cardsStudied": 10,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "midusjh1u11kt7crx5",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetjbt8boeh9a23vxf",
+            "mfetp8l61zualnk2aqt",
+            "mfetomzei8dovq28tqb",
+            "mfets5nksx08o6ouqz",
+            "mfetpr3igepaivhfzph",
+            "mfetj1cmo1444f90jnh",
+            "mfetlmeirz84fjemhis",
+            "mfetoesefowzdny855p"
+          ]
+        },
+        {
+          "date": "2025-12-09",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx66osik1t594t"
+          ]
+        },
+        {
+          "date": "2025-12-10",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetj1cmo1444f90jnh",
+            "mfetkmel6qxgeqifm3",
+            "mgodsux84cjnh3jaccy",
+            "mfeto42wrwv4r7esn5",
+            "mfetphsb3mqvljzr2fx",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetq16cid8aiyfsy0b",
+            "midusjh1u11kt7crx5",
+            "mfetqn8qgedry56ilrd",
+            "mfeti6ibasl4un6fo47"
+          ]
+        },
+        {
+          "date": "2025-12-11",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx3fnhrd02fer6"
+          ]
+        },
+        {
+          "date": "2025-12-11",
+          "cardsStudied": 10,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mgodsux84cjnh3jaccy",
+            "mfetlmeirz84fjemhis",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetm53d4kq0glvmcco",
+            "mfetiryi99gk28ihrrm",
+            "mfetoesefowzdny855p",
+            "mfetphsb3mqvljzr2fx",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetigh35hei3mrawwx",
+            "mfetozldhpyn1g1my2"
+          ]
+        },
+        {
+          "date": "2025-12-12",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetk8g7jz2fgnndb7o",
+            "mfetq16cid8aiyfsy0b",
+            "mfeto42wrwv4r7esn5",
+            "mfetmkt023fp6xjxdwz",
+            "mfetigh35hei3mrawwx",
+            "mfetjbt8boeh9a23vxf",
+            "mfetrwlnzhthh3imcq",
+            "mfetrm8a72vlrjx7gw",
+            "mfets5nksx08o6ouqz",
+            "mfethxuio5oz8jo8jkb"
+          ]
+        },
+        {
+          "date": "2025-12-12",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqswze4jk7efmgdm"
+          ]
+        },
+        {
+          "date": "2025-12-13",
+          "cardsStudied": 10,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetomzei8dovq28tqb",
+            "mfetkmel6qxgeqifm3",
+            "mfetm53d4kq0glvmcco",
+            "mfetpr3igepaivhfzph",
+            "mfetn0667ffdq62fdvr",
+            "mfetjlpbccnni530erd",
+            "mfetnba9m8mrfnx48h",
+            "midusjh1u11kt7crx5",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetqz5kqvqrcuhkw8"
+          ]
+        },
+        {
+          "date": "2025-12-13",
+          "cardsStudied": 10,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx9ob6skng0pai",
+            "mfopzgvhrszu0p8e99d"
+          ]
+        },
+        {
+          "date": "2025-12-14",
+          "cardsStudied": 10,
+          "timeSpent": 4,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethl2stfygz7p9s1",
+            "mfeti6ibasl4un6fo47",
+            "mfetkxo801f503kany4w",
+            "mfethxuio5oz8jo8jkb",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetra2lk1kbzhoavka",
+            "mfetomzei8dovq28tqb",
+            "mfetp8l61zualnk2aqt",
+            "midusjh1u11kt7crx5"
+          ]
+        },
+        {
+          "date": "2025-12-14",
+          "cardsStudied": 10,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx5t973m5du63",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswzn7sxki2cccj"
+          ]
+        },
+        {
+          "date": "2025-12-15",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetra2lk1kbzhoavka",
+            "mgodsux84cjnh3jaccy",
+            "mfetphsb3mqvljzr2fx",
+            "mfetjlpbccnni530erd",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetp8l61zualnk2aqt",
+            "mfetomzei8dovq28tqb",
+            "mfeti6ibasl4un6fo47",
+            "mfetqn8qgedry56ilrd",
+            "mfetlamzg2q7m77a2nw",
+            "mfetlmeirz84fjemhis",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2025-12-15",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx66osik1t594t",
+            "mimhne2p2d54ir3iff"
+          ]
+        },
+        {
+          "date": "2025-12-17",
+          "cardsStudied": 12,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetj1cmo1444f90jnh",
+            "mfethl2stfygz7p9s1",
+            "mfetkmel6qxgeqifm3",
+            "mfetra2lk1kbzhoavka",
+            "mfetm53d4kq0glvmcco",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfethxuio5oz8jo8jkb",
+            "mfetmkt023fp6xjxdwz",
+            "mfetjvai6zymqoyre18",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetq16cid8aiyfsy0b",
+            "mfetiryi99gk28ihrrm"
+          ]
+        },
+        {
+          "date": "2025-12-17",
+          "cardsStudied": 12,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx8a8j7wblx53n",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswze4jk7efmgdm"
+          ]
+        },
+        {
+          "date": "2025-12-18",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetq16cid8aiyfsy0b",
+            "mfetnv5gjbe3mta43qr",
+            "mfeto42wrwv4r7esn5",
+            "midusjh1u11kt7crx5",
+            "mfetigh35hei3mrawwx",
+            "mfetp8l61zualnk2aqt",
+            "mgodsux84cjnh3jaccy",
+            "mfethxuio5oz8jo8jkb",
+            "mfeti6ibasl4un6fo47",
+            "mfethl2stfygz7p9s1",
+            "mfetn0667ffdq62fdvr",
+            "mfetqz5kqvqrcuhkw8"
+          ]
+        },
+        {
+          "date": "2025-12-18",
+          "cardsStudied": 12,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswwuzvooarhla",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-12-19",
+          "cardsStudied": 12,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfeto42wrwv4r7esn5",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetj1cmo1444f90jnh",
+            "mfetiryi99gk28ihrrm",
+            "mfetp8l61zualnk2aqt",
+            "mfetmkt023fp6xjxdwz",
+            "mfetjbt8boeh9a23vxf",
+            "mgodsux84cjnh3jaccy",
+            "mfets5nksx08o6ouqz",
+            "mfetozldhpyn1g1my2",
+            "mfetigh35hei3mrawwx",
+            "mfetk8g7jz2fgnndb7o"
+          ]
+        },
+        {
+          "date": "2025-12-20",
+          "cardsStudied": 12,
+          "timeSpent": 2,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mjbsnmqrxba8t3wzvpj",
+            "mjae3zfi2dsgu87uop4",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx7ef3xx017mg7"
+          ]
+        },
+        {
+          "date": "2025-12-20",
+          "cardsStudied": 12,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetnkyiuwnvweshdhm",
+            "mfetnba9m8mrfnx48h",
+            "midusjh1u11kt7crx5",
+            "mfetq16cid8aiyfsy0b",
+            "mfeto42wrwv4r7esn5",
+            "mfetk8g7jz2fgnndb7o",
+            "mfethxuio5oz8jo8jkb",
+            "mfethl2stfygz7p9s1",
+            "mfetrm8a72vlrjx7gw",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetiryi99gk28ihrrm",
+            "mfetn0667ffdq62fdvr"
+          ]
+        },
+        {
+          "date": "2025-12-20",
+          "cardsStudied": 12,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mjbsnmqrxba8t3wzvpj",
+            "mjae3zfi2dsgu87uop4",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswyiqxxqc83y49",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2025-12-21",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetm53d4kq0glvmcco",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetpr3igepaivhfzph",
+            "mfetp8l61zualnk2aqt",
+            "mfetiryi99gk28ihrrm",
+            "mfetlmeirz84fjemhis",
+            "mfetra2lk1kbzhoavka",
+            "mfetozldhpyn1g1my2",
+            "mfetmkt023fp6xjxdwz",
+            "mfethl2stfygz7p9s1",
+            "mfetj1cmo1444f90jnh",
+            "mfetq16cid8aiyfsy0b"
+          ]
+        },
+        {
+          "date": "2025-12-22",
+          "cardsStudied": 12,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mjae3zfi2dsgu87uop4",
+            "mjbsnmqrxba8t3wzvpj",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx42vgr9f55bix"
+          ]
+        },
+        {
+          "date": "2025-12-22",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetra2lk1kbzhoavka",
+            "mfetiryi99gk28ihrrm",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetk8g7jz2fgnndb7o",
+            "mgodsux84cjnh3jaccy",
+            "mfeto42wrwv4r7esn5",
+            "mfetigh35hei3mrawwx",
+            "mfetjlpbccnni530erd",
+            "mfetp8l61zualnk2aqt",
+            "mfetm53d4kq0glvmcco",
+            "mfeti6ibasl4un6fo47",
+            "mfetqbwf6kjujjpp2fv"
+          ]
+        },
+        {
+          "date": "2025-12-22",
+          "cardsStudied": 12,
+          "timeSpent": 27,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqswze4jk7efmgdm",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx8a8j7wblx53n",
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswzn7sxki2cccj",
+            "mfxgtwtfshiycrk9qf9",
+            "mjbsnmqrxba8t3wzvpj",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswvmcejpicruq"
+          ]
+        },
+        {
+          "date": "2025-12-23",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetnkyiuwnvweshdhm",
+            "mfetkxo801f503kany4w",
+            "mfetqn8qgedry56ilrd",
+            "mfethxuio5oz8jo8jkb",
+            "mfetlmeirz84fjemhis",
+            "mfetjlpbccnni530erd",
+            "mfetlamzg2q7m77a2nw",
+            "mfetjbt8boeh9a23vxf",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetozldhpyn1g1my2",
+            "mfetomzei8dovq28tqb",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2025-12-23",
+          "cardsStudied": 12,
+          "timeSpent": 20,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsx9jb1uwnqayu",
+            "mjbsnmqrxba8t3wzvpj",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswxdqpei7tie8o",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx8a8j7wblx53n",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswxcqf9ws4reym"
+          ]
+        },
+        {
+          "date": "2025-12-24",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetq16cid8aiyfsy0b",
+            "mfetphsb3mqvljzr2fx",
+            "mfetmkt023fp6xjxdwz",
+            "mgodsux84cjnh3jaccy",
+            "mfethl2stfygz7p9s1",
+            "mfetoesefowzdny855p",
+            "mfetjvai6zymqoyre18",
+            "mfetqn8qgedry56ilrd",
+            "mfetomzei8dovq28tqb",
+            "mfetpr3igepaivhfzph",
+            "mfets5nksx08o6ouqz",
+            "mfetlvcqk3tc2dz7qfs"
+          ]
+        },
+        {
+          "date": "2025-12-24",
+          "cardsStudied": 12,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswvmcejpicruq",
+            "mfnfqsx8a8j7wblx53n"
+          ]
+        },
+        {
+          "date": "2025-12-26",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetpr3igepaivhfzph",
+            "mfetnkyiuwnvweshdhm",
+            "mfetqn8qgedry56ilrd",
+            "mfetkxo801f503kany4w",
+            "mfetphsb3mqvljzr2fx",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetozldhpyn1g1my2",
+            "mgodsux84cjnh3jaccy",
+            "mfetigh35hei3mrawwx",
+            "midusjh1u11kt7crx5",
+            "mfetkmel6qxgeqifm3",
+            "mfetj1cmo1444f90jnh"
+          ]
+        },
+        {
+          "date": "2025-12-26",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswvmcejpicruq",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswxcqf9ws4reym",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsx7ef3xx017mg7"
+          ]
+        },
+        {
+          "date": "2025-12-27",
+          "cardsStudied": 12,
+          "timeSpent": 9,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethl2stfygz7p9s1",
+            "mfetlmeirz84fjemhis",
+            "mfetpr3igepaivhfzph",
+            "mfetigh35hei3mrawwx",
+            "mfetoesefowzdny855p",
+            "mfetqbwf6kjujjpp2fv",
+            "mfets5nksx08o6ouqz",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetkxo801f503kany4w",
+            "mfetkmel6qxgeqifm3",
+            "mfetmkt023fp6xjxdwz",
+            "mfetn0667ffdq62fdvr"
+          ]
+        },
+        {
+          "date": "2025-12-29",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethxuio5oz8jo8jkb",
+            "mfetomzei8dovq28tqb",
+            "mfetphsb3mqvljzr2fx",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetigh35hei3mrawwx",
+            "mfetmkt023fp6xjxdwz",
+            "mfets5nksx08o6ouqz",
+            "mfetjbt8boeh9a23vxf",
+            "mfetqbwf6kjujjpp2fv",
+            "mfetp8l61zualnk2aqt",
+            "mfetm53d4kq0glvmcco",
+            "mfetpr3igepaivhfzph"
+          ]
+        },
+        {
+          "date": "2025-12-30",
+          "cardsStudied": 12,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfeto42wrwv4r7esn5",
+            "mfetjlpbccnni530erd",
+            "mgodsux84cjnh3jaccy",
+            "mfetomzei8dovq28tqb",
+            "mfetoesefowzdny855p",
+            "mfetpr3igepaivhfzph",
+            "mfetphsb3mqvljzr2fx",
+            "mfetj1cmo1444f90jnh",
+            "midusjh1u11kt7crx5",
+            "mfetigh35hei3mrawwx",
+            "mfetozldhpyn1g1my2",
+            "mfetlamzg2q7m77a2nw"
+          ]
+        },
+        {
+          "date": "2025-12-30",
+          "cardsStudied": 12,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqsx9jb1uwnqayu",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqswvmcejpicruq",
+            "mimhne2p2d54ir3iff",
+            "mfnfqsx0fudd9luw3pc"
+          ]
+        },
+        {
+          "date": "2026-01-01",
+          "cardsStudied": 12,
+          "timeSpent": 19,
+          "wasDistracted": true,
+          "cardIds": [
+            "mfetmkt023fp6xjxdwz",
+            "mfetj1cmo1444f90jnh",
+            "mfetiryi99gk28ihrrm",
+            "mfetlamzg2q7m77a2nw",
+            "mfetjvai6zymqoyre18",
+            "mfetigh35hei3mrawwx",
+            "mfetpr3igepaivhfzph",
+            "mfetphsb3mqvljzr2fx",
+            "mfetrwlnzhthh3imcq",
+            "mfeti6ibasl4un6fo47",
+            "mfetqn8qgedry56ilrd",
+            "mfetk8g7jz2fgnndb7o"
+          ]
+        },
+        {
+          "date": "2026-01-01",
+          "cardsStudied": 12,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqswujt92h5n6m",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx3ehbuigcqld"
+          ]
+        },
+        {
+          "date": "2026-01-03",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetoesefowzdny855p",
+            "mfetqn8qgedry56ilrd",
+            "mfetjbt8boeh9a23vxf",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetra2lk1kbzhoavka",
+            "mfetigh35hei3mrawwx",
+            "mfetlamzg2q7m77a2nw",
+            "mfetjvai6zymqoyre18",
+            "mfetlmeirz84fjemhis",
+            "mfetn0667ffdq62fdvr",
+            "mfetkxo801f503kany4w",
+            "mfetmkt023fp6xjxdwz"
+          ]
+        },
+        {
+          "date": "2026-01-04",
+          "cardsStudied": 12,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfethl2stfygz7p9s1",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetm53d4kq0glvmcco",
+            "mfetpr3igepaivhfzph",
+            "mfetiryi99gk28ihrrm",
+            "mfetnba9m8mrfnx48h",
+            "mfetp8l61zualnk2aqt",
+            "mfetrm8a72vlrjx7gw",
+            "mfetozldhpyn1g1my2",
+            "mfetjvai6zymqoyre18",
+            "mfeto42wrwv4r7esn5",
+            "mfetkxo801f503kany4w"
+          ]
+        },
+        {
+          "date": "2026-01-05",
+          "cardsStudied": 12,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqsx9jb1uwnqayu",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqswujt92h5n6m",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswtdx95p7p7pa5",
+            "mfnfqsx42vgr9f55bix",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsx9ob6skng0pai"
+          ]
+        },
+        {
+          "date": "2026-01-05",
+          "cardsStudied": 12,
+          "timeSpent": 11,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetjbt8boeh9a23vxf",
+            "mfeti6ibasl4un6fo47",
+            "mfetmkt023fp6xjxdwz",
+            "mfetn0667ffdq62fdvr",
+            "mfetrm8a72vlrjx7gw",
+            "mfetphsb3mqvljzr2fx",
+            "midusjh1u11kt7crx5",
+            "mfetnba9m8mrfnx48h",
+            "mfetpr3igepaivhfzph",
+            "mfetiryi99gk28ihrrm",
+            "mfetjvai6zymqoyre18",
+            "mfetj1cmo1444f90jnh"
+          ]
+        },
+        {
+          "date": "2026-01-05",
+          "cardsStudied": 12,
+          "timeSpent": 24,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqswtdx95p7p7pa5",
+            "mjbsnmqrxba8t3wzvpj",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsx66osik1t594t",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqswxcqf9ws4reym",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsxcath86vhz1k"
+          ]
+        },
+        {
+          "date": "2026-01-06",
+          "cardsStudied": 12,
+          "timeSpent": 8,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetomzei8dovq28tqb",
+            "mfetp8l61zualnk2aqt",
+            "mfetrm8a72vlrjx7gw",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetozldhpyn1g1my2",
+            "mfetmkt023fp6xjxdwz",
+            "mfetoesefowzdny855p",
+            "mfetnba9m8mrfnx48h",
+            "mfetjbt8boeh9a23vxf",
+            "mfetra2lk1kbzhoavka",
+            "mfethl2stfygz7p9s1",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2026-01-07",
+          "cardsStudied": 12,
+          "timeSpent": 6,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfetj1cmo1444f90jnh",
+            "mfetigh35hei3mrawwx",
+            "mfetomzei8dovq28tqb",
+            "midusjh1u11kt7crx5",
+            "mfetn0667ffdq62fdvr",
+            "mfetkxo801f503kany4w",
+            "mfetlamzg2q7m77a2nw",
+            "mfeti6ibasl4un6fo47",
+            "mfetrwlnzhthh3imcq",
+            "mfetm53d4kq0glvmcco",
+            "mfets5nksx08o6ouqz",
+            "mfetqn8qgedry56ilrd"
+          ]
+        },
+        {
+          "date": "2026-01-08",
+          "cardsStudied": 12,
+          "timeSpent": 18,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsxd3gyau5ji1l9",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswxdqpei7tie8o",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqswzn7sxki2cccj",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqswvmcejpicruq",
+            "mfnfqswwuzvooarhla",
+            "mfnfqswujt92h5n6m"
+          ]
+        },
+        {
+          "date": "2026-01-08",
+          "cardsStudied": 12,
+          "timeSpent": 7,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfeto42wrwv4r7esn5",
+            "mfetomzei8dovq28tqb",
+            "mfetra2lk1kbzhoavka",
+            "mfets5nksx08o6ouqz",
+            "mfetkxo801f503kany4w",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetozldhpyn1g1my2",
+            "mfetqz5kqvqrcuhkw8",
+            "mfetlamzg2q7m77a2nw",
+            "mfetpr3igepaivhfzph",
+            "mfetjvai6zymqoyre18",
+            "mfetnba9m8mrfnx48h"
+          ]
+        },
+        {
+          "date": "2026-01-09",
+          "cardsStudied": 12,
+          "timeSpent": 15,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsxd3gyau5ji1l9",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqswze4jk7efmgdm",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqsxcath86vhz1k",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsxbnkoygo94dj8",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsx3fnhrd02fer6",
+            "mfnfqswxcqf9ws4reym",
+            "mg7gv5jkv069s59njfk"
+          ]
+        },
+        {
+          "date": "2026-01-11",
+          "cardsStudied": 12,
+          "timeSpent": 10,
+          "wasDistracted": false,
+          "cardIds": [
+            "mkag4moa22diun0afxd",
+            "mkag55mei84p713dp9k",
+            "mfets5nksx08o6ouqz",
+            "mfetnba9m8mrfnx48h",
+            "mfetjbt8boeh9a23vxf",
+            "mfetm53d4kq0glvmcco",
+            "mfetnv5gjbe3mta43qr",
+            "mfetigh35hei3mrawwx",
+            "mfeti6ibasl4un6fo47",
+            "mfetrm8a72vlrjx7gw",
+            "mfetpr3igepaivhfzph",
+            "mfetq16cid8aiyfsy0b"
+          ]
+        },
+        {
+          "date": "2026-01-13",
+          "cardsStudied": 12,
+          "timeSpent": 12,
+          "wasDistracted": false,
+          "cardIds": [
+            "mkag55mei84p713dp9k",
+            "mkag4moa22diun0afxd",
+            "mfetm53d4kq0glvmcco",
+            "mfeti6ibasl4un6fo47",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetiryi99gk28ihrrm",
+            "mfetq16cid8aiyfsy0b",
+            "mfetnv5gjbe3mta43qr",
+            "mfetlamzg2q7m77a2nw",
+            "mfetjlpbccnni530erd",
+            "mfetrwlnzhthh3imcq",
+            "midusjh1u11kt7crx5"
+          ]
+        },
+        {
+          "date": "2026-01-13",
+          "cardsStudied": 12,
+          "timeSpent": 14,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxd3gyau5ji1l9",
+            "mjae3zfi2dsgu87uop4",
+            "mjbsnmqrxba8t3wzvpj",
+            "mfnfqsx1bprjd0s7g09",
+            "mfnfqsx3ehbuigcqld",
+            "mfnfqswyiqxxqc83y49",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqswxdqpei7tie8o",
+            "mfopzgvhrszu0p8e99d",
+            "mfnfqswtdx95p7p7pa5"
+          ]
+        },
+        {
+          "date": "2026-01-14",
+          "cardsStudied": 12,
+          "timeSpent": 13,
+          "wasDistracted": false,
+          "cardIds": [
+            "mkag55mei84p713dp9k",
+            "mkag4moa22diun0afxd",
+            "mfets5nksx08o6ouqz",
+            "mfetpr3igepaivhfzph",
+            "mfetj1cmo1444f90jnh",
+            "mfetq16cid8aiyfsy0b",
+            "mfetmkt023fp6xjxdwz",
+            "mfetomzei8dovq28tqb",
+            "mfeti6ibasl4un6fo47",
+            "mfetjlpbccnni530erd",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetm53d4kq0glvmcco"
+          ]
+        },
+        {
+          "date": "2026-01-14",
+          "cardsStudied": 12,
+          "timeSpent": 18,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfnfqsxd3gyau5ji1l9",
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfvetjrq9ewffgy2",
+            "mfnfqsx7ef3xx017mg7",
+            "mfnfqsxcath86vhz1k",
+            "mfnfqsx8a8j7wblx53n",
+            "mfnfqsx0fudd9luw3pc",
+            "mfnfqsx9jb1uwnqayu",
+            "mfnfqsx9ob6skng0pai",
+            "mfnfqsxajyyc1rrubit",
+            "mg7gv5jkv069s59njfk",
+            "mjae3zfi2dsgu87uop4"
+          ]
+        },
+        {
+          "date": "2026-01-15",
+          "cardsStudied": 12,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mkag4moa22diun0afxd",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetkxo801f503kany4w",
+            "mfethxuio5oz8jo8jkb",
+            "mfetnkyiuwnvweshdhm",
+            "mfetk8g7jz2fgnndb7o",
+            "mfetphsb3mqvljzr2fx",
+            "mfetpr3igepaivhfzph",
+            "mfetp8l61zualnk2aqt",
+            "mkag55mei84p713dp9k",
+            "mgodsux84cjnh3jaccy",
+            "mfetrm8a72vlrjx7gw"
+          ]
+        },
+        {
+          "date": "2026-01-16",
+          "cardsStudied": 12,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mfxgtwtfshiycrk9qf9",
+            "mfnfqsxd3gyau5ji1l9",
+            "mfnfqsxajyyc1rrubit",
+            "mfnfqswxcqf9ws4reym",
+            "mg7gv5jkv069s59njfk",
+            "mfnfqsx2bppc3rbfb8v",
+            "mfnfqsx42vgr9f55bix",
+            "mjae3zfi2dsgu87uop4",
+            "mfnfqswwuzvooarhla",
+            "mfnfqsx66osik1t594t",
+            "mfnfqsx5t973m5du63",
+            "mfnfqsx0fudd9luw3pc"
+          ]
+        },
+        {
+          "date": "2026-01-16",
+          "cardsStudied": 12,
+          "timeSpent": 5,
+          "wasDistracted": false,
+          "cardIds": [
+            "mkag55mei84p713dp9k",
+            "mfetj1cmo1444f90jnh",
+            "mfetlvcqk3tc2dz7qfs",
+            "mfetigh35hei3mrawwx",
+            "mfetjbt8boeh9a23vxf",
+            "mfetomzei8dovq28tqb",
+            "mfetnkyiuwnvweshdhm",
+            "mfetjvai6zymqoyre18",
+            "mfetqn8qgedry56ilrd",
+            "mgodsux84cjnh3jaccy",
+            "mfetrwlnzhthh3imcq",
+            "mfeto42wrwv4r7esn5"
+          ]
+        }
+      ],
+      "currentStreak": 4,
+      "recordStreak": 35,
+      "lastStudyDate": "2026-01-16"
+    }
+  },
+  "images": {}
+}
