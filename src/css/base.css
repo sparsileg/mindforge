@@ -332,7 +332,8 @@ body {
     justify-content: flex-start;
     max-width: 900px;
     margin: 0 auto;
-    min-height: 600px;
+    min-height: 0; /* Changed from 600px */
+    height: 100%; /* Use available height */
 }
 
 .card-content {
@@ -341,8 +342,8 @@ body {
     border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
-    min-height: 300px;
-    max-height: 70vh;
+    min-height: 200px; /* Reduced from 300px */
+    max-height: calc(100vh - 400px); /* Dynamically calculate based on viewport */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -368,9 +369,10 @@ body {
     width: 100%;
 }
 
+/* Ensure rating section is always visible */
 .rating-section {
-    text-align: center;
-    margin-top: 2rem;
+    margin-top: auto; /* Push to bottom of available space */
+    padding-top: 1rem;
 }
 
 .rating-section p {
@@ -1450,4 +1452,23 @@ body {
   min-width: 120px;
 }
 
+/* Adjust for laptop screens (1080p height) */
+@media (max-height: 1100px) {
+    .card-content {
+        max-height: calc(100vh - 450px);
+        min-height: 150px;
+    }
+    
+    .study-card {
+        padding: 0 1rem;
+    }
+}
 
+/* Adjust for even smaller screens */
+@media (max-height: 900px) {
+    .card-content {
+        max-height: calc(100vh - 400px);
+        min-height: 100px;
+        padding: 1.5rem;
+    }
+}
