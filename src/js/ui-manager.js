@@ -16,7 +16,7 @@ class UIManager {
         this.themeSelect = document.getElementById('theme-select');
         this.hamburgerMenu = document.getElementById('hamburger-menu');
         this.hamburgerBtn = document.getElementById('hamburger-menu-btn');
-        
+
         this.setupEventListeners();
         this.loadTheme();
         this.updateSidebarStats();
@@ -117,7 +117,7 @@ class UIManager {
 
             // Update screen content based on data
             this.updateScreenContent(screenId, data);
-            
+
             // Render overview if showing welcome screen
             if (screenId === 'welcome-screen') {
                 this.renderHomeOverview();
@@ -157,10 +157,10 @@ class UIManager {
             const categoryEl = document.createElement('div');
             categoryEl.className = 'category-item';
             categoryEl.dataset.categoryId = category.id;
-            
+
             const deckCount = category.decks.length;
             const totalCards = category.decks.reduce((sum, deck) => sum + deck.cards.length, 0);
-            
+
             categoryEl.innerHTML = `
         <div class="category-info">
             <div class="category-name">${category.name}</div>
@@ -185,7 +185,7 @@ class UIManager {
 
             container.appendChild(categoryEl);
         });
-        
+
         // Refresh home overview if we're on the welcome screen
         if (this.currentScreen === 'welcome-screen') {
             this.renderHomeOverview();
@@ -221,7 +221,7 @@ class UIManager {
 				<p>${cardCount} total cards</p>
 				<p>${stats.readyToStudy} ready to study</p>
 				<p>${stats.newCards} new • ${stats.learningCards} learning • ${stats.graduatedCards} graduated</p>
-			`; 
+			`;
 
             // Add click handler for deck (but not menu button) - go directly to study
             deckEl.addEventListener('click', (e) => {
@@ -248,10 +248,10 @@ class UIManager {
 
         // Add action buttons
         if (actions.length > 0) {
-            const actionsHTML = actions.map(action => 
+            const actionsHTML = actions.map(action =>
                 `<button class="${action.class || 'btn-primary'}" data-action="${action.action}">${action.text}</button>`
             ).join('');
-            
+
             document.getElementById('modal-body').innerHTML += `
                 <div class="form-actions">${actionsHTML}</div>
             `;
@@ -339,7 +339,7 @@ class UIManager {
         this.hamburgerMenu.style.position = 'fixed';
         this.hamburgerMenu.style.top = (btnRect.bottom + 5) + 'px';
         this.hamburgerMenu.style.left = (btnRect.right - 200) + 'px'; // 200px is menu width
-        
+
         this.hamburgerMenu.classList.add('active');
         this.hamburgerBtn.classList.add('active');
     }
@@ -377,17 +377,17 @@ class UIManager {
             const data = await window.dataManager.exportData();
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
             const filename = `mindforge-backup-${timestamp}.json`;
-            
+
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
-            
+
             const link = document.createElement('a');
             link.href = url;
             link.download = filename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
+
             URL.revokeObjectURL(url);
             this.showToast('Backup created successfully', 'success');
         } catch (error) {
@@ -398,7 +398,7 @@ class UIManager {
     showKeyboardShortcuts() {
         const template = document.getElementById('keyboard-shortcuts-template');
         const content = template.content.cloneNode(true);
-        
+
         const actions = [
             {
                 text: 'Close',
@@ -414,7 +414,7 @@ class UIManager {
     showAbout() {
         const template = document.getElementById('about-template');
         const content = template.content.cloneNode(true);
-        
+
         const actions = [
             {
                 text: 'Close',
@@ -429,7 +429,7 @@ class UIManager {
 
     showTemplateModal(title, templateContent, actions = []) {
         document.getElementById('modal-title').textContent = title;
-        
+
         // Clear and populate modal body
         const modalBody = document.getElementById('modal-body');
         modalBody.innerHTML = '';
@@ -445,7 +445,7 @@ class UIManager {
 
         this.modal.classList.add('active');
     }
-	
+
     showDeckMenu(event, deckId) {
         // Remove existing menu
         const existingMenu = document.querySelector('.deck-context-menu');
@@ -466,7 +466,7 @@ class UIManager {
                 previewItem.style.display = 'none';
             }
         }
-        
+
         // Position menu near the clicked button
         const btnRect = event.target.getBoundingClientRect();
         menu.style.left = (btnRect.right - 160) + 'px'; // 160px is menu width
@@ -505,9 +505,9 @@ class UIManager {
     async showPreviewScreen(category, deck) {
         this.currentCategory = category;
         this.currentDeck = deck;
-        
+
         document.getElementById('preview-title').textContent = `Preview: ${deck.name}`;
-        
+
         // Initialize preview state
         this.previewState = {
             categoryId: category.id,
@@ -516,15 +516,15 @@ class UIManager {
             displayedCards: 0,
             batchSize: MINDFORGE_CONFIG.CARDS_PER_PREVIEW_BATCH
         };
-        
+
         // Clear previous content
         document.getElementById('preview-content').innerHTML = '';
-        
+
         // Load first batch
         await this.loadPreviewBatch();
-        
+
         this.showScreen('preview-screen');
-    }    
+    }
 
 
     async loadPreviewBatch() {
@@ -532,23 +532,23 @@ class UIManager {
         const container = document.getElementById('preview-content');
         const moreButton = document.getElementById('preview-more');
         const loadMoreBtn = document.getElementById('load-more-btn');
-        
+
         // Calculate cards for this batch
         const startIndex = state.displayedCards;
         const endIndex = Math.min(startIndex + state.batchSize, state.allCards.length);
         const batchCards = state.allCards.slice(startIndex, endIndex);
-        
+
         // Render batch cards
         for (const card of batchCards) {
             const cardEl = document.createElement('div');
             cardEl.className = 'preview-card';
-            
+
             // Prepare content
             const frontContent = card.front || '';
             const backContent = parseSimpleMarkdown(card.back || '');
-            const imageHtml = card.image ? 
+            const imageHtml = card.image ?
                   `<div class="preview-card-image">${await this.getImageHtml(card.image)}</div>` : '';
-            
+
             cardEl.innerHTML = `
         <button class="preview-card-delete" onclick="window.uiManager.deleteCardFromPreview('${card.id}')" title="Delete card">🗑️</button>
         <div class="preview-card-front">
@@ -571,18 +571,18 @@ class UIManager {
 
             container.appendChild(cardEl);
         }
-        
+
         // Update state
         state.displayedCards = endIndex;
-        
+
         // Update count display
-        document.getElementById('preview-count').textContent = 
+        document.getElementById('preview-count').textContent =
             `Showing ${state.displayedCards} of ${state.allCards.length} cards`;
-        
+
         // Show/hide load more button
         if (state.displayedCards < state.allCards.length) {
             moreButton.style.display = 'block';
-            
+
             // Remove existing event listener and add new one
             const newBtn = loadMoreBtn.cloneNode(true);
             loadMoreBtn.parentNode.replaceChild(newBtn, loadMoreBtn);
@@ -595,19 +595,19 @@ class UIManager {
 
     async getImageHtml(imagePath) {
         if (!imagePath) return '';
-        
+
         const dataUrl = await window.cardManager.getImageDataUrl(imagePath);
         if (dataUrl) {
             return `<img src="${dataUrl}" alt="Card image">`;
         }
         return '<p style="color: var(--text-secondary); font-style: italic;">Image not found</p>';
     }
-    
+
 
     editCardFromPreview(cardId) {
         const state = this.previewState;
         if (!state) return;
-        
+
         // Store current preview state
         this.previewEditState = {
             returnToPreview: true,
@@ -615,7 +615,7 @@ class UIManager {
             deckId: state.deckId,
             cardId: cardId
         };
-        
+
         // Use existing card edit functionality
         window.cardManager.editCard(state.categoryId, state.deckId, cardId);
     }
@@ -624,16 +624,16 @@ class UIManager {
     deleteCardFromPreview(cardId) {
         const state = this.previewState;
         if (!state) return;
-        
+
         const card = state.allCards.find(c => c.id === cardId);
         if (!card) return;
 
-        const frontPreview = card.front.length > 100 ? 
+        const frontPreview = card.front.length > 100 ?
               card.front.substring(0, 100) + '...' : card.front;
 
         const template = document.getElementById('confirm-delete-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate the delete message
         content.getElementById('delete-message').innerHTML = `
         <p>Are you sure you want to delete this card?</p>
@@ -642,7 +642,7 @@ class UIManager {
         </div>
         <p><strong>This action cannot be undone.</strong></p>
     `;
-        
+
         const actions = [
             {
                 action: 'cancel',
@@ -661,21 +661,21 @@ class UIManager {
     handleDeleteCardFromPreview(cardId) {
         const state = this.previewState;
         if (!state) return;
-        
+
         const deleted = window.dataManager.deleteCard(state.categoryId, state.deckId, cardId);
-        
+
         if (deleted) {
             this.closeModal();
             this.showToast('Card deleted successfully', 'success');
-            
+
             // Refresh the preview screen
             const category = window.dataManager.findCategory(state.categoryId);
             const deck = window.dataManager.findDeck(state.categoryId, state.deckId);
-            
+
             if (category && deck) {
                 this.showPreviewScreen(category, deck);
             }
-            
+
             // Update sidebar stats
             window.categoryManager.renderCategories();
         } else {
@@ -684,20 +684,20 @@ class UIManager {
     }
 
 
-    showStatistics() {
+    async showStatistics() {
         const template = document.getElementById('statistics-template');
         const content = template.content.cloneNode(true);
-        
+
         // Get statistics data
         const stats = window.dataManager.getStatistics();
-        
+
         // Populate the values
         content.getElementById('mastery-value').textContent = stats.mastery + '%';
         content.getElementById('days-studied-value').textContent = stats.daysStudied;
         content.getElementById('time-studied-value').textContent = formatTimeStudied(stats.timeStudied);
         content.getElementById('unique-cards-value').textContent = stats.uniqueCardsStudied;
         content.getElementById('total-cards-value').textContent = stats.totalCardInstances;
-        
+
         const actions = [
             {
                 text: 'Close',
@@ -708,12 +708,22 @@ class UIManager {
         ];
 
         this.showTemplateModal('Statistics', content, actions);
+
+        // Fetch storage stats asynchronously and update after modal is shown
+        const storage = await window.dataManager.getStorageStats();
+        const imageMB = (storage.imageBytes / (1024 * 1024)).toFixed(2);
+        const totalMB = (storage.totalBytes / (1024 * 1024)).toFixed(2);
+
+        const imageCountEl = document.getElementById('image-count-value');
+        const imageDescEl = document.getElementById('image-storage-desc');
+        if (imageCountEl) imageCountEl.textContent = storage.imageCount;
+        if (imageDescEl) imageDescEl.innerHTML = `${imageMB} MB image storage<br>${totalMB} MB total storage`;
     }
 
     updateSidebarStats() {
         // Check if streak should be reset to 0 due to gap
         window.dataManager.checkStreakValidity();
-        
+
         const stats = window.dataManager.getStatistics();
         document.getElementById('current-streak').textContent = stats.currentStreak;
         document.getElementById('record-streak').textContent = stats.recordStreak;
@@ -722,34 +732,34 @@ class UIManager {
     showDeckIdInfo(deckId) {
         const deck = window.dataManager.findDeck(this.currentCategory.id, deckId);
         if (!deck) return;
-        
+
         const categoryId = this.currentCategory.id;
         const baseUrl = `${window.location.origin}${window.location.pathname}`;
         const studyUrl = `${baseUrl}#/study/${categoryId}/${deckId}`;
         const previewUrl = `${baseUrl}#/preview/${categoryId}/${deckId}`;
-        
+
         const content = `
         <div class="deck-id-info">
             <p><strong>Deck:</strong> ${deck.name}</p>
             <p><strong>Category ID:</strong> ${categoryId}</p>
             <p><strong>Deck ID:</strong> ${deckId}</p>
         </div>
-        
+
         <div class="deck-id-urls">
             <p><strong>Direct Study URL:</strong></p>
             <input type="text" value="${studyUrl}" readonly>
         </div>
-        
+
         <div class="deck-id-urls">
             <p><strong>Direct Preview URL:</strong></p>
             <input type="text" value="${previewUrl}" readonly>
         </div>
-        
+
         <p class="deck-id-note">
             Copy these URLs to bookmark or share specific decks.
         </p>
     `;
-        
+
         const actions = [
             {
                 text: 'Close',
@@ -760,7 +770,7 @@ class UIManager {
         ];
 
         this.showModal('Deck Information', content, actions);
-        
+
         // Select text in inputs when clicked
         setTimeout(() => {
             document.querySelectorAll('input[readonly]').forEach(input => {
@@ -772,12 +782,12 @@ class UIManager {
     renderHomeOverview() {
         const container = document.getElementById('all-decks-container');
         if (!container) return;
-        
+
         container.innerHTML = '';
-        
+
         const categories = window.dataManager.getCategories();
         const baseUrl = `${window.location.origin}${window.location.pathname}`;
-        
+
         if (categories.length === 0) {
             container.innerHTML = `
             <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
@@ -786,28 +796,28 @@ class UIManager {
         `;
             return;
         }
-        
+
         categories.forEach(category => {
             if (category.decks.length === 0) return; // Skip categories with no decks
-            
+
             const categorySection = document.createElement('div');
             categorySection.className = 'overview-section';
-            
+
             const categoryTitle = document.createElement('h3');
             categoryTitle.textContent = category.name;
             categorySection.appendChild(categoryTitle);
-            
+
             const deckList = document.createElement('div');
             deckList.className = 'category-deck-list';
-            
+
             category.decks.forEach(deck => {
                 const stats = calculateAdvancedStudyStats(deck.cards);
                 const studyUrl = `${baseUrl}#/study/${category.id}/${deck.id}`;
                 const previewUrl = `${baseUrl}#/preview/${category.id}/${deck.id}`;
-                
+
                 const deckLine = document.createElement('div');
                 deckLine.className = 'deck-line';
-                
+
                 deckLine.innerHTML = `
                 <div class="deck-info">
                     <div class="deck-name">${deck.name}</div>
@@ -818,10 +828,10 @@ class UIManager {
                     <a href="${previewUrl}" class="deck-action-link">Preview</a>
                 </div>
             `;
-                
+
                 deckList.appendChild(deckLine);
             });
-            
+
             categorySection.appendChild(deckList);
             container.appendChild(categorySection);
         });
@@ -830,11 +840,11 @@ class UIManager {
     showSettings() {
         const template = document.getElementById('settings-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate current settings
         const settings = window.dataManager.getSettings();
         content.getElementById('cards-per-session').value = settings.cardsPerSession || 10;
-        
+
         const actions = [
             {
                 action: 'cancel',
@@ -851,18 +861,18 @@ class UIManager {
 
     handleSaveSettings() {
         const cardsPerSession = parseInt(document.getElementById('cards-per-session').value);
-        
+
         // Validate input
         if (isNaN(cardsPerSession) || cardsPerSession < 1 || cardsPerSession > 50) {
             this.showToast('Cards per session must be between 1 and 50', 'error');
             return;
         }
-        
+
         // Update settings
         window.dataManager.updateSettings({
             cardsPerSession: cardsPerSession
         });
-        
+
         this.closeModal();
         this.showToast('Settings saved successfully', 'success');
     }
@@ -878,7 +888,7 @@ class UIManager {
         const template = document.getElementById('category-menu-template');
         const menuContent = template.content.cloneNode(true);
         const menu = menuContent.querySelector('.category-context-menu');
-        
+
         // Position menu near the clicked button
         const btnRect = event.target.getBoundingClientRect();
         menu.style.left = (btnRect.right - 160) + 'px'; // 160px is menu width

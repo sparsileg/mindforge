@@ -1,5 +1,3 @@
-// Data management for Mindforge
-
 // Data management for Mindforge - Updated to use IndexedDB
 
 class DataManager {
@@ -563,6 +561,29 @@ class DataManager {
         };
     }
 
+    // Get storage statistics
+    async getStorageStats() {
+        try {
+            // Count images and calculate their total size
+            const images = await window.indexedDBManager.getAllData('images');
+            const imageCount = images.length;
+            const imageBytes = images.reduce((sum, img) => sum + (img.size || 0), 0);
+
+            // Get total storage used by this origin
+            const estimate = await navigator.storage.estimate();
+            const totalBytes = estimate.usage || 0;
+
+            return {
+                imageCount,
+                imageBytes,
+                totalBytes
+            };
+        } catch (error) {
+            console.error('Error getting storage stats:', error);
+            return { imageCount: 0, imageBytes: 0, totalBytes: 0 };
+        }
+    }
+
     // Method to manually adjust days studied (for your 301-day import)
     setDaysStudied(days) {
         if (!this.data.statistics) {
@@ -689,7 +710,24 @@ class DataManager {
             console.error('✗ Image cleanup failed:', error);
         }
 
-        // Task 3: Check and reset streak if needed (already done in checkStreakValidity, but could add here)
+        // Task 3: Prune old session records older than 7 days
+        try {
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - 7);
+            const cutoffStr = getLocalDateString(cutoffDate);
+            const beforeCount = this.data.statistics.studySessions.length;
+            this.data.statistics.studySessions = this.data.statistics.studySessions.filter(
+                session => session.date >= cutoffStr
+            );
+            const pruned = beforeCount - this.data.statistics.studySessions.length;
+            if (pruned > 0) {
+                console.log(`✓ Pruned ${pruned} old session record(s)`);
+            } else {
+                console.log('✓ No session records to prune');
+            }
+        } catch (error) {
+            console.error('✗ Session pruning failed:', error);
+        }
 
         // Mark maintenance as completed for today
         await window.indexedDBManager.saveData('settings', {
