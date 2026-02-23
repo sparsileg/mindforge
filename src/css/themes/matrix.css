@@ -4,26 +4,31 @@
     --card-bg: #001100;
     --card-hover: #002200;
     --input-bg: #001100;
-    
+
     /* Text Colors */
     --text-color: #00ff00;
     --text-secondary: #00aa00;
-    
+
     /* Primary Colors */
     --primary-color: #00ff00;
     --primary-hover: #00cc00;
-    
+
     /* Secondary Colors */
     --secondary-color: #002200;
     --secondary-hover: #003300;
-    
+
     /* Border Colors */
     --border-color: #004400;
-    
+
     /* Status Colors */
     --success-color: #00ff00;
     --warning-color: #00aa00;
     --error-color: #ff0000;
+
+    /* Cloze Colors */
+    --cloze-border-color: #00ff00;
+    --cloze-bg-color: rgba(0, 255, 0, 0.02);
+    --cloze-blank-bg: rgba(0, 255, 0, 0.1);
 }
 
 body {
@@ -217,38 +222,3 @@ input:focus, textarea:focus, select:focus {
     background: var(--primary-color);
     color: #000000;
 }
-
-:root {
-    /* Background Colors */
-    --bg-color: #000000;
-    --card-bg: #001100;
-    --card-hover: #002200;
-    --input-bg: #001100;
-    
-    /* Text Colors */
-    --text-color: #00ff00;
-    --text-secondary: #00aa00;
-    
-    /* Primary Colors */
-    --primary-color: #00ff00;
-    --primary-hover: #00cc00;
-    
-    /* Secondary Colors */
-    --secondary-color: #002200;
-    --secondary-hover: #003300;
-    
-    /* Border Colors */
-    --border-color: #004400;
-    
-    /* Status Colors */
-    --success-color: #00ff00;
-    --warning-color: #00aa00;
-    --error-color: #ff0000;
-    
-    /* Cloze Colors */
-    --cloze-border-color: #00ff00;
-    --cloze-bg-color: rgba(0, 255, 0, 0.02);
-    --cloze-blank-bg: rgba(0, 255, 0, 0.1);
-}
-
-

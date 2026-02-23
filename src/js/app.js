@@ -9,17 +9,17 @@ class MindforgeApp {
     async init() {
         try {
             console.log('Initializing Mindforge...');
-            
+
             await window.dataManager.init();
             window.uiManager.init();
             window.categoryManager.init();
             this.setupRouting();
             this.setupGlobalEventHandlers();
             this.checkInitialState();
-            
+
             this.isInitialized = true;
             console.log('Mindforge initialized successfully');
-            
+
         } catch (error) {
             console.error('Error initializing Mindforge:', error);
             this.showInitializationError(error);
@@ -67,45 +67,8 @@ class MindforgeApp {
             return;
         }
 
-        // Global shortcuts
-        if (e.ctrlKey || e.metaKey) {
-            switch (e.key) {
-            case 'n': // Ctrl+N - New category
-                e.preventDefault();
-                if (window.uiManager.currentScreen === 'welcome' || 
-                    window.uiManager.currentScreen === 'category-screen') {
-                    window.categoryManager.showAddCategoryModal();
-                }
-                break;
-            case 'd': // Ctrl+D - New deck
-                e.preventDefault();
-                if (window.uiManager.currentScreen === 'category-screen') {
-                    window.categoryManager.showAddDeckModal();
-                }
-                break;
-            case 'k': // Ctrl+K - New card
-                e.preventDefault();
-                if (window.uiManager.currentScreen === 'deck-screen') {
-                    window.cardManager.showAddCardModal();
-                }
-                break;
-            case 's': // Ctrl+S - Start study or save
-                e.preventDefault();
-                if (window.uiManager.currentScreen === 'deck-screen') {
-                    window.categoryManager.startStudySession();
-                }
-                break;
-            case 'e': // Ctrl+E - Export data
-                e.preventDefault();
-                this.exportData();
-                break;
-            case 'i': // Ctrl+I - Import data
-                e.preventDefault();
-                this.showImportModal();
-                break;
-            }
-        } else {
-            // Non-modifier shortcuts
+        // Non-modifier shortcuts
+        if (!e.ctrlKey && !e.metaKey) {
             switch (e.key) {
             case 'Escape':
                 if (window.studyManager.isStudying()) {
@@ -121,7 +84,7 @@ class MindforgeApp {
     // Check initial application state
     checkInitialState() {
         const categories = window.dataManager.getCategories();
-        
+
         if (categories.length === 0) {
             // Only show first-time guidance if there's no hash route
             if (!window.location.hash) {
@@ -136,7 +99,7 @@ class MindforgeApp {
         setTimeout(() => {
             const template = document.getElementById('getting-started-template');
             const content = template.content.cloneNode(true);
-            
+
             const actions = [
                 {
                     action: 'create',
@@ -158,14 +121,14 @@ class MindforgeApp {
             const data = await window.dataManager.exportData();
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
-            
+
             const link = document.createElement('a');
             link.href = url;
             link.download = `mindforge-export-${new Date().toISOString().split('T')[0]}.json`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
+
             URL.revokeObjectURL(url);
             window.uiManager.showToast('Data exported successfully', 'success');
         } catch (error) {
@@ -176,7 +139,7 @@ class MindforgeApp {
     showImportModal() {
         const template = document.getElementById('import-data-template');
         const content = template.content.cloneNode(true);
-        
+
         const actions = [
             {
                 action: 'cancel',
@@ -203,16 +166,16 @@ class MindforgeApp {
         try {
             const text = await file.text();
             const data = JSON.parse(text);
-            
+
             const success = await window.dataManager.importData(data);
             if (success) {
                 window.uiManager.closeModal();
                 window.uiManager.showToast('Data imported successfully', 'success');
-                
+
                 // Refresh the UI
                 window.categoryManager.renderCategories();
                 window.uiManager.loadTheme();
-                window.uiManager.showScreen('welcome');
+                window.uiManager.showScreen('welcome-screen');
             } else {
                 window.uiManager.showToast('Error importing data', 'error');
             }
@@ -225,10 +188,10 @@ class MindforgeApp {
     showInitializationError(error) {
         const template = document.getElementById('initialization-error-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate the error message
         content.getElementById('error-details').textContent = `Error: ${error.message}`;
-        
+
         // Replace the entire body content
         document.body.innerHTML = '';
         document.body.appendChild(content);
@@ -255,19 +218,19 @@ class MindforgeApp {
             window.routerManager.addRoute('/', () => {
                 window.uiManager.showScreen('welcome-screen');
             });
-            
+
             window.routerManager.addRoute('/category/:categoryId', (params) => {
                 window.routerManager.goToCategory(params);
             });
-            
+
             window.routerManager.addRoute('/study/:categoryId/:deckId', (params) => {
                 window.routerManager.goToStudy(params);
             });
-            
+
             window.routerManager.addRoute('/preview/:categoryId/:deckId', (params) => {
                 window.routerManager.goToPreview(params);
             });
-            
+
             // Add Mindforge title click handler after router is ready
             const mindforgeTitle = document.querySelector('.header-top h1');
             if (mindforgeTitle) {
@@ -284,10 +247,10 @@ class MindforgeApp {
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOM loaded, starting Mindforge...');
-    
+
     // Create global app instance
     window.mindforgeApp = new MindforgeApp();
-    
+
     // Initialize the application
     await window.mindforgeApp.init();
 });
@@ -295,7 +258,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Handle any unhandled errors
 window.addEventListener('error', (e) => {
     console.error('Unhandled error:', e.error);
-    
+
     if (window.uiManager) {
         window.uiManager.showToast('An unexpected error occurred', 'error');
     }
@@ -304,11 +267,11 @@ window.addEventListener('error', (e) => {
 // Handle unhandled promise rejections
 window.addEventListener('unhandledrejection', (e) => {
     console.error('Unhandled promise rejection:', e.reason);
-    
+
     if (window.uiManager) {
         window.uiManager.showToast('An unexpected error occurred', 'error');
     }
-    
+
     // Prevent the default browser behavior
     e.preventDefault();
 });
@@ -323,4 +286,3 @@ window.DEBUG = {
     },
     reloadApp: () => location.reload()
 };
-

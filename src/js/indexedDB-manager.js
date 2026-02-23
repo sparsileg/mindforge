@@ -10,37 +10,37 @@ class IndexedDBManager {
     async init() {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(this.dbName, this.dbVersion);
-            
+
             request.onerror = () => {
                 console.error('IndexedDB failed to open:', request.error);
                 reject(request.error);
             };
-            
+
             request.onsuccess = () => {
                 this.db = request.result;
                 console.log('IndexedDB opened successfully');
                 resolve(this.db);
             };
-            
+
             request.onupgradeneeded = (event) => {
                 const db = event.target.result;
-                
+
                 // Create object stores
                 if (!db.objectStoreNames.contains('appData')) {
                     const appDataStore = db.createObjectStore('appData', { keyPath: 'id' });
                     // Index for faster queries if needed
                     appDataStore.createIndex('type', 'type', { unique: false });
                 }
-                
+
                 if (!db.objectStoreNames.contains('images')) {
                     const imagesStore = db.createObjectStore('images', { keyPath: 'filename' });
                     imagesStore.createIndex('savedAt', 'savedAt', { unique: false });
                 }
-                
+
                 if (!db.objectStoreNames.contains('settings')) {
                     db.createObjectStore('settings', { keyPath: 'key' });
                 }
-                
+
                 console.log('IndexedDB object stores created');
             };
         });
@@ -51,14 +51,14 @@ class IndexedDBManager {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readonly');
             const store = transaction.objectStore(storeName);
-            
+
             let request;
             if (key) {
                 request = store.get(key);
             } else {
                 request = store.getAll();
             }
-            
+
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
@@ -69,9 +69,9 @@ class IndexedDBManager {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readwrite');
             const store = transaction.objectStore(storeName);
-            
+
             const request = store.put(data);
-            
+
             request.onsuccess = () => resolve(request.result);
             request.onerror = () => reject(request.error);
         });
@@ -82,9 +82,9 @@ class IndexedDBManager {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readwrite');
             const store = transaction.objectStore(storeName);
-            
+
             const request = store.delete(key);
-            
+
             request.onsuccess = () => resolve(true);
             request.onerror = () => reject(request.error);
         });
@@ -100,9 +100,9 @@ class IndexedDBManager {
         return new Promise((resolve, reject) => {
             const transaction = this.db.transaction([storeName], 'readwrite');
             const store = transaction.objectStore(storeName);
-            
+
             const request = store.clear();
-            
+
             request.onsuccess = () => resolve(true);
             request.onerror = () => reject(request.error);
         });
@@ -111,6 +111,12 @@ class IndexedDBManager {
     // Check if IndexedDB is supported
     static isSupported() {
         return 'indexedDB' in window;
+    }
+
+    // Convert a data URL to a Blob
+    async dataUrlToBlob(dataUrl) {
+        const response = await fetch(dataUrl);
+        return await response.blob();
     }
 
     // Migration helper: get all localStorage image keys
@@ -128,7 +134,7 @@ class IndexedDBManager {
     // Migration: move data from localStorage to IndexedDB
     async migrateFromLocalStorage() {
         console.log('Starting migration from localStorage to IndexedDB...');
-        
+
         try {
             // Migrate main app data
             const mainData = localStorage.getItem('mindforge-data');
@@ -145,16 +151,16 @@ class IndexedDBManager {
             // Migrate images - convert from base64 to Blob
             const imageKeys = this.getLocalStorageImageKeys();
             console.log(`Migrating ${imageKeys.length} images...`);
-            
+
             for (const key of imageKeys) {
                 const imageDataStr = localStorage.getItem(key);
                 if (imageDataStr) {
                     try {
                         const imageData = JSON.parse(imageDataStr);
-                        
+
                         // Convert data URL to Blob
                         const blob = await this.dataUrlToBlob(imageData.dataUrl);
-                        
+
                         await this.saveData('images', {
                             filename: imageData.filename,
                             blob: blob,
@@ -170,7 +176,7 @@ class IndexedDBManager {
             }
 
             console.log('Migration completed successfully');
-            
+
             // Mark migration as completed
             await this.saveData('settings', {
                 key: 'migration',
@@ -193,11 +199,11 @@ class IndexedDBManager {
         try {
             // Remove main data
             localStorage.removeItem('mindforge-data');
-            
+
             // Remove all image data
             const imageKeys = this.getLocalStorageImageKeys();
             imageKeys.forEach(key => localStorage.removeItem(key));
-            
+
             // Update migration status
             await this.saveData('settings', {
                 key: 'migration',
@@ -207,7 +213,7 @@ class IndexedDBManager {
                     localStorageCleared: true
                 }
             });
-            
+
             console.log('localStorage cleanup completed');
             return true;
         } catch (error) {
@@ -229,4 +235,3 @@ class IndexedDBManager {
 
 // Create global instance
 window.indexedDBManager = new IndexedDBManager();
-

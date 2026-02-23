@@ -11,30 +11,30 @@ class StudyManager {
         this.sessionStartTime = null;
         this.isSessionDistracted = false;
         this.cardWarningTimes = null;
-        
+
         // New properties for adaptive cloze
         this.currentStudyMethod = 'Show Full Answer';
         this.sentenceIndex = 0;
         this.sentences = [];
         this.clozeData = null;
         this.showingClozeAnswer = false;
-        
+
         // Function words to avoid hiding at lower difficulties
         this.functionWords = new Set([
-            'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i', 'it', 
-            'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this', 
-            'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or', 
-            'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 
-            'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me', 
-            'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know', 
-            'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could', 
-            'them', 'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come', 
-            'its', 'over', 'think', 'also', 'back', 'after', 'use', 'two', 'how', 
-            'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want', 'because', 
-            'any', 'these', 'give', 'day', 'most', 'us', 'is', 'was', 'are', 'been', 
+            'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i', 'it',
+            'for', 'not', 'on', 'with', 'he', 'as', 'you', 'do', 'at', 'this',
+            'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her', 'she', 'or',
+            'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what',
+            'so', 'up', 'out', 'if', 'about', 'who', 'get', 'which', 'go', 'me',
+            'when', 'make', 'can', 'like', 'time', 'no', 'just', 'him', 'know',
+            'take', 'people', 'into', 'year', 'your', 'good', 'some', 'could',
+            'them', 'see', 'other', 'than', 'then', 'now', 'look', 'only', 'come',
+            'its', 'over', 'think', 'also', 'back', 'after', 'use', 'two', 'how',
+            'our', 'work', 'first', 'well', 'way', 'even', 'new', 'want', 'because',
+            'any', 'these', 'give', 'day', 'most', 'us', 'is', 'was', 'are', 'been',
             'has', 'had', 'were', 'said', 'each', 'did', 'does', 'am'
         ]);
-        
+
         this.setupEventListeners();
     }
 
@@ -75,7 +75,7 @@ class StudyManager {
     startStudySession(categoryId, deckId) {
         const category = window.dataManager.findCategory(categoryId);
         const deck = window.dataManager.findDeck(categoryId, deckId);
-        
+
         if (!category || !deck) {
             window.uiManager.showToast('Deck not found', 'error');
             return;
@@ -139,7 +139,7 @@ class StudyManager {
 
         const card = this.sessionCards[this.currentCardIndex];
         const progress = `Card ${this.currentCardIndex + 1} of ${this.sessionCards.length}`;
-        
+
         document.getElementById('study-progress').textContent = progress;
 
         // Reset ALL states completely
@@ -149,11 +149,11 @@ class StudyManager {
         this.sentences = [];
         this.showingClozeAnswer = false;
         this.clozeData = null;
-        
+
         // Remove cloze styling
         const cardContent = document.getElementById('study-card-content');
         cardContent.classList.remove('cloze-mode');
-        
+
         // Hide rating section
         document.getElementById('study-rating').style.display = 'none';
 
@@ -182,12 +182,12 @@ class StudyManager {
 
         // Start timing for this card
         this.cardStartTime = Date.now();
-        
+
         // Clear any existing warning timer
         if (this.cardWarningTimer) {
             clearTimeout(this.cardWarningTimer);
         }
-        
+
         // Set warning timer for 9 minutes
         this.cardWarningTimer = setTimeout(() => {
             window.uiManager.showToast('Finish this card in 1 minute or session won\'t count toward stats', 'warning');
@@ -211,12 +211,12 @@ class StudyManager {
                 // Add transition class for smooth reveal
                 clozeTextDiv.style.transition = 'opacity 0.8s ease-in-out';
                 clozeTextDiv.style.opacity = '0.3';
-                
+
                 setTimeout(() => {
                     clozeTextDiv.innerHTML = this.clozeData.originalText;
                     clozeTextDiv.style.opacity = '1';
                 }, 100);
-                
+
                 // Update the info text
                 const clozeInfo = textContainer.querySelector('.cloze-info');
                 if (clozeInfo) {
@@ -227,7 +227,7 @@ class StudyManager {
         } else {
             // Normal flip behavior for other modes
             const imageContainer = document.getElementById('study-card-image');
-            
+
             if (this.studyMode === 'front-to-back') {
                 // Show back (answer) - no image for answer side
                 imageContainer.innerHTML = '';
@@ -249,13 +249,13 @@ class StudyManager {
         if (!this.isAnswerVisible) return;
 
         const card = this.sessionCards[this.currentCardIndex];
-        
+
         // Clear the warning timer
         if (this.cardWarningTimer) {
             clearTimeout(this.cardWarningTimer);
             this.cardWarningTimer = null;
         }
-        
+
         // Update card study data
         window.dataManager.updateCardStudyData(
             this.currentSession.categoryId,
@@ -281,7 +281,7 @@ class StudyManager {
         this.currentSession.cardIds.push(card.id);
         const accuracyPoints = {
             1: 0,    // 0% accuracy
-            2: 0.33, // 33% accuracy  
+            2: 0.33, // 33% accuracy
             3: 0.67, // 67% accuracy
             4: 1.0   // 100% accuracy
         };
@@ -289,7 +289,7 @@ class StudyManager {
 
         // Move to next card
         this.currentCardIndex++;
-        
+
         // Small delay to show the rating before moving on
         setTimeout(() => {
             this.displayCurrentCard();
@@ -303,7 +303,7 @@ class StudyManager {
         const endTime = new Date();
         const sessionTimeMinutes = (Date.now() - this.sessionStartTime) / (1000 * 60);
         const duration = Math.round(sessionTimeMinutes);
-        const accuracy = this.currentSession.cardsStudied > 0 ? 
+        const accuracy = this.currentSession.cardsStudied > 0 ?
               Math.round((this.currentSession.totalAccuracyPoints / this.currentSession.cardsStudied) * 100) : 0;
 
         // Update statistics
@@ -318,12 +318,12 @@ class StudyManager {
 
         const template = document.getElementById('study-summary-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate the statistics
         content.getElementById('cards-studied').textContent = this.currentSession.cardsStudied;
         content.getElementById('accuracy').textContent = accuracy + '%';
         content.getElementById('duration').textContent = duration;
-        
+
         const actions = [
             {
                 action: 'study-again',
@@ -349,7 +349,7 @@ class StudyManager {
         if (!this.currentSession) return;
 
         const cardsRemaining = this.sessionCards.length - this.currentCardIndex;
-        
+
         if (cardsRemaining > 0) {
             const message = `
                 <p>Are you sure you want to end this study session?</p>
@@ -385,14 +385,14 @@ class StudyManager {
         if (this.currentSession) {
             const category = window.dataManager.findCategory(this.currentSession.categoryId);
             const deck = window.dataManager.findDeck(this.currentSession.categoryId, this.currentSession.deckId);
-            
+
             if (category && deck) {
-                window.uiManager.showScreen('deck-screen', { category, deck });
+                window.uiManager.showScreen('category-screen', { category });
             } else {
-                window.uiManager.showScreen('welcome');
+                window.uiManager.showScreen('welcome-screen');
             }
         } else {
-            window.uiManager.showScreen('welcome');
+            window.uiManager.showScreen('welcome-screen');
         }
 
         // Reset all session state
@@ -404,10 +404,10 @@ class StudyManager {
         this.sentenceMode = false;
         this.showingClozeAnswer = false;
         this.clozeData = null;
-        
+
         // Hide study mode buttons
         this.hideStudyModeButtons();
-        
+
         // Remove cloze styling
         const cardContent = document.getElementById('study-card-content');
         if (cardContent) {
@@ -431,7 +431,7 @@ class StudyManager {
                 if (modeButtons && modeButtons.style.display !== 'none') {
                     return; // Let user choose mode
                 }
-                
+
                 // If in sentence mode, reveal next sentence
                 if (this.sentenceMode) {
                     this.revealNextSentence();
@@ -483,40 +483,10 @@ class StudyManager {
         return this.currentSession !== null;
     }
 
-    showAnswerButtons() {
-        const flipButton = document.getElementById('flip-card-btn');
-        flipButton.style.display = 'none';
-        
-        // Create buttons container after the card content
-        const cardContent = document.getElementById('study-card-content');
-        const existingButtons = document.querySelector('.study-buttons');
-        if (existingButtons) {
-            existingButtons.remove();
-        }
-        
-        const buttonsContainer = document.createElement('div');
-        buttonsContainer.className = 'study-buttons';
-        buttonsContainer.innerHTML = `
-        <button id="show-full-answer-btn" class="btn-primary">Show Full Answer</button>
-        <button id="reveal-by-sentence-btn" class="btn-secondary">Reveal by Sentence</button>
-    `;
-        
-        // Insert after the card content
-        cardContent.parentNode.insertBefore(buttonsContainer, cardContent.nextSibling);
-        
-        // Add event listeners
-        document.getElementById('show-full-answer-btn').addEventListener('click', () => {
-            this.showFullAnswer();
-        });
-        
-        document.getElementById('reveal-by-sentence-btn').addEventListener('click', () => {
-            this.startSentenceReveal();
-        });
-    }
 
     showFullAnswer() {
         this.isAnswerVisible = true;
-        
+
         const card = this.sessionCards[this.currentCardIndex];
         const imageContainer = document.getElementById('study-card-image');
         const textContainer = document.getElementById('study-card-text');
@@ -533,7 +503,7 @@ class StudyManager {
 
         // Show rating buttons
         document.getElementById('study-rating').style.display = 'block';
-        
+
         // Hide flip button
         document.getElementById('flip-card-btn').style.display = 'none';
     }
@@ -541,23 +511,23 @@ class StudyManager {
     startSentenceReveal() {
         this.sentenceMode = true;
         this.currentSentenceIndex = 0;
-        
+
         const card = this.sessionCards[this.currentCardIndex];
         let answerText;
-        
+
         if (this.studyMode === 'front-to-back') {
             answerText = card.back;
         } else {
             answerText = card.front;
         }
-        
+
         // Parse sentences
         this.sentences = this.parseSentences(answerText);
-        
+
         // Clear image for sentence mode
         const imageContainer = document.getElementById('study-card-image');
         imageContainer.innerHTML = '';
-        
+
         // Set up sentence reveal interface
         const textContainer = document.getElementById('study-card-text');
         textContainer.innerHTML = `
@@ -569,26 +539,26 @@ class StudyManager {
             </div>
         </div>
     `;
-        
+
         // Add event listeners
         document.getElementById('next-sentence-btn').addEventListener('click', () => {
             this.revealNextSentence();
         });
-        
+
         document.getElementById('show-remaining-btn').addEventListener('click', () => {
             this.showAllRemainingSentences();
         });
-        
+
         // Hide flip button
         document.getElementById('flip-card-btn').style.display = 'none';
-        
+
         // Automatically reveal the first sentence
         this.revealNextSentence();
     }
 
     parseSentences(text) {
         if (!text) return [];
-        
+
         // Split on periods, exclamation marks, question marks, semicolons, colons, and em dashes
         return text
             .split(/(?<=[.!?;:—])\s+/)
@@ -601,13 +571,13 @@ class StudyManager {
             const revealedContainer = document.getElementById('revealed-sentences');
             const currentText = revealedContainer.innerHTML;
             const nextSentence = this.sentences[this.currentSentenceIndex];
-            
-            revealedContainer.innerHTML = currentText + 
-                (currentText ? ' ' : '') + 
+
+            revealedContainer.innerHTML = currentText +
+                (currentText ? ' ' : '') +
                 parseSimpleMarkdown(nextSentence);
-            
+
             this.currentSentenceIndex++;
-            
+
             // Check if all sentences revealed
             if (this.currentSentenceIndex >= this.sentences.length) {
                 this.finishSentenceReveal();
@@ -619,25 +589,25 @@ class StudyManager {
         const revealedContainer = document.getElementById('revealed-sentences');
         const remainingSentences = this.sentences.slice(this.currentSentenceIndex);
         const currentText = revealedContainer.innerHTML;
-        
+
         const allRemaining = remainingSentences.join(' ');
-        revealedContainer.innerHTML = currentText + 
-            (currentText ? ' ' : '') + 
+        revealedContainer.innerHTML = currentText +
+            (currentText ? ' ' : '') +
             parseSimpleMarkdown(allRemaining);
-        
+
         this.currentSentenceIndex = this.sentences.length;
         this.finishSentenceReveal();
     }
 
     finishSentenceReveal() {
         this.isAnswerVisible = true;
-        
+
         // Hide sentence controls
         const sentenceControls = document.querySelector('.sentence-controls');
         if (sentenceControls) {
             sentenceControls.style.display = 'none';
         }
-        
+
         // Show rating buttons
         document.getElementById('study-rating').style.display = 'block';
     }
@@ -652,16 +622,16 @@ class StudyManager {
         this.sentenceMode = false;
         this.showingClozeAnswer = false;
         this.clozeData = null;
-        
+
         // Hide study mode buttons
         this.hideStudyModeButtons();
-        
+
         // Remove cloze styling
         const cardContent = document.getElementById('study-card-content');
         if (cardContent) {
             cardContent.classList.remove('cloze-mode');
         }
-        
+
         // Navigate to home page
         window.routerManager.navigate('/');
     }
@@ -680,11 +650,11 @@ class StudyManager {
     createClozeText(text, difficulty) {
         const words = text.split(/(\s+)/); // Split on whitespace but keep the whitespace
         const settings = this.getDifficultySettings(difficulty);
-        
+
         // Add randomness to percentage (±5%)
         const randomFactor = (Math.random() - 0.5) * 0.1;
         const targetPercentage = Math.max(0.1, Math.min(0.75, settings.percentage / 100 + randomFactor));
-        
+
         // Only count actual words, not whitespace
         const actualWords = words.filter((word, index) => index % 2 === 0 && word.trim().length > 0);
         const targetHidden = Math.max(
@@ -699,7 +669,7 @@ class StudyManager {
                 const cleanWord = word.toLowerCase().replace(/[^\w]/g, '');
                 const isFunction = this.functionWords.has(cleanWord);
                 const isLong = cleanWord.length >= 4;
-                
+
                 wordData.push({
                     index,
                     word,
@@ -721,7 +691,7 @@ class StudyManager {
         // Select words to hide
         const toHide = new Set();
         let wordsHidden = 0;
-        
+
         // First pass: prioritize high-priority words
         for (let i = 0; i < shuffledWords.length && wordsHidden < targetHidden; i++) {
             const wordIndex = shuffledWords[i].index;
@@ -730,7 +700,7 @@ class StudyManager {
                 wordsHidden++;
             }
         }
-        
+
         // Second pass: fill remaining slots
         for (let i = 0; i < shuffledWords.length && wordsHidden < targetHidden; i++) {
             const wordIndex = shuffledWords[i].index;
@@ -770,26 +740,26 @@ class StudyManager {
         if (modeButtons) {
             modeButtons.style.display = 'block';
         }
-        
+
         // Remove existing listeners to prevent duplicates
         const showFullBtn = document.getElementById('show-full-answer-btn');
         const sentenceBtn = document.getElementById('reveal-by-sentence-btn');
         const hiddenBtn = document.getElementById('hidden-words-btn');
-        
+
         if (showFullBtn) {
             showFullBtn.replaceWith(showFullBtn.cloneNode(true));
             document.getElementById('show-full-answer-btn').addEventListener('click', () => {
                 this.selectStudyMethod('Show Full Answer');
             });
         }
-        
+
         if (sentenceBtn) {
             sentenceBtn.replaceWith(sentenceBtn.cloneNode(true));
             document.getElementById('reveal-by-sentence-btn').addEventListener('click', () => {
                 this.selectStudyMethod('Reveal by Sentence');
             });
         }
-        
+
         if (hiddenBtn) {
             hiddenBtn.replaceWith(hiddenBtn.cloneNode(true));
             document.getElementById('hidden-words-btn').addEventListener('click', () => {
@@ -800,12 +770,12 @@ class StudyManager {
 
     selectStudyMethod(method) {
         this.currentStudyMethod = method;
-        
+
         // Update button states
         document.querySelectorAll('.study-mode-btn').forEach(btn => {
             btn.classList.remove('active');
         });
-        
+
         if (method === 'Show Full Answer') {
             document.getElementById('show-full-answer-btn').classList.add('active');
         } else if (method === 'Reveal by Sentence') {
@@ -813,7 +783,7 @@ class StudyManager {
         } else if (method === 'Hidden Words') {
             document.getElementById('hidden-words-btn').classList.add('active');
         }
-        
+
         // Execute the selected study method
         this.executeStudyMethod();
     }
@@ -821,7 +791,7 @@ class StudyManager {
     executeStudyMethod() {
         // Hide the method selection buttons
         this.hideStudyModeButtons();
-        
+
         switch (this.currentStudyMethod) {
         case 'Show Full Answer':
             this.showFullAnswer();
@@ -845,7 +815,7 @@ class StudyManager {
     startHiddenWordsMode() {
         const card = this.sessionCards[this.currentCardIndex];
         const difficulty = card.hiddenWordsDifficulty || 0;
-        
+
         // Hide words in the answer text (what would normally be revealed on flip)
         let textToHide;
         if (this.studyMode === 'front-to-back') {
@@ -853,21 +823,21 @@ class StudyManager {
         } else {  // back-to-front
             textToHide = card.front; // Hide words in front (answer) text
         }
-        
+
         // Create cloze text
         this.clozeData = this.createClozeText(textToHide, difficulty);
-        
+
         // Update display
         const cardContent = document.getElementById('study-card-content');
         const imageContainer = document.getElementById('study-card-image');
         const textContainer = document.getElementById('study-card-text');
-        
+
         // Add cloze mode styling
         cardContent.classList.add('cloze-mode');
-        
+
         // For cloze mode, don't show images to focus on text
         imageContainer.innerHTML = '';
-        
+
         // Show cloze info and text
         textContainer.innerHTML = `
         <div class="cloze-info">
@@ -875,9 +845,9 @@ class StudyManager {
         </div>
         <div class="cloze-text">${this.clozeData.clozeText}</div>
     `;
-        
+
         this.showingClozeAnswer = false;
-        
+
         // Show reveal button
         document.getElementById('flip-card-btn').textContent = 'Show Hidden Words';
         document.getElementById('flip-card-btn').style.display = 'block';
@@ -885,7 +855,7 @@ class StudyManager {
 
     adjustHiddenWordsDifficulty(card, rating) {
         let difficultyChange = 0;
-        
+
         switch (rating) {
         case 1: // Nope! - decrease difficulty
             difficultyChange = -1;
@@ -917,15 +887,14 @@ class StudyManager {
             this.currentSession.categoryId,
             this.currentSession.deckId,
             card.id,
-            { 
+            {
                 hiddenWordsDifficulty: newDifficulty,
                 recentRatings: recentRatings
             }
         );
-    }    
+    }
 
 }
 
 // Create global instance
 window.studyManager = new StudyManager();
-
