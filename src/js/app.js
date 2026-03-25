@@ -41,11 +41,6 @@ class MindforgeApp {
             }
         });
 
-        // Handle keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            this.handleGlobalKeyboardShortcuts(e);
-        });
-
         // Auto-save periodically
         setInterval(() => {
             if (window.dataManager && window.dataManager.data) {
@@ -55,31 +50,6 @@ class MindforgeApp {
 
     }
 
-    // Handle global keyboard shortcuts
-    handleGlobalKeyboardShortcuts(e) {
-        // Don't handle shortcuts if user is typing in an input
-        if (e.target.matches('input, textarea, select')) {
-            return;
-        }
-
-        // Don't handle shortcuts if modal is open (except ESC)
-        if (window.uiManager.modal && window.uiManager.modal.classList.contains('active') && e.key !== 'Escape') {
-            return;
-        }
-
-        // Non-modifier shortcuts
-        if (!e.ctrlKey && !e.metaKey) {
-            switch (e.key) {
-            case 'Escape':
-                if (window.studyManager.isStudying()) {
-                    window.studyManager.endStudySession();
-                } else if (window.uiManager.modal && window.uiManager.modal.classList.contains('active')) {
-                    window.uiManager.closeModal();
-                }
-                break;
-            }
-        }
-    }
 
     // Check initial application state
     checkInitialState() {

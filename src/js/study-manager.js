@@ -62,13 +62,6 @@ class StudyManager {
                 this.rateCard(rating);
             });
         });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            if (window.uiManager.currentScreen === 'study-screen') {
-                this.handleKeyboardShortcuts(e);
-            }
-        });
     }
 
     // Start a new study session
@@ -415,63 +408,6 @@ class StudyManager {
         }
     }
 
-    // Handle keyboard shortcuts during study
-    handleKeyboardShortcuts(e) {
-        if (window.uiManager.modal && window.uiManager.modal.classList.contains('active')) {
-            return; // Don't handle shortcuts when modal is open
-        }
-
-        switch (e.key) {
-        case ' ': // Spacebar
-        case 'Enter':
-            e.preventDefault();
-            if (!this.isAnswerVisible) {
-                // If study mode buttons are visible, don't auto-execute
-                const modeButtons = document.querySelector('.study-mode-buttons');
-                if (modeButtons && modeButtons.style.display !== 'none') {
-                    return; // Let user choose mode
-                }
-
-                // If in sentence mode, reveal next sentence
-                if (this.sentenceMode) {
-                    this.revealNextSentence();
-                } else if (this.currentStudyMethod === 'Hidden Words' && !this.showingClozeAnswer) {
-                    this.flipCard();
-                } else {
-                    this.showFullAnswer();
-                }
-            }
-            break;
-        case '1':
-            e.preventDefault();
-            if (this.isAnswerVisible) {
-                this.rateCard(1);
-            }
-            break;
-        case '2':
-            e.preventDefault();
-            if (this.isAnswerVisible) {
-                this.rateCard(2);
-            }
-            break;
-        case '3':
-            e.preventDefault();
-            if (this.isAnswerVisible) {
-                this.rateCard(3);
-            }
-            break;
-        case '4':
-            e.preventDefault();
-            if (this.isAnswerVisible) {
-                this.rateCard(4);
-            }
-            break;
-        case 'Escape':
-            e.preventDefault();
-            this.endStudySession();
-            break;
-        }
-    }
 
     // Get current session info
     getCurrentSession() {

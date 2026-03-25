@@ -371,9 +371,6 @@ class UIManager {
         case 'settings':
             this.showSettings();
             break;
-        case 'keyboard-shortcuts':
-            this.showKeyboardShortcuts();
-            break;
         case 'about':
             this.showAbout();
             break;
@@ -401,38 +398,6 @@ class UIManager {
         } catch (error) {
             this.showToast('Error creating backup: ' + error.message, 'error');
         }
-    }
-
-    showKeyboardShortcuts() {
-        const template = document.getElementById('keyboard-shortcuts-template');
-        const content = template.content.cloneNode(true);
-
-        const actions = [
-            {
-                text: 'Close',
-                class: 'btn-primary',
-                action: 'close',
-                handler: () => this.closeModal()
-            }
-        ];
-
-        this.showTemplateModal('Keyboard Shortcuts', content, actions);
-    }
-
-    showAbout() {
-        const template = document.getElementById('about-template');
-        const content = template.content.cloneNode(true);
-
-        const actions = [
-            {
-                text: 'Close',
-                class: 'btn-primary',
-                action: 'close',
-                handler: () => this.closeModal()
-            }
-        ];
-
-        this.showTemplateModal('About Mindforge', content, actions);
     }
 
     showTemplateModal(title, templateContent, actions = []) {
