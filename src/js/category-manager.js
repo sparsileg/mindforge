@@ -1,4 +1,4 @@
-// Category management for Mindforge
+// Category management
 
 class CategoryManager {
     constructor() {

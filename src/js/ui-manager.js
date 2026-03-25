@@ -1,4 +1,4 @@
-// UI management for Mindforge
+// UI management
 
 class UIManager {
     constructor() {
@@ -73,10 +73,10 @@ class UIManager {
             }
         });
 
-        // Make Mindforge title clickable to go home
-        const mindforgeTitle = document.querySelector('.header-top h1');
-        if (mindforgeTitle) {
-            mindforgeTitle.addEventListener('click', () => {
+        // Make title clickable to go home
+        const theAppTitle = document.querySelector('.header-top h1');
+        if (theAppTitle) {
+            theAppTitle.addEventListener('click', () => {
                 if (window.routerManager) {
                     window.routerManager.navigate('/');
                 }
@@ -304,8 +304,8 @@ class UIManager {
 				if (toast.parentNode) {
 					toast.parentNode.removeChild(toast);
 				}
-			}, MINDFORGE_CONFIG.ANIMATION_DURATION);
-		}, MINDFORGE_CONFIG.TOAST_DURATION);
+			}, APP_CONFIG.ANIMATION_DURATION);
+		}, APP_CONFIG.TOAST_DURATION);
     }
 
     // Update active category in sidebar
@@ -365,7 +365,7 @@ class UIManager {
             this.createBackup();
             break;
         case 'import-data':
-            window.mindforgeApp.showImportModal();
+            window.theApp.showImportModal();
             break;
         case 'settings':
             this.showSettings();
@@ -380,7 +380,7 @@ class UIManager {
         try {
             const data = await window.dataManager.exportData();
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            const filename = `mindforge-backup-${timestamp}.json`;
+
 
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -391,7 +391,7 @@ class UIManager {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
+            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-backup-${timestamp}.json`;
             URL.revokeObjectURL(url);
             this.showToast('Backup created successfully', 'success');
         } catch (error) {
@@ -488,7 +488,7 @@ class UIManager {
             deckId: deck.id,
             allCards: deck.cards,
             displayedCards: 0,
-            batchSize: MINDFORGE_CONFIG.CARDS_PER_PREVIEW_BATCH
+            batchSize: APP_CONFIG.CARDS_PER_PREVIEW_BATCH
         };
 
         // Clear previous content
@@ -916,13 +916,33 @@ class UIManager {
             });
         }
 
-        // Navigate home when tapping the Mindforge title
+        // Navigate home when tapping the title
         if (mobileTitle) {
             mobileTitle.addEventListener('click', () => {
                 this.closeMobileSidebar();
                 window.routerManager.navigate('/');
             });
         }
+    }
+
+showAbout() {
+        const template = document.getElementById('about-template');
+        const content = template.content.cloneNode(true);
+
+        // Populate name and version dynamically
+        const nameEl = content.querySelector('.about-app-name');
+        const versionEl = content.querySelector('.about-app-version');
+        if (nameEl) nameEl.textContent = APP_CONFIG.APP_NAME;
+        if (versionEl) versionEl.textContent = `Version ${APP_CONFIG.APP_VERSION}`;
+
+        const actions = [
+            {
+                action: 'close',
+                handler: () => this.closeModal()
+            }
+        ];
+
+        this.showTemplateModal('About', content, actions);
     }
 
 }

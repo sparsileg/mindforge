@@ -1,4 +1,4 @@
-// Simple hash-based router for Mindforge
+// Simple hash-based router
 class RouterManager {
     constructor() {
         this.routes = {};
@@ -22,7 +22,7 @@ class RouterManager {
     // Parse current hash and execute matching route
     handleRoute() {
         const hash = window.location.hash.slice(1) || '/'; // Remove #
-        
+
         // Try to match routes
         for (const pattern in this.routes) {
             const match = this.matchRoute(pattern, hash);
@@ -31,7 +31,7 @@ class RouterManager {
                 return;
             }
         }
-        
+
         // Default route if no match
         this.goToWelcome();
     }
@@ -40,16 +40,16 @@ class RouterManager {
     matchRoute(pattern, hash) {
         const patternParts = pattern.split('/');
         const hashParts = hash.split('/');
-        
+
         if (patternParts.length !== hashParts.length) {
             return null;
         }
-        
+
         const params = {};
         for (let i = 0; i < patternParts.length; i++) {
             const patternPart = patternParts[i];
             const hashPart = hashParts[i];
-            
+
             if (patternPart.startsWith(':')) {
                 // Parameter
                 params[patternPart.slice(1)] = hashPart;
@@ -58,7 +58,7 @@ class RouterManager {
                 return null;
             }
         }
-        
+
         return { params };
     }
 
@@ -89,7 +89,7 @@ class RouterManager {
     goToStudy(params) {
         const category = window.dataManager.findCategory(params.categoryId);
         const deck = window.dataManager.findDeck(params.categoryId, params.deckId);
-        
+
         if (category && deck) {
             // Always start a fresh study session when navigating via URL
             window.studyManager.startStudySession(params.categoryId, params.deckId);
@@ -101,7 +101,7 @@ class RouterManager {
     goToPreview(params) {
         const category = window.dataManager.findCategory(params.categoryId);
         const deck = window.dataManager.findDeck(params.categoryId, params.deckId);
-        
+
         if (category && deck) {
             window.uiManager.showPreviewScreen(category, deck);
         } else {

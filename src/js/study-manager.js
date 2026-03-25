@@ -1,4 +1,4 @@
-// Study session management for Mindforge
+// Study session management
 
 class StudyManager {
     constructor() {
@@ -84,7 +84,7 @@ class StudyManager {
 
         // Get cards per session from settings
         const settings = window.dataManager.getSettings();
-        const cardsPerSession = settings.cardsPerSession || MINDFORGE_CONFIG.CARDS_PER_STUDY_SESSION;
+        const cardsPerSession = settings.cardsPerSession || APP_CONFIG.CARDS_PER_STUDY_SESSION;
 
         // Get optimized study session
         this.sessionCards = window.dataManager.getCardsForStudySession(categoryId, deckId, cardsPerSession);
@@ -263,7 +263,7 @@ class StudyManager {
         // Check for distraction (card took too long)
         const cardTime = Date.now() - this.cardStartTime;
         const cardTimeMinutes = cardTime / (1000 * 60);
-        if (cardTimeMinutes > MINDFORGE_CONFIG.MAX_CARD_TIME_MINUTES) {
+        if (cardTimeMinutes > APP_CONFIG.MAX_CARD_TIME_MINUTES) {
             this.isSessionDistracted = true;
         }
 

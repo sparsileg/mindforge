@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Mindforge - Flashcard Learning</title>
+    <title>The App - Flashcard Learning</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-css">
@@ -14,14 +14,14 @@
       <!-- Mobile Header Bar (hidden on desktop) -->
       <div class="mobile-header">
         <button class="mobile-hamburger-btn" id="mobile-hamburger-btn">☰</button>
-        <span class="mobile-header-title">Mindforge</span>
+        <span class="mobile-header-title">The App</span>
       </div>
 
       <!-- Sidebar -->
       <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <div class="header-top">
-            <h1>Mindforge</h1>
+            <h1>The App</h1>
             <button id="hamburger-menu-btn" class="hamburger-btn">⋯</button>
           </div>
           <div class="theme-selector">
@@ -53,6 +53,7 @@
             </div>
           </div>
         </div>
+        <div class="sidebar-version" id="sidebar-version">Version The Version</div>
       </nav>
 
       <!-- Main Content Area -->
@@ -60,7 +61,7 @@
 
         <div id="welcome-screen" class="screen active">
           <div class="home-overview">
-            <h2>Welcome to Mindforge</h2>
+            <h2 id="welcome-app-name">Welcome to The App</h2>
             <p>
               Create categories and decks of flashcards to start building
               your knowledge.
@@ -164,7 +165,7 @@
       <div class="menu-separator"></div>
       <div class="menu-item" data-action="about">
         <span class="menu-icon">ℹ️</span>
-        About Mindforge
+        <span id="menu-about-name">About The App</span>
       </div>
     </div>
 
@@ -184,11 +185,11 @@
     <template id="about-template">
       <div class="about-content">
         <div style="text-align: center; margin-bottom: 2rem;">
-          <h2 style="color: var(--primary-color); margin-bottom: 0.5rem;">Mindforge</h2>
-          <p style="color: var(--text-secondary);">Version 1.0.0</p>
+          <h2 class="about-app-name" style="color: var(--primary-color); margin-bottom: 0.5rem;">The App</h2>
+          <p class="about-app-version" style="color: var(--text-secondary);">The Version</p>
         </div>
 
-        <p>Mindforge is a powerful flashcard application designed for visual learning with spaced repetition algorithms.</p>
+        <p>A powerful flashcard application designed for visual learning with spaced repetition algorithms.</p>
 
         <h4>Features</h4>
         <ul>
@@ -296,7 +297,7 @@
 
     <template id="import-data-template">
       <div class="form-group">
-        <label for="import-file">Select Mindforge backup file</label>
+        <label for="import-file">Select backup file</label>
         <input type="file" id="import-file" accept=".json" required>
       </div>
       <div class="form-group">
@@ -346,7 +347,7 @@
     </template>
 
     <template id="getting-started-template">
-      <h3>Welcome to Mindforge! 🧠</h3>
+      <h3 id="getting-started-app-name">Welcome to The App! 🧠</h3>
       <p>Get started by creating your first category. Categories help organize your flashcards by topic.</p>
       <p><strong>Examples:</strong></p>
       <ul>
@@ -371,7 +372,7 @@
       <div class="init-error-container">
         <h1 class="init-error-title">Initialization Error</h1>
         <p class="init-error-message">
-          Mindforge failed to initialize properly. This might be due to browser compatibility issues or corrupted data.
+          Failed to initialize properly. This might be due to browser compatibility issues or corrupted data.
         </p>
         <p class="init-error-details" id="error-details">
           <!-- Error message will be inserted here -->

@@ -31,7 +31,7 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.siderbar-header .header-top {
+.sidebar-header .header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1008,6 +1008,14 @@ body {
     margin-top: 0.6rem;
     padding-top: 0;
     border-top: 1px solid var(--border-color);
+}
+
+.sidebar-version {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
 }
 
 .sidebar-stat {

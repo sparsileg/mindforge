@@ -1,4 +1,4 @@
-// Data management for Mindforge - Updated to use IndexedDB
+// Data management - Updated to use IndexedDB
 
 class DataManager {
     constructor() {
@@ -216,8 +216,8 @@ class DataManager {
             difficulty: null,
             lastStudied: null,
             nextReview: null,
-            interval: MINDFORGE_CONFIG.DEFAULT_INTERVAL,
-            easeFactor: MINDFORGE_CONFIG.DEFAULT_EASE_FACTOR,
+            interval: APP_CONFIG.DEFAULT_INTERVAL,
+            easeFactor: APP_CONFIG.DEFAULT_EASE_FACTOR,
             graduationStep: 0,
             createdAt: new Date().toISOString(),
             hiddenWordsDifficulty: 0,
@@ -285,7 +285,7 @@ class DataManager {
 
         const cardsPerSession = maxCards ||
               this.data.settings.cardsPerSession ||
-              MINDFORGE_CONFIG.CARDS_PER_STUDY_SESSION;
+              APP_CONFIG.CARDS_PER_STUDY_SESSION;
 
         return getCardsForStudySession(deck.cards, cardsPerSession);
     }
@@ -400,8 +400,8 @@ class DataManager {
             card.difficulty = null;
             card.lastStudied = null;
             card.nextReview = null;
-            card.interval = MINDFORGE_CONFIG.DEFAULT_INTERVAL;
-            card.easeFactor = MINDFORGE_CONFIG.DEFAULT_EASE_FACTOR;
+            card.interval = APP_CONFIG.DEFAULT_INTERVAL;
+            card.easeFactor = APP_CONFIG.DEFAULT_EASE_FACTOR;
             card.graduationStep = 0;
         });
 
@@ -430,7 +430,7 @@ class DataManager {
         // Check if this is the first valid session today BEFORE adding the new session
         const previousValidSessionsToday = stats.studySessions.filter(session =>
             session.date === today &&
-                session.cardsStudied >= MINDFORGE_CONFIG.MIN_CARDS_FOR_DAY_COUNT
+                session.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT
         );
         const isFirstValidSessionToday = previousValidSessionsToday.length === 0;
 
@@ -460,7 +460,7 @@ class DataManager {
         stats.uniqueCardsStudied = uniqueCards.size;
 
         // Update days studied (only if completed full session and not distracted)
-        if (sessionData.cardsStudied >= MINDFORGE_CONFIG.MIN_CARDS_FOR_DAY_COUNT &&
+        if (sessionData.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT &&
             !sessionData.wasDistracted) {
 
             if (isFirstValidSessionToday) {
@@ -474,7 +474,7 @@ class DataManager {
         }
 
         // Update streaks (for any day with 10+ cards, regardless of distraction)
-        if (sessionData.cardsStudied >= MINDFORGE_CONFIG.MIN_CARDS_FOR_DAY_COUNT && isFirstValidSessionToday) {
+        if (sessionData.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT && isFirstValidSessionToday) {
             if (!stats.lastStudyDate) {
                 // First time ever studying - start streak at 1
                 stats.currentStreak = 1;
@@ -493,7 +493,7 @@ class DataManager {
                     // Gap detected - check yesterday's sessions
                     const yesterdayValidSessions = stats.studySessions.filter(session =>
                         session.date === yesterdayStr &&
-                            session.cardsStudied >= MINDFORGE_CONFIG.MIN_CARDS_FOR_DAY_COUNT
+                            session.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT
                     );
 
                     if (yesterdayValidSessions.length > 0) {
@@ -680,7 +680,7 @@ class DataManager {
         // Task 1: Create daily backup
         try {
             const data = await this.exportData();
-            const filename = 'mindforge-daily.json';
+            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-daily.json`;
 
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);

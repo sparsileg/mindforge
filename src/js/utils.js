@@ -1,7 +1,11 @@
-// Utility functions for Mindforge
+// Utility functions
 
-// Mindforge Constants - Central location for all configurable values
-const MINDFORGE_CONFIG = {
+// App Constants - Central location for all configurable values
+const APP_CONFIG = {
+    // Application Info
+    APP_NAME: 'Mindforge',
+    APP_VERSION: '1.1.0',
+
     // Study Session Settings
     CARDS_PER_STUDY_SESSION: 10,
     MAX_NEW_CARDS_PER_SESSION: 5,
@@ -61,7 +65,7 @@ const MINDFORGE_CONFIG = {
 };
 
 // Make constants globally available
-window.MINDFORGE_CONFIG = MINDFORGE_CONFIG;
+window.APP_CONFIG = APP_CONFIG;
 
 
 // Generate unique IDs
@@ -79,7 +83,7 @@ function formatDate(dateString) {
 // Calculate next review date based on difficulty rating
 // Sophisticated spaced repetition algorithm based on SM-2
 function calculateNextReview(card, rating) {
-    const config = MINDFORGE_CONFIG;
+    const config = APP_CONFIG;
     const now = new Date();
     let newInterval = card.interval || config.DEFAULT_INTERVAL;
     let newEaseFactor = card.easeFactor || config.DEFAULT_EASE_FACTOR;
@@ -146,7 +150,7 @@ function calculateNextReview(card, rating) {
 }
 
 // Get cards for a 10-card study session with smart prioritization
-function getCardsForStudySession(cards, maxCards = MINDFORGE_CONFIG.CARDS_PER_STUDY_SESSION) {
+function getCardsForStudySession(cards, maxCards = APP_CONFIG.CARDS_PER_STUDY_SESSION) {
     const today = new Date().toISOString().split('T')[0];
     const now = new Date();
 
@@ -248,7 +252,7 @@ function calculateAdvancedStudyStats(cards) {
     // Calculate actual that need practice (limited by session size)
     const actualNeedsPractice = Math.min(
         overdueCards + dueToday + newCards,
-        MINDFORGE_CONFIG.CARDS_PER_STUDY_SESSION
+        APP_CONFIG.CARDS_PER_STUDY_SESSION
     );
 
     return {
@@ -294,7 +298,7 @@ function debounce(func, wait) {
 
 // File handling utilities
 function validateImageFile(file) {
-    const config = MINDFORGE_CONFIG;
+    const config = APP_CONFIG;
 
     if (!config.VALID_IMAGE_TYPES.includes(file.type)) {
         throw new Error('Please select a valid image file (JPEG, PNG, GIF, or WebP)');

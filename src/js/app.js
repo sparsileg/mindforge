@@ -1,6 +1,6 @@
-// Main application initialization for Mindforge
+// Main application initialization
 
-class MindforgeApp {
+class TheApp {
     constructor() {
         this.isInitialized = false;
     }
@@ -8,8 +8,9 @@ class MindforgeApp {
     // Initialize the application
     async init() {
         try {
-            console.log('Initializing Mindforge...');
+            console.log('Initializing app ...');
 
+            this.setupAppInfo();
             await window.dataManager.init();
             window.uiManager.init();
             window.categoryManager.init();
@@ -18,12 +19,38 @@ class MindforgeApp {
             this.checkInitialState();
 
             this.isInitialized = true;
-            console.log('Mindforge initialized successfully');
+            console.log('App initialized successfully');
 
         } catch (error) {
-            console.error('Error initializing Mindforge:', error);
+            console.error('Error initializing app:', error);
             this.showInitializationError(error);
         }
+    }
+
+    // Set app name and version from config
+    setupAppInfo() {
+        const name = APP_CONFIG.APP_NAME;
+        const nameLower = name.toLowerCase();
+
+        document.title = `${name} - Flashcard Learning`;
+
+        const sidebarTitle = document.querySelector('.header-top h1');
+        if (sidebarTitle) sidebarTitle.textContent = name;
+
+        const mobileTitle = document.querySelector('.mobile-header-title');
+        if (mobileTitle) mobileTitle.textContent = name;
+
+        const welcomeTitle = document.getElementById('welcome-app-name');
+        if (welcomeTitle) welcomeTitle.textContent = `Welcome to ${name}`;
+
+        const menuAbout = document.getElementById('menu-about-name');
+        if (menuAbout) menuAbout.textContent = `About ${name}`;
+
+        const gettingStarted = document.getElementById('getting-started-app-name');
+        if (gettingStarted) gettingStarted.textContent = `Welcome to ${name}! 🧠`;
+
+        const sidebarVersion = document.getElementById('sidebar-version');
+        if (sidebarVersion) sidebarVersion.textContent = `Version ${APP_CONFIG.APP_VERSION}`;
     }
 
     // Set up global event handlers
@@ -46,7 +73,7 @@ class MindforgeApp {
             if (window.dataManager && window.dataManager.data) {
                 window.dataManager.saveData();
             }
-        }, MINDFORGE_CONFIG.AUTO_SAVE_INTERVAL);
+        }, APP_CONFIG.AUTO_SAVE_INTERVAL);
 
     }
 
@@ -94,7 +121,7 @@ class MindforgeApp {
 
             const link = document.createElement('a');
             link.href = url;
-            link.download = `mindforge-export-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `${APP_CONFIG.APP_NAME.toLowerCase()}-export-${new Date().toISOString().split('T')[0]}.json`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -170,8 +197,8 @@ class MindforgeApp {
     // Get application info
     getAppInfo() {
         return {
-            name: 'Mindforge',
-            version: '1.0.0',
+            name: APP_CONFIG.APP_NAME,
+            version: APP_CONFIG.APP_VERSION,
             initialized: this.isInitialized,
             dataManager: !!window.dataManager,
             uiManager: !!window.uiManager,
@@ -200,29 +227,20 @@ class MindforgeApp {
             window.routerManager.addRoute('/preview/:categoryId/:deckId', (params) => {
                 window.routerManager.goToPreview(params);
             });
-
-            // Add Mindforge title click handler after router is ready
-            const mindforgeTitle = document.querySelector('.header-top h1');
-            if (mindforgeTitle) {
-                mindforgeTitle.addEventListener('click', () => {
-                    window.routerManager.navigate('/');
-                });
-                console.log('Mindforge title click handler added in setupRouting');
-            }
         }, 50);
     }
 
-} // end of MindforgeApp class
+} // end of TheApp class
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('DOM loaded, starting Mindforge...');
+    console.log('DOM loaded, starting app...');
 
     // Create global app instance
-    window.mindforgeApp = new MindforgeApp();
+    window.theApp = new TheApp();
 
     // Initialize the application
-    await window.mindforgeApp.init();
+    await window.theApp.init();
 });
 
 // Handle any unhandled errors
@@ -248,7 +266,7 @@ window.addEventListener('unhandledrejection', (e) => {
 
 // Export for debugging
 window.DEBUG = {
-    getAppInfo: () => window.mindforgeApp?.getAppInfo(),
+    getAppInfo: () => window.theApp?.getAppInfo(),
     exportData: () => window.dataManager?.exportData(),
     clearData: () => {
         localStorage.clear();

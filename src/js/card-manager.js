@@ -1,4 +1,4 @@
-// Card management for Mindforge - Updated to use IndexedDB
+// Card management - Updated to use IndexedDB
 
 class CardManager {
     constructor() {
@@ -16,7 +16,7 @@ class CardManager {
 
         const template = document.getElementById('add-card-template');
         const content = template.content.cloneNode(true);
-        
+
         const actions = [
             {
                 action: 'cancel',
@@ -29,13 +29,13 @@ class CardManager {
         ];
 
         window.uiManager.showTemplateModal('Add New Card', content, actions);
-        
+
         // Make modal wider for easier editing
         const modalContent = document.querySelector('.modal-content');
         modalContent.classList.add('wide');
-        
+
         this.setupImagePreview();
-        
+
         setTimeout(() => {
             document.getElementById('card-front').focus();
         }, 100);
@@ -50,11 +50,11 @@ class CardManager {
 
         const template = document.getElementById('edit-card-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate form with existing data
         content.getElementById('card-front').value = card.front;
         content.getElementById('card-back').value = card.back;
-        
+
         const actions = [
             {
                 action: 'delete',
@@ -71,13 +71,13 @@ class CardManager {
         ];
 
         window.uiManager.showTemplateModal('Edit Card', content, actions);
-        
+
         // Make modal wider for easier editing
         const modalContent = document.querySelector('.modal-content');
         modalContent.classList.add('wide');
-        
+
         this.setupImagePreview();
-        
+
         // Show existing image if present
         if (card.image) {
             this.showImagePreviewAsync(card.image, false);
@@ -88,7 +88,7 @@ class CardManager {
     setupImagePreview() {
         const imageInput = document.getElementById('card-image');
         const previewContainer = document.getElementById('image-preview');
-        
+
         if (!imageInput || !previewContainer) return;
 
         imageInput.addEventListener('change', async (e) => {
@@ -101,10 +101,10 @@ class CardManager {
             try {
                 validateImageFile(file);
                 this.currentImageFile = file;
-                
+
                 const dataUrl = await fileToDataUrl(file);
                 this.showImagePreview(dataUrl, true);
-                
+
             } catch (error) {
                 window.uiManager.showToast(error.message, 'error');
                 imageInput.value = '';
@@ -156,7 +156,7 @@ class CardManager {
         const context = window.uiManager.getCurrentContext();
         const frontInput = document.getElementById('card-front');
         const backInput = document.getElementById('card-back');
-        
+
         const front = frontInput.value.trim();
         const back = backInput.value.trim();
 
@@ -184,11 +184,11 @@ class CardManager {
         };
 
         const card = window.dataManager.addCard(context.category.id, context.deck.id, cardData);
-        
+
         if (card) {
             window.uiManager.closeModal();
             window.uiManager.showToast('Card added successfully', 'success');
-            
+
             // Refresh category view to show updated card counts
             const context = window.uiManager.getCurrentContext();
             if (context.category) {
@@ -196,7 +196,7 @@ class CardManager {
                 window.uiManager.showScreen('category-screen', { category: updatedCategory });
                 window.categoryManager.renderCategories();
             }
-            
+
             this.resetCardOperation();
         } else {
             window.uiManager.showToast('Error adding card', 'error');
@@ -207,7 +207,7 @@ class CardManager {
     async handleEditCard(categoryId, deckId, cardId) {
         const frontInput = document.getElementById('card-front');
         const backInput = document.getElementById('card-back');
-        
+
         const front = frontInput.value.trim();
         const back = backInput.value.trim();
 
@@ -235,18 +235,18 @@ class CardManager {
         };
 
         const updated = window.dataManager.updateCard(categoryId, deckId, cardId, updates);
-        
+
         if (updated) {
             window.uiManager.closeModal();
             window.uiManager.showToast('Card updated successfully', 'success');
-            
+
             // Check if we should return to preview mode
             if (window.uiManager.previewEditState && window.uiManager.previewEditState.returnToPreview) {
                 this.returnToPreviewAfterEdit();
             } else {
                 this.refreshDeckView();
             }
-            
+
             this.resetCardOperation();
         } else {
             window.uiManager.showToast('Error updating card', 'error');
@@ -258,12 +258,12 @@ class CardManager {
         const card = window.dataManager.findCard(categoryId, deckId, cardId);
         if (!card) return;
 
-        const frontPreview = card.front.length > 100 ? 
+        const frontPreview = card.front.length > 100 ?
               card.front.substring(0, 100) + '...' : card.front;
 
         const template = document.getElementById('confirm-delete-template');
         const content = template.content.cloneNode(true);
-        
+
         // Populate the delete message
         content.getElementById('delete-message').innerHTML = `
         <p>Are you sure you want to delete this card?</p>
@@ -272,7 +272,7 @@ class CardManager {
         </div>
         <p><strong>This action cannot be undone.</strong></p>
     `;
-        
+
         const actions = [
             {
                 action: 'cancel',
@@ -290,17 +290,17 @@ class CardManager {
     // Handle card deletion
     handleDeleteCard(categoryId, deckId, cardId) {
         const deleted = window.dataManager.deleteCard(categoryId, deckId, cardId);
-        
+
         if (deleted) {
             window.uiManager.closeModal();
             window.uiManager.showToast('Card deleted successfully', 'success');
-            
+
             // Check if we should return to preview mode
             if (window.uiManager.previewEditState && window.uiManager.previewEditState.returnToPreview) {
                 const editState = window.uiManager.previewEditState;
                 const category = window.dataManager.findCategory(editState.categoryId);
                 const deck = window.dataManager.findDeck(editState.categoryId, editState.deckId);
-                
+
                 if (category && deck) {
                     window.uiManager.previewEditState = null;
                     window.uiManager.showPreviewScreen(category, deck);
@@ -331,9 +331,9 @@ class CardManager {
                 type: file.type,
                 savedAt: new Date().toISOString()
             };
-            
+
             await window.indexedDBManager.saveData('images', imageData);
-            
+
             return imagePath;
         } catch (error) {
             throw new Error('Failed to save image');
@@ -342,32 +342,32 @@ class CardManager {
 
     async getImageDataUrl(imagePath) {
         if (!imagePath) return null;
-        
+
         try {
             const filename = imagePath.split('/').pop();
             const imageData = await window.indexedDBManager.getData('images', filename);
-            
+
             if (imageData && imageData.blob) {
                 // Convert Blob to data URL only when needed for display
                 return await blobToDataUrl(imageData.blob);
             }
-            
+
             return null;
         } catch (error) {
             console.error('Error retrieving image:', error);
             return null;
         }
-    }    
+    }
 
     // Cancel card operation and reset state
     cancelCardOperation() {
         window.uiManager.closeModal();
-        
+
         // Check if we should return to preview mode
         if (window.uiManager.previewEditState && window.uiManager.previewEditState.returnToPreview) {
             this.returnToPreviewAfterEdit();
         }
-        
+
         this.resetCardOperation();
     }
 
@@ -404,26 +404,26 @@ class CardManager {
     returnToPreviewAfterEdit() {
         const editState = window.uiManager.previewEditState;
         if (!editState) return;
-        
+
         // Get updated data
         const category = window.dataManager.findCategory(editState.categoryId);
         const deck = window.dataManager.findDeck(editState.categoryId, editState.deckId);
-        
+
         if (category && deck) {
             // Clear the edit state
             window.uiManager.previewEditState = null;
-            
+
             // Return to preview screen
             window.uiManager.showPreviewScreen(category, deck);
-            
+
             // Scroll to the edited card if possible
             setTimeout(() => {
                 const cardElements = document.querySelectorAll('.preview-card');
                 const cardIndex = deck.cards.findIndex(card => card.id === editState.cardId);
                 if (cardIndex >= 0 && cardIndex < cardElements.length) {
-                    cardElements[cardIndex].scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'center' 
+                    cardElements[cardIndex].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
                     });
                 }
             }, 100);
@@ -434,17 +434,17 @@ class CardManager {
         // Create modal overlay
         const overlay = document.createElement('div');
         overlay.className = 'image-modal-overlay';
-        
+
         // Create image element
         const img = document.createElement('img');
         img.src = dataUrl;
         img.className = 'image-modal-image';
-        
+
         // Close on click anywhere
         overlay.addEventListener('click', () => {
             document.body.removeChild(overlay);
         });
-        
+
         // Close on escape key
         const handleKeydown = (e) => {
             if (e.key === 'Escape') {
@@ -453,7 +453,7 @@ class CardManager {
             }
         };
         document.addEventListener('keydown', handleKeydown);
-        
+
         overlay.appendChild(img);
         document.body.appendChild(overlay);
     }
@@ -462,4 +462,3 @@ class CardManager {
 
 // Create global instance
 window.cardManager = new CardManager();
-

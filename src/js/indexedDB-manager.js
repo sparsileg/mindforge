@@ -1,4 +1,4 @@
-// IndexedDB Database Manager for Mindforge
+// IndexedDB Database Manager
 class IndexedDBManager {
     constructor() {
         this.dbName = 'MindforgeDB';
