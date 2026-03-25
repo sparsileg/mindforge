@@ -485,6 +485,8 @@ class UIManager {
                 window.categoryManager.confirmResetDeckStats(deckId);
             } else if (action === 'add-card') {
                 window.categoryManager.addCardToDeck(deckId);
+            } else if (action === 'rename-deck') {
+                window.categoryManager.showRenameDeckModal(deckId);
             } else if (action === 'show-id') {
                 this.showDeckIdInfo(deckId);
             }
