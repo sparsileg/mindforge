@@ -1,0 +1,422 @@
+/* ============================================
+   MOBILE RESPONSIVE STYLES
+   Breakpoint: 768px and below
+   All mobile rules are contained here.
+   Desktop layout is unaffected above 768px.
+   ============================================ */
+
+/* Elements that only exist for mobile — hidden on desktop */
+.mobile-header {
+    display: none;
+}
+
+.mobile-preview-btn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Mobile CSS custom properties */
+    :root {
+        --mobile-header-height: 56px;
+        --safe-area-top: env(safe-area-inset-top, 0px);
+        --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-area-left: env(safe-area-inset-left, 0px);
+        --safe-area-right: env(safe-area-inset-right, 0px);
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Prevent iOS double-tap zoom on interactive elements */
+    button, a, .deck-card, .category-item {
+        touch-action: manipulation;
+    }
+
+    /* Prevent text selection on tap-heavy elements */
+    .rating-btn, .deck-card, .card-content, .category-item {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+/* Ensure minimum font size to prevent iOS auto-zoom on inputs */
+    input, textarea, select {
+        font-size: 16px !important;
+    }
+
+    /* Mobile header bar */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--mobile-header-height);
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border-color);
+        z-index: 500;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+
+    .mobile-header-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    .mobile-hamburger-btn {
+        background: none;
+        border: none;
+        font-size: 1.4rem;
+        color: var(--text-color);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 4px;
+        line-height: 1;
+    }
+
+    /* Push app-container below the fixed header */
+    .app-container {
+        flex-direction: column;
+        margin-top: var(--mobile-header-height);
+    }
+
+    /* Sidebar hidden by default on mobile */
+    .app-container > nav.sidebar {
+        display: none;
+        position: fixed;
+        top: var(--mobile-header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        z-index: 400;
+        overflow-y: auto;
+    }
+
+    /* Sidebar visible when open */
+    .app-container > nav.sidebar.sidebar-open {
+        display: flex;
+    }
+
+    /* Main content takes full width on mobile */
+    .main-content {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    /* Hide management UI on mobile */
+    #add-category-btn,
+    #add-deck-btn,
+    #import-deck-btn,
+    .deck-menu-btn,
+    .category-menu-btn,
+    .preview-card-delete {
+        display: none !important;
+    }
+
+    /* Mobile preview button — visible on mobile only */
+    .mobile-preview-btn {
+        display: block;
+        margin-top: 0.75rem;
+        padding: 0.5rem 1rem;
+        background: var(--secondary-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+    }
+
+/* ---- Phase 5: Study screen ---- */
+
+    /* Compact study header */
+    .study-header {
+        margin-bottom: 0.75rem;
+        padding: 0.6rem 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .study-info {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .study-info span {
+        font-size: 0.9rem;
+    }
+
+    #study-mode-select {
+        font-size: 0.85rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    #end-study-btn {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    /* Study mode buttons — wrap on mobile */
+    .study-mode-selection {
+        gap: 0.5rem;
+    }
+
+    .study-mode-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+        min-width: unset;
+        flex: 1;
+    }
+
+    /* Study screen — fixed height, no overflow on mobile */
+    #study-screen.active {
+        overflow-y: hidden;
+        justify-content: flex-start;
+        height: calc(100vh - var(--mobile-header-height));
+        max-height: calc(100vh - var(--mobile-header-height));
+        flex-direction: column;
+    }
+
+    /* Card takes majority of viewport */
+    .study-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        height: auto;
+        flex: none;
+    }
+
+    .card-content {
+        min-height: 25vh;
+        max-height: 32vh;
+        padding: 1.25rem;
+        margin-bottom: 0.75rem;
+        border-radius: 8px;
+    }
+
+    .card-text {
+        font-size: 1.1rem;
+    }
+
+    /* Flip button — full width */
+    #flip-card-btn {
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Rating section */
+    .rating-section {
+        padding-top: 0.5rem;
+    }
+
+    .rating-section p {
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
+        text-align: center;
+    }
+
+    /* Rating buttons — single row on mobile */
+    .rating-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.4rem;
+    }
+
+    .rating-btn {
+        min-width: unset;
+        flex: 1;
+        padding: 0.75rem 0.25rem;
+        font-size: 0.8rem;
+        min-height: 48px;
+    }
+
+    /* ---- Phase 4: Browse screens ---- */
+
+    /* Reduce screen padding on mobile */
+    .screen {
+        padding: 1rem;
+    }
+
+    /* Screen header */
+    .screen-header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .screen-header h2 {
+        font-size: 1.3rem;
+    }
+
+    /* Welcome screen */
+    #welcome-screen h2 {
+        font-size: 1.5rem;
+    }
+
+    #welcome-screen p {
+        font-size: 1rem;
+    }
+
+    /* Deck grid — single column on mobile */
+    .decks-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    /* Deck cards — larger tap targets */
+    .deck-card {
+        padding: 1rem;
+    }
+
+    .deck-card h3 {
+        font-size: 1.1rem;
+    }
+
+    /* Home overview deck lines — stack vertically on mobile */
+    .deck-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        padding: 0.75rem 0;
+    }
+
+    .deck-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    /* Study and Preview action links — larger touch targets */
+    .deck-action-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+
+/* Category screen header actions */
+    .category-actions {
+        gap: 0.5rem;
+    }
+
+    /* ---- Phase 6: Sidebar mobile polish ---- */
+
+    /* Sidebar header — larger tap targets */
+    .sidebar-header {
+        padding: 1rem;
+    }
+
+    .sidebar-header .header-top h1 {
+        font-size: 1.3rem;
+    }
+
+    /* Hamburger menu button in sidebar — larger tap target */
+    .hamburger-btn {
+        padding: 10px;
+        font-size: 1.3rem;
+    }
+
+    /* Theme selector — full width, easier to tap */
+    .theme-selector select {
+        width: 100%;
+        padding: 0.6rem;
+        font-size: 1rem;
+    }
+
+    /* Sidebar stats — comfortable spacing */
+    .sidebar-stats {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+    }
+
+    .sidebar-stat {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+    /* Sidebar content scrollable */
+    .sidebar-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem;
+    }
+
+    /* Category items — larger tap targets */
+    .category-item {
+        padding: 1rem;
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    /* Hamburger dropdown menu — full width on mobile */
+    .hamburger-menu {
+        position: fixed;
+        top: var(--mobile-header-height);
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 0;
+        z-index: 600;
+    }
+
+.hamburger-menu .menu-item {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
+
+    /* ---- Phase 7: iPhone safe areas & final polish ---- */
+
+    /* Mobile header — account for iPhone notch */
+    .mobile-header {
+        padding-top: var(--safe-area-top);
+        height: calc(var(--mobile-header-height) + var(--safe-area-top));
+        padding-left: calc(1rem + var(--safe-area-left));
+        padding-right: calc(1rem + var(--safe-area-right));
+    }
+
+    /* Push content below taller header on notch devices */
+    .app-container {
+        margin-top: calc(var(--mobile-header-height) + var(--safe-area-top));
+    }
+
+    /* Sidebar — account for safe areas */
+    .app-container > nav.sidebar {
+        top: calc(var(--mobile-header-height) + var(--safe-area-top));
+        padding-bottom: var(--safe-area-bottom);
+    }
+
+    /* Rating buttons — account for iPhone home bar */
+    .rating-section {
+        padding-bottom: var(--safe-area-bottom);
+    }
+
+    /* Study screen height — account for safe areas */
+    #study-screen.active {
+        height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
+        max-height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
+    }
+
+    /* Toast notifications — avoid notch area */
+    .toast {
+        top: calc(20px + var(--safe-area-top));
+        right: calc(20px + var(--safe-area-right));
+    }
+
+    /* Modal — full width with safe area padding */
+    .modal-content {
+        width: calc(100% - 2rem);
+        max-width: 100%;
+        margin: 1rem;
+        max-height: calc(90vh - var(--safe-area-top) - var(--safe-area-bottom));
+    }
+}

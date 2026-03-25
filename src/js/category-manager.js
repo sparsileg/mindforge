@@ -89,6 +89,7 @@ class CategoryManager {
         if (category) {
             window.uiManager.updateActiveSidebarItem(categoryId);
             window.uiManager.showScreen('category-screen', { category });
+            window.uiManager.closeMobileSidebar();
         }
     }
 

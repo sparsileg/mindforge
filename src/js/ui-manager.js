@@ -16,10 +16,10 @@ class UIManager {
         this.themeSelect = document.getElementById('theme-select');
         this.hamburgerMenu = document.getElementById('hamburger-menu');
         this.hamburgerBtn = document.getElementById('hamburger-menu-btn');
-
         this.setupEventListeners();
         this.loadTheme();
         this.updateSidebarStats();
+        this.setupMobileNav();
     }
 
     setupEventListeners() {
@@ -213,7 +213,7 @@ class UIManager {
 			const cardCount = deck.cards.length;
 			const stats = calculateAdvancedStudyStats(deck.cards);
 
-			deckEl.innerHTML = `
+            deckEl.innerHTML = `
 				<div class="deck-card-header">
 					<h3>${deck.name}</h3>
 					<button class="deck-menu-btn" data-deck-id="${deck.id}">⋯</button>
@@ -221,13 +221,21 @@ class UIManager {
 				<p>${cardCount} total cards</p>
 				<p>${stats.readyToStudy} ready to study</p>
 				<p>${stats.newCards} new • ${stats.learningCards} learning • ${stats.graduatedCards} graduated</p>
+				<button class="mobile-preview-btn" data-deck-id="${deck.id}">Preview</button>
 			`;
 
             // Add click handler for deck (but not menu button) - go directly to study
             deckEl.addEventListener('click', (e) => {
-                if (!e.target.closest('.deck-menu-btn')) {
+                if (!e.target.closest('.deck-menu-btn') && !e.target.closest('.mobile-preview-btn')) {
                     window.studyManager.startStudySession(this.currentCategory.id, deck.id);
                 }
+            });
+
+            // Mobile preview button
+            const mobilePreviewBtn = deckEl.querySelector('.mobile-preview-btn');
+            mobilePreviewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.categoryManager.previewDeck(deck.id);
             });
 
 			// Add click handler for menu button
@@ -915,6 +923,42 @@ class UIManager {
         }, 100);
 
         document.body.appendChild(menu);
+    }
+
+    closeMobileSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) sidebar.classList.remove('sidebar-open');
+    }
+
+    setupMobileNav() {
+        const hamburgerBtn = document.getElementById('mobile-hamburger-btn');
+        const mobileHeader = document.querySelector('.mobile-header');
+        const mobileTitle = document.querySelector('.mobile-header-title');
+        const sidebar = document.getElementById('sidebar');
+        if (!hamburgerBtn || !sidebar) return;
+
+        // Toggle sidebar on hamburger click
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('sidebar-open');
+        });
+
+        // Close sidebar when tapping anywhere in the mobile header
+        if (mobileHeader) {
+            mobileHeader.addEventListener('click', (e) => {
+                if (e.target !== hamburgerBtn) {
+                    this.closeMobileSidebar();
+                }
+            });
+        }
+
+        // Navigate home when tapping the Mindforge title
+        if (mobileTitle) {
+            mobileTitle.addEventListener('click', () => {
+                this.closeMobileSidebar();
+                window.routerManager.navigate('/');
+            });
+        }
     }
 
 }

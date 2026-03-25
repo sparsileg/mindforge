@@ -2,16 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Mindforge - Flashcard Learning</title>
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-css">
   </head>
   <body>
 
     <div class="app-container">
-      <!-- Sidebar Navigation -->
-      <nav class="sidebar">
+      <!-- Mobile Header Bar (hidden on desktop) -->
+      <div class="mobile-header">
+        <button class="mobile-hamburger-btn" id="mobile-hamburger-btn">☰</button>
+        <span class="mobile-header-title">Mindforge</span>
+      </div>
+
+      <!-- Sidebar -->
+      <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
           <div class="header-top">
             <h1>Mindforge</h1>

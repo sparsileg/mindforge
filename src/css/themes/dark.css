@@ -36,6 +36,10 @@ body {
     color: var(--text-color);
 }
 
+.sidebar {
+    background-color: var(--card-bg);
+}
+
 /* Scrollbar styling for dark theme */
 ::-webkit-scrollbar {
     width: 8px;
