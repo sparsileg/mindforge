@@ -119,8 +119,6 @@ class StudyManager {
         // Show study screen
         window.uiManager.showScreen('study-screen');
         this.displayCurrentCard();
-
-        window.uiManager.showToast(`Study session started: ${this.sessionCards.length} cards`, 'info');
     }
 
     // Display the current card
