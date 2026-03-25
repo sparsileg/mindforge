@@ -107,6 +107,8 @@
     .main-content {
         width: 100%;
         margin-top: 0;
+        height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
+        overflow: hidden;
     }
 
     /* Hide management UI on mobile */
@@ -142,6 +144,7 @@
         padding: 0.6rem 0.75rem;
         flex-wrap: wrap;
         gap: 0.5rem;
+        flex-shrink: 0;
     }
 
     .study-info {
@@ -164,6 +167,10 @@
     }
 
     /* Study mode buttons — wrap on mobile */
+    .study-mode-buttons {
+        flex-shrink: 0;
+    }
+
     .study-mode-selection {
         gap: 0.5rem;
     }
@@ -177,28 +184,54 @@
 
     /* Study screen — fixed height, no overflow on mobile */
     #study-screen.active {
-        overflow-y: hidden;
+        overflow: hidden;
         justify-content: flex-start;
         height: calc(100vh - var(--mobile-header-height));
         max-height: calc(100vh - var(--mobile-header-height));
         flex-direction: column;
+        padding: 0.75rem;
     }
 
-    /* Card takes majority of viewport */
+    /* Compact study header — never shrink */
+    .study-header {
+        flex-shrink: 0;
+        margin-bottom: 0.75rem;
+        padding: 0.6rem 0.75rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Study mode buttons — never shrink */
+    .study-mode-buttons {
+        flex-shrink: 0;
+    }
+
+    /* Card fills all remaining space */
     .study-card {
         width: 100%;
         max-width: 100%;
         padding: 0;
-        height: auto;
-        flex: none;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
     }
 
+    /* Card content fills the card, scrolls if needed */
     .card-content {
-        min-height: 25vh;
-        max-height: 32vh;
+        flex: 1;
+        min-height: 0;
+        max-height: none;
         padding: 1.25rem;
         margin-bottom: 0.75rem;
         border-radius: 8px;
+        overflow-y: auto;
+    }
+
+    /* Rating section — never shrink */
+    .rating-section {
+        flex-shrink: 0;
+        padding-top: 0.5rem;
     }
 
     .card-text {
@@ -216,6 +249,8 @@
     /* Rating section */
     .rating-section {
         padding-top: 0.5rem;
+        padding-bottom: var(--safe-area-bottom);
+        flex-shrink: 0;
     }
 
     .rating-section p {
