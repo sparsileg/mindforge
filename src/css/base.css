@@ -388,14 +388,19 @@ body {
 }
 
 .rating-btn {
-    padding: 1rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    min-width: 120px;
-}
+        min-width: unset;
+        flex: 1;
+        padding: 0.75rem 0.25rem;
+        font-size: 0.8rem;
+        min-height: 48px;
+        background: var(--secondary-color) !important;
+        color: var(--text-color) !important;
+        border: 1px solid var(--border-color) !important;
+    }
+
+    .rating-btn:hover {
+        background: var(--secondary-hover) !important;
+    }
 
 .rating-btn[data-rating="1"] {
     background: #ef4444;

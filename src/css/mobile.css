@@ -107,8 +107,8 @@
     .main-content {
         width: 100%;
         margin-top: 0;
-        height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
-        overflow: hidden;
+        height: calc(100dvh - var(--mobile-header-height) - var(--safe-area-top));
+        overflow-y: auto;
     }
 
     /* Hide management UI on mobile */
@@ -186,8 +186,8 @@
     #study-screen.active {
         overflow: hidden;
         justify-content: flex-start;
-        height: calc(100vh - var(--mobile-header-height));
-        max-height: calc(100vh - var(--mobile-header-height));
+        height: calc(100dvh - var(--mobile-header-height));
+        max-height: calc(100dvh - var(--mobile-header-height));
         flex-direction: column;
         padding: 0.75rem;
     }
@@ -279,6 +279,9 @@
     /* Reduce screen padding on mobile */
     .screen {
         padding: 1rem;
+        overflow-y: auto;
+        height: calc(100dvh - var(--mobile-header-height) - var(--safe-area-top));
+        flex: none;
     }
 
     /* Screen header */
@@ -437,8 +440,8 @@
 
     /* Study screen height — account for safe areas */
     #study-screen.active {
-        height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
-        max-height: calc(100vh - var(--mobile-header-height) - var(--safe-area-top));
+        height: calc(100dvh - var(--mobile-header-height) - var(--safe-area-top));
+        max-height: calc(100dvh - var(--mobile-header-height) - var(--safe-area-top));
     }
 
     /* Toast notifications — avoid notch area */

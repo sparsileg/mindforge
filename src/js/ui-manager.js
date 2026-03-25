@@ -218,8 +218,7 @@ class UIManager {
 					<h3>${deck.name}</h3>
 					<button class="deck-menu-btn" data-deck-id="${deck.id}">⋯</button>
 				</div>
-				<p>${cardCount} total cards</p>
-				<p>${stats.readyToStudy} ready to study</p>
+                <p>${cardCount} total cards${stats.needsPractice > 0 ? ` • ${stats.needsPractice} needs practice` : ''}</p>
 				<p>${stats.newCards} new • ${stats.learningCards} learning • ${stats.graduatedCards} graduated</p>
 				<button class="mobile-preview-btn" data-deck-id="${deck.id}">Preview</button>
 			`;
@@ -796,7 +795,7 @@ class UIManager {
                 deckLine.innerHTML = `
                 <div class="deck-info">
                     <div class="deck-name">${deck.name}</div>
-                    <div class="deck-stats">${deck.cards.length} cards • ${stats.readyToStudy} ready to study</div>
+                    <div class="deck-stats">${deck.cards.length} cards${stats.needsPractice > 0 ? ` • ${stats.needsPractice} needs practice` : ''}</div>
                 </div>
                 <div class="deck-actions">
                     <a href="${studyUrl}" class="deck-action-link primary">Study</a>
