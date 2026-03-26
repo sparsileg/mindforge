@@ -382,16 +382,15 @@ class UIManager {
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
 
 
+            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-backup-${timestamp}.json`;
             const blob = new Blob([data], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
-
             const link = document.createElement('a');
             link.href = url;
             link.download = filename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-backup-${timestamp}.json`;
             URL.revokeObjectURL(url);
             this.showToast('Backup created successfully', 'success');
         } catch (error) {
