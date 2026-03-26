@@ -1,4 +1,3 @@
 mindforge-daily.json
-cert.pem
-key.pem
+*.pem
 serve.py
