@@ -1,0 +1,53 @@
+{
+  "name": "Mindforge",
+  "short_name": "Mindforge",
+  "description": "Spaced repetition flashcard study tool",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+    "screenshots": [
+    {
+      "src": "/icons/screenshot-wide.png",
+      "type": "image/png",
+      "sizes": "1163x1040",
+      "form_factor": "wide",
+      "label": "Mindforge desktop view"
+    },
+    {
+      "src": "/icons/screenshot-mobile.png",
+      "type": "image/png",
+      "sizes": "536x1048",
+      "form_factor": "narrow",
+      "label": "Mindforge mobile view"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

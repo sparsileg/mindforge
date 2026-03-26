@@ -20,10 +20,19 @@ class TheApp {
 
             this.isInitialized = true;
             console.log('App initialized successfully');
+            await this.requestPersistentStorage();
 
         } catch (error) {
             console.error('Error initializing app:', error);
             this.showInitializationError(error);
+        }
+    }
+
+    // Request persistent storage to protect IndexedDB from eviction
+    async requestPersistentStorage() {
+        if (navigator.storage && navigator.storage.persist) {
+            const granted = await navigator.storage.persist();
+            console.log(`Persistent storage granted: ${granted}`);
         }
     }
 
