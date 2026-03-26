@@ -1,9 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>The App - Flashcard Learning</title>
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mindforge">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/mobile.css">
     <link rel="stylesheet" href="css/themes/dark.css" id="theme-css">
@@ -513,14 +521,16 @@
     </template>
 
     <!-- Scripts - keep at bottom of file -->
+    <script src="js/card-manager.js"></script>
+    <script src="js/category-manager.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/data-manager.js"></script>
     <script src="js/indexedDB-manager.js"></script>
     <script src="js/router.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/data-manager.js"></script>
-    <script src="js/ui-manager.js"></script>
-    <script src="js/category-manager.js"></script>
-    <script src="js/card-manager.js"></script>
+    <script src="js/service-worker-register.js"></script>
     <script src="js/study-manager.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/utils.js"></script>
     <script src="js/app.js"></script>
 
   </body>
