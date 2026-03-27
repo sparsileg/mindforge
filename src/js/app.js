@@ -142,54 +142,6 @@ class TheApp {
         }
     }
 
-    showImportModal() {
-        const template = document.getElementById('import-data-template');
-        const content = template.content.cloneNode(true);
-
-        const actions = [
-            {
-                action: 'cancel',
-                handler: () => window.uiManager.closeModal()
-            },
-            {
-                action: 'import',
-                handler: () => this.handleImportData()
-            }
-        ];
-
-        window.uiManager.showTemplateModal('Import Data', content, actions);
-    }
-
-    async handleImportData() {
-        const fileInput = document.getElementById('import-file');
-        const file = fileInput.files[0];
-
-        if (!file) {
-            window.uiManager.showToast('Please select a file to import', 'error');
-            return;
-        }
-
-        try {
-            const text = await file.text();
-            const data = JSON.parse(text);
-
-            const success = await window.dataManager.importData(data);
-            if (success) {
-                window.uiManager.closeModal();
-                window.uiManager.showToast('Data imported successfully', 'success');
-
-                // Refresh the UI
-                window.categoryManager.renderCategories();
-                window.uiManager.loadTheme();
-                window.uiManager.showScreen('welcome-screen');
-            } else {
-                window.uiManager.showToast('Error importing data', 'error');
-            }
-        } catch (error) {
-            window.uiManager.showToast('Invalid file format: ' + error.message, 'error');
-        }
-    }
-
     // Show initialization error
     showInitializationError(error) {
         const template = document.getElementById('initialization-error-template');

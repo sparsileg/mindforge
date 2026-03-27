@@ -365,7 +365,7 @@ class UIManager {
             this.createBackup();
             break;
         case 'import-data':
-            window.theApp.showImportModal();
+            this.showImportModal();
             break;
         case 'settings':
             this.showSettings();
@@ -379,15 +379,26 @@ class UIManager {
     async createBackup() {
         try {
             const data = await window.dataManager.exportData();
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const now = new Date();
+            const datePart = now.getFullYear().toString() +
+                String(now.getMonth() + 1).padStart(2, '0') +
+                String(now.getDate()).padStart(2, '0');
+            const timePart = String(now.getHours()).padStart(2, '0') +
+                String(now.getMinutes()).padStart(2, '0') +
+                String(now.getSeconds()).padStart(2, '0');
+            const version = APP_CONFIG.APP_VERSION;
+            const appName = APP_CONFIG.APP_NAME;
+            const jsonFilename = `${appName}-v${version}-${datePart}-${timePart}.json`;
+            const zipFilename = `${appName}-v${version}-${datePart}-${timePart}.zip`;
 
+            const zip = new JSZip();
+            zip.file(jsonFilename, data);
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
 
-            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-backup-${timestamp}.json`;
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
+            const url = URL.createObjectURL(zipBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = filename;
+            link.download = zipFilename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -395,6 +406,65 @@ class UIManager {
             this.showToast('Backup created successfully', 'success');
         } catch (error) {
             this.showToast('Error creating backup: ' + error.message, 'error');
+        }
+    }
+
+    showImportModal() {
+        const template = document.getElementById('import-data-template');
+        const content = template.content.cloneNode(true);
+
+        const actions = [
+            {
+                action: 'cancel',
+                handler: () => this.closeModal()
+            },
+            {
+                action: 'import',
+                handler: () => this.handleImportData()
+            }
+        ];
+
+        this.showTemplateModal('Import Data', content, actions);
+    }
+
+    async handleImportData() {
+        const fileInput = document.getElementById('import-file');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            this.showToast('Please select a file to import', 'error');
+            return;
+        }
+
+        try {
+            let jsonText;
+
+            if (file.name.endsWith('.zip')) {
+                const zip = await JSZip.loadAsync(file);
+                const jsonFile = Object.values(zip.files).find(f => f.name.endsWith('.json'));
+                if (!jsonFile) {
+                    this.showToast('No JSON file found inside zip', 'error');
+                    return;
+                }
+                jsonText = await jsonFile.async('string');
+            } else {
+                jsonText = await file.text();
+            }
+
+            const data = JSON.parse(jsonText);
+            const success = await window.dataManager.importData(data);
+
+            if (success) {
+                this.closeModal();
+                this.showToast('Data imported successfully', 'success');
+                window.categoryManager.renderCategories();
+                window.uiManager.loadTheme();
+                window.uiManager.showScreen('welcome-screen');
+            } else {
+                this.showToast('Error importing data', 'error');
+            }
+        } catch (error) {
+            this.showToast('Invalid file format: ' + error.message, 'error');
         }
     }
 

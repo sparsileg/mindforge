@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'mindforge-v2.0.1';
+const CACHE_VERSION = 'mindforge-v2.0.2';
 
 const ASSETS_TO_CACHE = [
     '/',
@@ -9,6 +9,7 @@ const ASSETS_TO_CACHE = [
     '/css/themes/dark.css',
     '/css/themes/light.css',
     '/css/themes/matrix.css',
+    '/include/jszip.min.js',
     '/js/app.js',
     '/js/card-manager.js',
     '/js/category-manager.js',
