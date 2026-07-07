@@ -1,4 +1,4 @@
-// Simple hash-based router
+// router.js - Simple hash-based router
 class RouterManager {
     constructor() {
         this.routes = {};
@@ -6,12 +6,10 @@ class RouterManager {
     }
 
     init() {
-        // Listen for hash changes
+        // Listen for hash changes only. The initial route is dispatched
+        // explicitly by TheApp.init() once data loading has completed —
+        // see app.js. This router no longer guesses timing on its own.
         window.addEventListener('hashchange', () => this.handleRoute());
-        // Handle initial load - delay slightly to ensure everything is initialized
-        window.addEventListener('load', () => {
-            setTimeout(() => this.handleRoute(), 100);
-        });
     }
 
     // Register a route handler

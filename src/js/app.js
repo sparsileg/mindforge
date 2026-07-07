@@ -18,6 +18,11 @@ class TheApp {
             this.setupGlobalEventHandlers();
             this.checkInitialState();
 
+            // Dispatch the initial route now that data is guaranteed loaded.
+            // This replaces the old setTimeout-based guess in router.js —
+            // a deep link can no longer fire before dataManager is ready.
+            window.routerManager.handleRoute();
+
             this.isInitialized = true;
             console.log('App initialized successfully');
             await this.requestPersistentStorage();
@@ -170,25 +175,23 @@ class TheApp {
     }
 
     setupRouting() {
-        // Small delay to ensure all managers are fully initialized
-        setTimeout(() => {
-            // Register routes
-            window.routerManager.addRoute('/', () => {
-                window.uiManager.showScreen('welcome-screen');
-            });
+        // Called from init() after dataManager/uiManager/categoryManager are
+        // already initialized, so no artificial delay is needed here.
+        window.routerManager.addRoute('/', () => {
+            window.uiManager.showScreen('welcome-screen');
+        });
 
-            window.routerManager.addRoute('/category/:categoryId', (params) => {
-                window.routerManager.goToCategory(params);
-            });
+        window.routerManager.addRoute('/category/:categoryId', (params) => {
+            window.routerManager.goToCategory(params);
+        });
 
-            window.routerManager.addRoute('/study/:categoryId/:deckId', (params) => {
-                window.routerManager.goToStudy(params);
-            });
+        window.routerManager.addRoute('/study/:categoryId/:deckId', (params) => {
+            window.routerManager.goToStudy(params);
+        });
 
-            window.routerManager.addRoute('/preview/:categoryId/:deckId', (params) => {
-                window.routerManager.goToPreview(params);
-            });
-        }, 50);
+        window.routerManager.addRoute('/preview/:categoryId/:deckId', (params) => {
+            window.routerManager.goToPreview(params);
+        });
     }
 
 } // end of TheApp class
