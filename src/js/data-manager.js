@@ -1,4 +1,8 @@
-// Data management - Updated to use IndexedDB
+// data-manager.js - Data management - Updated to use IndexedDB
+
+// Thrown only when loadData() confirms no record exists at all — the one
+// case init() is allowed to treat as "first launch" and reset to defaults.
+class NoExistingDataError extends Error {}
 
 class DataManager {
     constructor() {
@@ -26,60 +30,57 @@ class DataManager {
 
     // Initialize data - load from IndexedDB or migrate from localStorage
     async init() {
-        try {
-            // Initialize IndexedDB
-            if (!IndexedDBManager.isSupported()) {
-                throw new Error('IndexedDB is not supported in this browser');
-            }
-
-            await window.indexedDBManager.init();
-
-            // Check if we need to migrate from localStorage
-            const hasLocalStorage = localStorage.getItem('mindforge-data') !== null;
-            const migrationStatus = await window.indexedDBManager.getMigrationStatus();
-
-            console.log('Migration check:', { hasLocalStorage, migrationStatus });
-
-            if (hasLocalStorage && !migrationStatus) {
-                console.log('Detected localStorage data, starting migration...');
-                const migrationSuccess = await window.indexedDBManager.migrateFromLocalStorage();
-
-                if (migrationSuccess) {
-                    console.log('Migration successful!');
-                    window.uiManager.showToast('Data migrated to IndexedDB successfully', 'success');
-                } else {
-                    console.warn('Migration had issues, but continuing...');
-                }
-            }
-
-            // Load data from IndexedDB
-            await this.loadData();
-
-            // One-time repair of legacy storage-time escaping (Issue 1)
-            await this.repairEscapedText();
-
-            // Set up listener for data changes from other tabs
-            this.setupCrossTabSync();
-
-        } catch (error) {
-            console.log('No existing data found, creating default data:', error);
-            this.data = { ...this.defaultData };
-            await this.saveData();
+        if (!IndexedDBManager.isSupported()) {
+            throw new Error('IndexedDB is not supported in this browser');
         }
+
+        await window.indexedDBManager.init();
+
+        const hasLocalStorage = localStorage.getItem('mindforge-data') !== null;
+        const migrationStatus = await window.indexedDBManager.getMigrationStatus();
+
+        console.log('Migration check:', { hasLocalStorage, migrationStatus });
+
+        if (hasLocalStorage && !migrationStatus) {
+            console.log('Detected localStorage data, starting migration...');
+            const migrationSuccess = await window.indexedDBManager.migrateFromLocalStorage();
+
+            if (migrationSuccess) {
+                console.log('Migration successful!');
+                window.uiManager.showToast('Data migrated to IndexedDB successfully', 'success');
+            } else {
+                console.warn('Migration had issues, but continuing...');
+            }
+        }
+
+        try {
+            await this.loadData();
+        } catch (error) {
+            if (error instanceof NoExistingDataError) {
+                console.log('No existing data found — first launch, creating default data');
+                this.data = { ...this.defaultData };
+                await this.saveData();
+            } else {
+                throw error;
+            }
+        }
+
+        await this.repairEscapedText();
+        await this.repairIntervalOverflow();
+        await this.migrateToNormalizedStores();
+        this.setupCrossTabSync();
     }
 
-    // Load data from IndexedDB
     async loadData() {
         const appData = await window.indexedDBManager.getData('appData', 'main');
 
         if (appData && appData.data) {
             this.data = appData.data;
         } else {
-            throw new Error('No data found in IndexedDB');
+            throw new NoExistingDataError('No data found in IndexedDB');
         }
     }
 
-    // Save data to IndexedDB
     async saveData() {
         try {
             await window.indexedDBManager.saveData('appData', {
@@ -88,11 +89,7 @@ class DataManager {
                 data: this.data
             });
 
-            // Notify other tabs that data has changed
-            await window.indexedDBManager.saveData('settings', {
-                key: 'data-sync-timestamp',
-                value: Date.now()
-            });
+            this._broadcastDataChanged();
 
             return true;
         } catch (error) {
@@ -101,14 +98,10 @@ class DataManager {
         }
     }
 
-    // One-time repair: unwind HTML escaping that was previously applied
-    // at storage time (Issue 1). Loops unescapeHtml until stable to undo
-    // multiple accumulated layers. Gated by a settings flag so it runs
-    // only once.
     async repairEscapedText() {
         const flag = await window.indexedDBManager.getData('settings', 'escape-repair-v1');
         if (flag && flag.value && flag.value.completed) {
-            return; // Already repaired
+            return;
         }
 
         const unescapeUntilStable = (text) => {
@@ -163,36 +156,229 @@ class DataManager {
         }
     }
 
+    // One-time repair: fix cards whose interval/nextReview were corrupted
+    // by the unbounded-interval-growth bug (fixed in calculateNextReview,
+    // utils.js — repeated high ratings on a graduated card could compound
+    // interval without limit, eventually overflowing into an unparseable
+    // date). Clamps interval to MAX_INTERVAL and recomputes nextReview
+    // from today. Gated by a settings flag so it runs only once.
+    async repairIntervalOverflow() {
+        const flag = await window.indexedDBManager.getData('settings', 'interval-repair-v1');
+        if (flag && flag.value && flag.value.completed) {
+            return;
+        }
 
-    // Get all data
+        const maxInterval = APP_CONFIG.MAX_INTERVAL || 365;
+        let repairedCount = 0;
+
+        this.data.categories.forEach(category => {
+            category.decks.forEach(deck => {
+                deck.cards.forEach(card => {
+                    const badInterval = typeof card.interval === 'number' && card.interval > maxInterval;
+                    const badDate = card.nextReview && isNaN(new Date(card.nextReview).getTime());
+
+                    if (badInterval || badDate) {
+                        card.interval = Math.min(card.interval || maxInterval, maxInterval);
+
+                        const nextDate = new Date();
+                        nextDate.setDate(nextDate.getDate() + card.interval);
+                        card.nextReview = getLocalDateString(nextDate);
+
+                        repairedCount++;
+                        this._syncEntity('card', this._cardRow(card, deck.id));
+                    }
+                });
+            });
+        });
+
+        if (repairedCount > 0) {
+            await this.saveData();
+        }
+
+        await window.indexedDBManager.saveData('settings', {
+            key: 'interval-repair-v1',
+            value: {
+                completed: true,
+                completedAt: new Date().toISOString(),
+                repairedCount
+            }
+        });
+
+        console.log(`Interval overflow repair complete: ${repairedCount} card(s) repaired`);
+        if (repairedCount > 0) {
+            window.uiManager.showToast(
+                `Repaired ${repairedCount} card(s) with corrupted review intervals`, 'success'
+            );
+        }
+    }
+
+    async migrateToNormalizedStores() {
+        const flag = await window.indexedDBManager.getData('settings', 'normalized-migration-v1');
+        if (flag && flag.value && flag.value.completed) {
+            return;
+        }
+
+        let categoryCount = 0, deckCount = 0, cardCount = 0;
+        const nowIso = new Date().toISOString();
+
+        for (const category of this.data.categories) {
+            const categoryRow = {
+                id: category.id,
+                name: category.name,
+                createdAt: category.createdAt,
+                updatedAt: category.createdAt || nowIso
+            };
+            await window.indexedDBManager.saveData('categories', categoryRow);
+            categoryCount++;
+
+            for (const deck of category.decks) {
+                const deckRow = {
+                    id: deck.id,
+                    categoryId: category.id,
+                    name: deck.name,
+                    createdAt: deck.createdAt,
+                    updatedAt: deck.createdAt || nowIso
+                };
+                await window.indexedDBManager.saveData('decks', deckRow);
+                deckCount++;
+
+                for (const card of deck.cards) {
+                    const cardRow = {
+                        ...card,
+                        deckId: deck.id,
+                        updatedAt: card.createdAt || nowIso
+                    };
+                    await window.indexedDBManager.saveData('cards', cardRow);
+                    cardCount++;
+                }
+            }
+        }
+
+        await window.indexedDBManager.saveData('statistics', {
+            key: 'main',
+            ...this.data.statistics,
+            updatedAt: nowIso
+        });
+
+        await window.indexedDBManager.saveData('settings', {
+            key: 'normalized-migration-v1',
+            value: {
+                completed: true,
+                completedAt: nowIso,
+                categoryCount,
+                deckCount,
+                cardCount
+            }
+        });
+
+        console.log(`Normalized-store migration complete: ${categoryCount} categories, ${deckCount} decks, ${cardCount} cards`);
+    }
+
+    // Issue 7, Chunk 4b: full rebuild of the normalized stores. Used after
+    // import/restore, where the entire tree may contain different entity
+    // IDs than whatever is currently sitting in the normalized stores —
+    // incremental sync (_syncEntity) can't safely reconcile that case, so
+    // instead: clear all four stores, then repopulate from scratch using
+    // the same logic as the one-time migration.
+    async rebuildNormalizedStores() {
+        await window.indexedDBManager.clearStore('categories');
+        await window.indexedDBManager.clearStore('decks');
+        await window.indexedDBManager.clearStore('cards');
+        await window.indexedDBManager.clearStore('statistics');
+
+        let categoryCount = 0, deckCount = 0, cardCount = 0;
+
+        for (const category of this.data.categories) {
+            await window.storageAdapter.putEntity('category', this._categoryRow(category));
+            categoryCount++;
+
+            for (const deck of category.decks) {
+                await window.storageAdapter.putEntity('deck', this._deckRow(deck, category.id));
+                deckCount++;
+
+                for (const card of deck.cards) {
+                    await window.storageAdapter.putEntity('card', this._cardRow(card, deck.id));
+                    cardCount++;
+                }
+            }
+        }
+
+        await window.storageAdapter.putStatistics(this.data.statistics);
+
+        console.log(`Normalized-store rebuild complete: ${categoryCount} categories, ${deckCount} decks, ${cardCount} cards`);
+    }
+
+    // Issue 7, Chunk 4b: fire-and-forget statistics sync, same pattern as
+    // _syncEntity. Called anywhere this.data.statistics is mutated and saved.
+    _syncStatistics() {
+        window.storageAdapter.putStatistics(this.data.statistics)
+            .catch(err => console.warn('Failed to sync statistics to normalized store:', err));
+    }
+
+    // Issue 7, Chunk 4a: entity-level sync to the normalized stores.
+    // These run ALONGSIDE the existing whole-blob saveData() call on every
+    // mutation method below — not replacing it yet — so cross-tab sync,
+    // export/import, and backups keep working completely unchanged. This
+    // just keeps the normalized stores continuously correct going forward
+    // (previously they were only correct as of the one-time Chunk 2
+    // migration and went stale immediately after).
+    // Fire-and-forget, matching this file's existing saveData() pattern:
+    // errors are logged, never thrown, so a sync hiccup can't block the UI.
+
+    _categoryRow(category) {
+        return { id: category.id, name: category.name, createdAt: category.createdAt };
+    }
+
+    _deckRow(deck, categoryId) {
+        return { id: deck.id, categoryId, name: deck.name, createdAt: deck.createdAt };
+    }
+
+    _cardRow(card, deckId) {
+        return { ...card, deckId };
+    }
+
+    _syncEntity(type, row) {
+        window.storageAdapter.putEntity(type, row)
+            .catch(err => console.warn(`Failed to sync ${type} to normalized store:`, err));
+    }
+
+    _deleteEntitySync(type, id) {
+        window.storageAdapter.deleteEntity(type, id)
+            .catch(err => console.warn(`Failed to delete ${type} from normalized store:`, err));
+    }
+
+    async _cascadeDeleteDeckRows(deck) {
+        for (const card of deck.cards) {
+            await window.storageAdapter.deleteEntity('card', card.id);
+        }
+        await window.storageAdapter.deleteEntity('deck', deck.id);
+    }
+
+    async _cascadeDeleteCategoryRows(category) {
+        for (const deck of category.decks) {
+            await this._cascadeDeleteDeckRows(deck);
+        }
+        await window.storageAdapter.deleteEntity('category', category.id);
+    }
+
     getData() {
         return this.data;
     }
 
-
-    // Get all data
-    getData() {
-        return this.data;
-    }
-
-    // Get settings
     getSettings() {
         return this.data.settings;
     }
 
-    // Update settings
     updateSettings(newSettings) {
         this.data.settings = { ...this.data.settings, ...newSettings };
         this.saveData();
     }
 
-    // Category operations
     getCategories() {
         return this.data.categories;
     }
 
     addCategory(name) {
-        // Store raw text — escaping happens at render time
         const category = {
             id: generateId(),
             name: name,
@@ -202,6 +388,7 @@ class DataManager {
 
         this.data.categories.push(category);
         this.saveData();
+        this._syncEntity('category', this._categoryRow(category));
         return category;
     }
 
@@ -210,6 +397,7 @@ class DataManager {
         if (category) {
             Object.assign(category, updates);
             this.saveData();
+            this._syncEntity('category', this._categoryRow(category));
             return category;
         }
         return null;
@@ -218,8 +406,11 @@ class DataManager {
     deleteCategory(categoryId) {
         const index = this.data.categories.findIndex(cat => cat.id === categoryId);
         if (index !== -1) {
+            const category = this.data.categories[index];
             this.data.categories.splice(index, 1);
             this.saveData();
+            this._cascadeDeleteCategoryRows(category)
+                .catch(err => console.warn('Failed to cascade-delete category from normalized store:', err));
             return true;
         }
         return false;
@@ -229,12 +420,10 @@ class DataManager {
         return this.data.categories.find(cat => cat.id === categoryId);
     }
 
-    // Deck operations
     addDeck(categoryId, name) {
         const category = this.findCategory(categoryId);
         if (!category) return null;
 
-        // Store raw text — escaping happens at render time
         const deck = {
             id: generateId(),
             name: name,
@@ -244,6 +433,7 @@ class DataManager {
 
         category.decks.push(deck);
         this.saveData();
+        this._syncEntity('deck', this._deckRow(deck, categoryId));
         return deck;
     }
 
@@ -252,6 +442,7 @@ class DataManager {
         if (deck) {
             Object.assign(deck, updates);
             this.saveData();
+            this._syncEntity('deck', this._deckRow(deck, categoryId));
             return deck;
         }
         return null;
@@ -263,8 +454,11 @@ class DataManager {
 
         const index = category.decks.findIndex(deck => deck.id === deckId);
         if (index !== -1) {
+            const deck = category.decks[index];
             category.decks.splice(index, 1);
             this.saveData();
+            this._cascadeDeleteDeckRows(deck)
+                .catch(err => console.warn('Failed to cascade-delete deck from normalized store:', err));
             return true;
         }
         return false;
@@ -276,7 +470,6 @@ class DataManager {
         return category.decks.find(deck => deck.id === deckId);
     }
 
-    // Card operations
     addCard(categoryId, deckId, cardData) {
         const deck = this.findDeck(categoryId, deckId);
         if (!deck) return null;
@@ -299,6 +492,7 @@ class DataManager {
 
         deck.cards.push(card);
         this.saveData();
+        this._syncEntity('card', this._cardRow(card, deckId));
         return card;
     }
 
@@ -307,6 +501,7 @@ class DataManager {
         if (card) {
             Object.assign(card, updates);
             this.saveData();
+            this._syncEntity('card', this._cardRow(card, deckId));
             return card;
         }
         return null;
@@ -320,6 +515,7 @@ class DataManager {
         if (index !== -1) {
             deck.cards.splice(index, 1);
             this.saveData();
+            this._deleteEntitySync('card', cardId);
             return true;
         }
         return false;
@@ -331,7 +527,6 @@ class DataManager {
         return deck.cards.find(card => card.id === cardId);
     }
 
-    // Study operations
     updateCardStudyData(categoryId, deckId, cardId, difficulty) {
         const card = this.findCard(categoryId, deckId, cardId);
         if (!card) return null;
@@ -340,7 +535,6 @@ class DataManager {
         card.lastStudied = today;
         card.difficulty = difficulty;
 
-        // Calculate new review data using sophisticated algorithm
         const reviewData = calculateNextReview(card, difficulty);
         card.nextReview = reviewData.nextReview;
         card.interval = reviewData.interval;
@@ -348,10 +542,10 @@ class DataManager {
         card.graduationStep = reviewData.graduationStep;
 
         this.saveData();
+        this._syncEntity('card', this._cardRow(card, deckId));
         return card;
     }
 
-    // Get cards due for review in a deck
     getCardsForStudySession(categoryId, deckId, maxCards = null) {
         const deck = this.findDeck(categoryId, deckId);
         if (!deck) return [];
@@ -363,38 +557,29 @@ class DataManager {
         return getCardsForStudySession(deck.cards, cardsPerSession);
     }
 
-    // Import data from JSON file
     async importData(jsonData) {
         try {
-            // Handle both old format (just data) and new format (data + images)
             let mainData, imageData;
 
             if (jsonData.data && jsonData.images) {
-                // New format with images
                 mainData = jsonData.data;
                 imageData = jsonData.images;
             } else {
-                // Old format - assume it's just the main data
                 mainData = jsonData;
                 imageData = {};
             }
 
-            // Validate the imported data structure
             if (!mainData.settings || !mainData.categories) {
                 throw new Error('Invalid data format');
             }
 
-            // Restore main data to IndexedDB
             this.data = mainData;
             await this.saveData();
 
-            // Restore images to IndexedDB - convert from base64 to Blob
             for (const [key, value] of Object.entries(imageData)) {
                 if (key.startsWith('mindforge-image-')) {
                     try {
                         const imageDataObj = JSON.parse(value);
-
-                        // Convert data URL to Blob for storage
                         const blob = await window.indexedDBManager.dataUrlToBlob(imageDataObj.dataUrl);
 
                         await window.indexedDBManager.saveData('images', {
@@ -411,6 +596,10 @@ class DataManager {
                 }
             }
 
+            // Rebuild the normalized stores to match the freshly imported
+            // tree (Issue 7, Chunk 4b) — incremental sync can't be used here
+            // since imported IDs may not match what's currently stored.
+            await this.rebuildNormalizedStores();
             return true;
         } catch (error) {
             console.error('Error importing data:', error);
@@ -418,12 +607,10 @@ class DataManager {
         }
     }
 
-    // Export current data with images
     async exportData() {
         const mainData = this.data;
         const imageData = {};
 
-        // Collect all image data from IndexedDB and convert to base64 for JSON export
         try {
             const images = await window.indexedDBManager.getAllData('images');
 
@@ -431,13 +618,11 @@ class DataManager {
                 const key = `mindforge-image-${img.filename}`;
 
                 try {
-                    // Ensure we have a valid Blob before converting
                     if (!img.blob || !(img.blob instanceof Blob)) {
                         console.warn(`Skipping image ${img.filename}: not a valid Blob`);
                         continue;
                     }
 
-                    // Convert Blob to data URL for export
                     const dataUrl = await blobToDataUrl(img.blob);
 
                     imageData[key] = JSON.stringify({
@@ -450,7 +635,6 @@ class DataManager {
                     });
                 } catch (error) {
                     console.warn(`Failed to export image ${img.filename}:`, error);
-                    // Continue with other images even if one fails
                 }
             }
         } catch (error) {
@@ -463,12 +647,10 @@ class DataManager {
         }, null, 2);
     }
 
-
     resetDeckStats(categoryId, deckId) {
         const deck = this.findDeck(categoryId, deckId);
         if (!deck) return false;
 
-        // Reset all study statistics for each card
         deck.cards.forEach(card => {
             card.difficulty = null;
             card.lastStudied = null;
@@ -476,13 +658,13 @@ class DataManager {
             card.interval = APP_CONFIG.DEFAULT_INTERVAL;
             card.easeFactor = APP_CONFIG.DEFAULT_EASE_FACTOR;
             card.graduationStep = 0;
+            this._syncEntity('card', this._cardRow(card, deckId));
         });
 
         this.saveData();
         return true;
     }
 
-    // Statistics management
     updateStudyStatistics(sessionData) {
         if (!this.data.statistics) {
             this.data.statistics = {
@@ -500,14 +682,12 @@ class DataManager {
         const stats = this.data.statistics;
         const today = getLocalDateString();
 
-        // Check if this is the first valid session today BEFORE adding the new session
         const previousValidSessionsToday = stats.studySessions.filter(session =>
             session.date === today &&
                 session.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT
         );
         const isFirstValidSessionToday = previousValidSessionsToday.length === 0;
 
-        // Add session data
         stats.studySessions.push({
             date: today,
             cardsStudied: sessionData.cardsStudied,
@@ -516,10 +696,8 @@ class DataManager {
             cardIds: sessionData.cardIds
         });
 
-        // Update total card instances
         stats.totalCardInstances += sessionData.cardsStudied;
 
-        // Calculate unique cards from all cards that have been studied
         let uniqueCards = new Set();
         this.data.categories.forEach(category => {
             category.decks.forEach(deck => {
@@ -532,7 +710,6 @@ class DataManager {
         });
         stats.uniqueCardsStudied = uniqueCards.size;
 
-        // Update days studied (only if completed full session and not distracted)
         if (sessionData.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT &&
             !sessionData.wasDistracted) {
 
@@ -541,15 +718,12 @@ class DataManager {
             }
         }
 
-        // Update total time (only if not distracted)
         if (!sessionData.wasDistracted) {
             stats.totalTimeStudied += sessionData.timeSpent;
         }
 
-        // Update streaks (for any day with 10+ cards, regardless of distraction)
         if (sessionData.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT && isFirstValidSessionToday) {
             if (!stats.lastStudyDate) {
-                // First time ever studying - start streak at 1
                 stats.currentStreak = 1;
             } else {
                 const yesterday = new Date();
@@ -557,29 +731,23 @@ class DataManager {
                 const yesterdayStr = getLocalDateString(yesterday);
 
                 if (stats.lastStudyDate === yesterdayStr) {
-                    // Consecutive day - extend streak
                     stats.currentStreak++;
                 } else if (stats.lastStudyDate === today) {
                     // Already studied today - maintain current streak (don't reset)
-                    // This handles interrupted sessions that restart on the same day
                 } else {
-                    // Gap detected - check yesterday's sessions
                     const yesterdayValidSessions = stats.studySessions.filter(session =>
                         session.date === yesterdayStr &&
                             session.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT
                     );
 
                     if (yesterdayValidSessions.length > 0) {
-                        // Had a valid session yesterday, continue streak
                         stats.currentStreak++;
                     } else {
-                        // True gap - completing today's session starts new streak at 1
                         stats.currentStreak = 1;
                     }
                 }
             }
 
-            // Update record if current streak is new record
             if (stats.currentStreak > (stats.recordStreak || 0)) {
                 stats.recordStreak = stats.currentStreak;
             }
@@ -588,6 +756,7 @@ class DataManager {
         }
 
         this.saveData();
+        this._syncStatistics();
     }
 
     getStatistics() {
@@ -603,7 +772,6 @@ class DataManager {
 
         const stats = this.data.statistics;
 
-        // Calculate mastery percentage
         let totalStudiedCards = 0;
         let masteredCards = 0;
 
@@ -634,15 +802,12 @@ class DataManager {
         };
     }
 
-    // Get storage statistics
     async getStorageStats() {
         try {
-            // Count images and calculate their total size
             const images = await window.indexedDBManager.getAllData('images');
             const imageCount = images.length;
             const imageBytes = images.reduce((sum, img) => sum + (img.size || 0), 0);
 
-            // Get total storage used by this origin
             const estimate = await navigator.storage.estimate();
             const totalBytes = estimate.usage || 0;
 
@@ -657,7 +822,6 @@ class DataManager {
         }
     }
 
-    // Method to manually adjust days studied (for your 301-day import)
     setDaysStudied(days) {
         if (!this.data.statistics) {
             this.data.statistics = {
@@ -670,15 +834,16 @@ class DataManager {
         }
         this.data.statistics.daysStudied = days;
         this.saveData();
+        this._syncStatistics();
     }
 
-    // Methods to manually set streak values
     setCurrentStreak(days) {
         if (!this.data.statistics) {
             this.data.statistics = {};
         }
         this.data.statistics.currentStreak = days;
         this.saveData();
+        this._syncStatistics();
     }
 
     setRecordStreak(days) {
@@ -687,37 +852,70 @@ class DataManager {
         }
         this.data.statistics.recordStreak = days;
         this.saveData();
+        this._syncStatistics();
     }
 
+    // Issue 7, Chunk 5: BroadcastChannel-based cross-tab sync, replacing
+    // the old 2-second poll of a 'data-sync-timestamp' settings key. Each
+    // tab posts a message right after it saves; every OTHER tab (never the
+    // sender — that's a browser-guaranteed property of BroadcastChannel)
+    // reacts immediately instead of waiting up to 2 seconds. This also
+    // structurally eliminates the old poller's self-reload-on-own-write
+    // quirk, since a tab can no longer see its own messages.
     setupCrossTabSync() {
-        // Poll for changes made by other tabs
-        this.lastSyncCheck = Date.now();
+        this.syncChannel = new BroadcastChannel('mindforge-data-sync');
 
-        setInterval(async () => {
+        this.syncChannel.onmessage = async (event) => {
             try {
-                const syncData = await window.indexedDBManager.getData('settings', 'data-sync-timestamp');
-
-                if (syncData && syncData.value > this.lastSyncCheck) {
+                if (event.data && event.data.type === 'data-changed') {
                     console.log('Data changed in another tab, reloading...');
-                    await this.loadData();
-
-                    // Update UI if managers are initialized
-                    if (window.categoryManager) {
-                        window.categoryManager.renderCategories();
-                    }
-                    if (window.uiManager) {
-                        window.uiManager.updateSidebarStats();
-                    }
-
-                    this.lastSyncCheck = Date.now();
+                    await this._refreshFromOtherTab();
                 }
             } catch (error) {
-                console.warn('Error checking for cross-tab updates:', error);
+                console.warn('Error handling cross-tab update:', error);
             }
-        }, 2000); // Check every 2 seconds
+        };
+
+        // Issue 7, Chunk 5b: a backgrounded tab can have its BroadcastChannel
+        // message handling throttled by the browser for as long as it stays
+        // hidden — a message sent while this tab was in the background may
+        // not finish processing until well after the tab regains focus.
+        // As a safety net, force a fresh reload the moment this tab becomes
+        // visible again, regardless of whether a message arrived.
+        document.addEventListener('visibilitychange', async () => {
+            if (document.visibilityState === 'visible') {
+                try {
+                    console.log('Tab regained focus, refreshing data...');
+                    await this._refreshFromOtherTab();
+                } catch (error) {
+                    console.warn('Error refreshing on tab focus:', error);
+                }
+            }
+        });
     }
 
-    // Check if streak should be reset to 0 due to a gap
+    // Shared by the BroadcastChannel handler and the visibilitychange
+    // listener: reload from IndexedDB and refresh the UI.
+    async _refreshFromOtherTab() {
+        await this.loadData();
+
+        if (window.categoryManager) {
+            window.categoryManager.renderCategories();
+        }
+        if (window.uiManager) {
+            window.uiManager.updateSidebarStats();
+        }
+    }
+
+    // Notify other tabs that the whole-blob data changed. Fire-and-forget,
+    // safe to call even if setupCrossTabSync() hasn't run yet (e.g. during
+    // very early init before the channel exists).
+    _broadcastDataChanged() {
+        if (this.syncChannel) {
+            this.syncChannel.postMessage({ type: 'data-changed', at: Date.now() });
+        }
+    }
+
     checkStreakValidity() {
         if (!this.data.statistics || !this.data.statistics.lastStudyDate) {
             return;
@@ -729,28 +927,23 @@ class DataManager {
         yesterday.setDate(yesterday.getDate() - 1);
         const yesterdayStr = getLocalDateString(yesterday);
 
-        // If last study was before yesterday and current streak > 0, reset to 0
         if (stats.lastStudyDate < yesterdayStr && stats.currentStreak > 0) {
             stats.currentStreak = 0;
             this.saveData();
+            this._syncStatistics();
         }
     }
 
-
-    // Perform daily maintenance tasks (backup, cleanup, etc.)
-    // called at the start of the first study session of a day
     async performDailyMaintenance() {
         const today = getLocalDateString();
         const lastMaintenanceDate = await window.indexedDBManager.getData('settings', 'last-maintenance-date');
 
-        // Check if we've already done maintenance today
         if (lastMaintenanceDate && lastMaintenanceDate.value === today) {
-            return; // Already performed maintenance today
+            return;
         }
 
         console.log('=== PERFORMING DAILY MAINTENANCE ===');
 
-        // Task 1: Create daily backup
         try {
             const data = await this.exportData();
             const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-daily.json`;
@@ -771,7 +964,6 @@ class DataManager {
             console.error('✗ Daily backup failed:', error);
         }
 
-        // Task 2: Clean up orphaned images
         try {
             const deletedCount = await this.cleanupOrphanedImages();
             if (deletedCount > 0) {
@@ -783,7 +975,6 @@ class DataManager {
             console.error('✗ Image cleanup failed:', error);
         }
 
-        // Task 3: Prune old session records older than 7 days
         try {
             const cutoffDate = new Date();
             cutoffDate.setDate(cutoffDate.getDate() - 7);
@@ -802,7 +993,6 @@ class DataManager {
             console.error('✗ Session pruning failed:', error);
         }
 
-        // Mark maintenance as completed for today
         await window.indexedDBManager.saveData('settings', {
             key: 'last-maintenance-date',
             value: today
@@ -811,10 +1001,8 @@ class DataManager {
         console.log('=== DAILY MAINTENANCE COMPLETE ===');
     }
 
-    // Clean up orphaned images that aren't referenced by any cards
     async cleanupOrphanedImages() {
         try {
-            // Collect all image filenames currently referenced by cards
             const referencedImages = new Set();
             this.data.categories.forEach(category => {
                 category.decks.forEach(deck => {
@@ -827,10 +1015,8 @@ class DataManager {
                 });
             });
 
-            // Get all images from IndexedDB
             const allImages = await window.indexedDBManager.getAllData('images');
 
-            // Delete images that aren't referenced
             let deletedCount = 0;
             for (const img of allImages) {
                 if (!referencedImages.has(img.filename)) {
@@ -860,7 +1046,6 @@ function debugStreakData() {
     const today = new Date().toISOString().split('T')[0];
     console.log('Today is:', today);
 
-    // Show recent sessions
     console.log('Recent study sessions:');
     if (stats.studySessions) {
         stats.studySessions.slice(-10).forEach((session, i) => {
@@ -874,3 +1059,5 @@ window.DEBUG.debugStreakData = debugStreakData;
 
 // Create global instance
 window.dataManager = new DataManager();
+
+// ----------------------------------------------------------------------

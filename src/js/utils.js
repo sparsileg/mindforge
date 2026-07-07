@@ -49,8 +49,11 @@ function calculateNextReview(card, rating) {
                 newInterval = config.LEARNING_STEPS[nextStepIndex] || config.LEARNING_STEPS[config.LEARNING_STEPS.length - 1];
                 graduationStep++;
             } else {
-                // Graduated card, normal interval
-                newInterval = Math.max(4, Math.floor(newInterval * newEaseFactor));
+                // Graduated card, normal interval — capped so repeated good
+                // ratings can't compound into an unbounded (eventually
+                // date-breaking) interval
+                newInterval = Math.min(config.MAX_INTERVAL,
+                    Math.max(4, Math.floor(newInterval * newEaseFactor)));
                 newEaseFactor = Math.min(config.MAX_EASE_FACTOR, newEaseFactor + config.EASE_BONUS_GOOD);
             }
             break;
@@ -62,9 +65,11 @@ function calculateNextReview(card, rating) {
                 graduationStep = config.GRADUATION_THRESHOLD;
                 newEaseFactor = Math.min(config.MAX_EASE_FACTOR, newEaseFactor + config.EASE_BONUS_EASY);
             } else {
-                // Graduated card, boost interval and ease
-                newInterval = Math.max(config.LEARNING_STEPS[config.LEARNING_STEPS.length - 1],
-                    Math.floor(newInterval * newEaseFactor * config.EASY_BONUS_MULTIPLIER));
+                // Graduated card, boost interval and ease — capped, same
+                // reasoning as case 3
+                newInterval = Math.min(config.MAX_INTERVAL,
+                    Math.max(config.LEARNING_STEPS[config.LEARNING_STEPS.length - 1],
+                        Math.floor(newInterval * newEaseFactor * config.EASY_BONUS_MULTIPLIER)));
                 newEaseFactor = Math.min(config.MAX_EASE_FACTOR, newEaseFactor + config.EASE_BONUS_EASY);
             }
             break;

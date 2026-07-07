@@ -2,7 +2,7 @@
 const APP_CONFIG = {
     // Application Info
     APP_NAME: 'Mindforge',
-    APP_VERSION: '2.0.5',
+    APP_VERSION: '2.0.6',
 
     // Study Session Settings
     CARDS_PER_STUDY_SESSION: 10,
@@ -22,6 +22,7 @@ const APP_CONFIG = {
     DEFAULT_EASE_FACTOR: 2.5,
     MIN_EASE_FACTOR: 1.3,
     MAX_EASE_FACTOR: 4.0,
+    MAX_INTERVAL: 60, // days between reviews of a "perfect" card
     DEFAULT_INTERVAL: 1,
     GRADUATION_THRESHOLD: 2,
 

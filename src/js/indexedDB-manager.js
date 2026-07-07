@@ -1,8 +1,9 @@
-// IndexedDB Database Manager
+// indexedDB-manager.js - IndexedDB Database Manager
+
 class IndexedDBManager {
     constructor() {
         this.dbName = 'MindforgeDB';
-        this.dbVersion = 1;
+        this.dbVersion = 2;
         this.db = null;
     }
 
@@ -41,7 +42,29 @@ class IndexedDBManager {
                     db.createObjectStore('settings', { keyPath: 'key' });
                 }
 
-                console.log('IndexedDB object stores created');
+                // --- Issue 7: normalized entity stores (v2) ---
+                // 'appData' above remains as-is for now; a later chunk migrates
+                // its blob contents into these per-entity stores, then it is
+                // dropped once migration is verified.
+                if (!db.objectStoreNames.contains('categories')) {
+                    db.createObjectStore('categories', { keyPath: 'id' });
+                }
+
+                if (!db.objectStoreNames.contains('decks')) {
+                    const decksStore = db.createObjectStore('decks', { keyPath: 'id' });
+                    decksStore.createIndex('categoryId', 'categoryId', { unique: false });
+                }
+
+                if (!db.objectStoreNames.contains('cards')) {
+                    const cardsStore = db.createObjectStore('cards', { keyPath: 'id' });
+                    cardsStore.createIndex('deckId', 'deckId', { unique: false });
+                }
+
+                if (!db.objectStoreNames.contains('statistics')) {
+                    db.createObjectStore('statistics', { keyPath: 'key' });
+                }
+
+                console.log('IndexedDB object stores created (v2: added categories/decks/cards/statistics)');
             };
         });
     }
@@ -93,6 +116,20 @@ class IndexedDBManager {
     // Get all data from a store
     async getAllData(storeName) {
         return this.getData(storeName);
+    }
+
+    // Get all records matching a value on a named index
+    // (e.g. getByIndex('decks', 'categoryId', someCategoryId))
+    async getByIndex(storeName, indexName, value) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction([storeName], 'readonly');
+            const store = transaction.objectStore(storeName);
+            const index = store.index(indexName);
+            const request = index.getAll(value);
+
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
     }
 
     // Clear a store
@@ -235,3 +272,5 @@ class IndexedDBManager {
 
 // Create global instance
 window.indexedDBManager = new IndexedDBManager();
+
+// ----------------------------------------------------------------------
