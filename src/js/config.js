@@ -2,7 +2,7 @@
 const APP_CONFIG = {
     // Application Info
     APP_NAME: 'Mindforge',
-    APP_VERSION: '2.0.2',
+    APP_VERSION: '2.0.5',
 
     // Study Session Settings
     CARDS_PER_STUDY_SESSION: 10,

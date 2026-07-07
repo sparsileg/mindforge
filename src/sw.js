@@ -1,5 +1,11 @@
-const CACHE_VERSION = 'mindforge-v2.0.2';
+// update the version (at the same time as js/config.js) to trigger the
+// browser's update cycle. The old cache is discarded on activation and new store is created.
+const CACHE_VERSION = 'mindforge-v2.0.5';
 
+// this explicit caching is because the app is a PWA. A PWA makes two
+// promises that other orderinary websites don't.
+// 1. Expected to fully work with no network
+// 2. Atomic versioning so there is never a half-old, half-new situation.
 const ASSETS_TO_CACHE = [
     '/',
     '/index.html',
@@ -63,8 +69,22 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Fetch — cache-first strategy for static assets
+// Fetch — cache-first strategy for static assets.
+// Non-GET requests and API calls are never cached:
+//  - cache.put() throws on non-GET, so those must bypass the SW entirely
+//  - /api/* responses must always come from the network (future D1 backend)
 self.addEventListener('fetch', event => {
+    // Let the browser handle non-GET requests natively (POST, PUT, DELETE...)
+    if (event.request.method !== 'GET') {
+        return;
+    }
+
+    // API requests are network-only — never served from or added to cache
+    const url = new URL(event.request.url);
+    if (url.pathname.startsWith('/api/')) {
+        return;
+    }
+
     event.respondWith(
         caches.match(event.request)
             .then(cached => {

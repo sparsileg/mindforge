@@ -153,7 +153,7 @@ class CategoryManager {
 
         // Populate the delete message
         content.getElementById('delete-message').innerHTML = `
-        <p>Are you sure you want to delete the category "<strong>${category.name}</strong>"?</p>
+        <p>Are you sure you want to delete the category "<strong>${escapeHtml(category.name)}</strong>"?</p>
         <p>This will permanently delete:</p>
         <ul>
             <li>${deckCount} deck(s)</li>
@@ -182,7 +182,7 @@ class CategoryManager {
             window.uiManager.closeModal();
             window.uiManager.showToast('Category deleted successfully', 'success');
             this.renderCategories();
-            window.uiManager.showScreen('welcome');
+            window.uiManager.showScreen('welcome-screen');
         } else {
             window.uiManager.showToast('Error deleting category', 'error');
         }
@@ -265,7 +265,7 @@ class CategoryManager {
             <div class="form-group">
                 <label for="rename-deck-input">Deck Name</label>
                 <input type="text" id="rename-deck-input" class="form-control"
-                    value="${deck.name}" maxlength="100">
+                    value="${escapeHtml(deck.name)}" maxlength="100">
             </div>
             <div class="modal-actions">
                 <button class="btn-secondary" data-action="cancel">Cancel</button>
@@ -315,8 +315,9 @@ class CategoryManager {
             return;
         }
 
+        // Store raw text — escaping happens at render time
         const updated = window.dataManager.updateDeck(categoryId, deckId, {
-            name: escapeHtml(name)
+            name: name
         });
 
         if (updated) {
@@ -554,7 +555,7 @@ class CategoryManager {
 
         // Populate the delete message
         content.getElementById('delete-message').innerHTML = `
-        <p>Are you sure you want to delete the deck "<strong>${deck.name}</strong>"?</p>
+        <p>Are you sure you want to delete the deck "<strong>${escapeHtml(deck.name)}</strong>"?</p>
         <p>This will permanently delete <strong>${cardCount} card(s)</strong>.</p>
         <p><strong>This action cannot be undone.</strong></p>
     `;
@@ -620,7 +621,7 @@ class CategoryManager {
         // Populate the reset message
         content.getElementById('delete-message').innerHTML = `
         <p>Reset deck statistics as if new?</p>
-        <p>This will reset all study progress for <strong>"${deck.name}"</strong>.</p>
+        <p>This will reset all study progress for <strong>"${escapeHtml(deck.name)}"</strong>.</p>
         <p>${studiedCards} card(s) will return to "new" status.</p>
         <p><strong>This action cannot be undone.</strong></p>
     `;

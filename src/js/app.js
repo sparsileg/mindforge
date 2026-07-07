@@ -225,13 +225,25 @@ window.addEventListener('unhandledrejection', (e) => {
     e.preventDefault();
 });
 
-// Export for debugging
-window.DEBUG = {
+// Export for debugging.
+// Guarded + Object.assign so this doesn't clobber debug helpers already
+// registered by data-manager.js and utils.js (debugStreakData,
+// debugCardIntervals, debugRecentSessions).
+if (!window.DEBUG) window.DEBUG = {};
+Object.assign(window.DEBUG, {
     getAppInfo: () => window.theApp?.getAppInfo(),
     exportData: () => window.dataManager?.exportData(),
     clearData: () => {
         localStorage.clear();
-        location.reload();
+        const deleteRequest = indexedDB.deleteDatabase('MindforgeDB');
+        deleteRequest.onsuccess = () => location.reload();
+        deleteRequest.onerror = () => {
+            console.error('Failed to delete MindforgeDB');
+            location.reload();
+        };
+        deleteRequest.onblocked = () => {
+            console.warn('MindforgeDB deletion blocked — close other tabs and reload');
+        };
     },
     reloadApp: () => location.reload()
-};
+});

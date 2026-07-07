@@ -84,7 +84,9 @@ function calculateNextReview(card, rating) {
 
 // Get cards for a 10-card study session with smart prioritization
 function getCardsForStudySession(cards, maxCards = APP_CONFIG.CARDS_PER_STUDY_SESSION) {
-    const today = new Date().toISOString().split('T')[0];
+    // Local calendar date — must match what calculateNextReview writes,
+    // otherwise evenings (local vs UTC rollover) misclassify due cards
+    const today = getLocalDateString();
     const now = new Date();
 
     // Separate cards by status
@@ -155,7 +157,8 @@ function getCardsForStudySession(cards, maxCards = APP_CONFIG.CARDS_PER_STUDY_SE
 
 // Calculate comprehensive study statistics
 function calculateAdvancedStudyStats(cards) {
-    const today = new Date().toISOString().split('T')[0];
+    // Local calendar date — keeps counts consistent with the scheduler
+    const today = getLocalDateString();
     const total = cards.length;
 
     let newCards = 0;
@@ -209,11 +212,30 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// Escape HTML to prevent XSS
+// Escape HTML to prevent XSS.
+// Safe for both element content and attribute values (escapes quotes).
 function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    if (text === null || text === undefined) return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+// Reverse of escapeHtml. Used by the one-time data repair routine
+// to unwind escaping that was previously applied at storage time.
+// Note: '&amp;' is replaced last so a single pass exactly reverses
+// a single pass of escapeHtml.
+function unescapeHtml(text) {
+    if (!text) return text;
+    return String(text)
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&gt;/g, '>')
+        .replace(/&lt;/g, '<')
+        .replace(/&amp;/g, '&');
 }
 
 // Debounce function for search/input
@@ -351,12 +373,14 @@ function validateCSVFormat(csvText) {
 }
 
 
-// Simple markdown parser for basic formatting
+// Simple markdown parser for basic formatting.
+// Escapes raw HTML first, so the output is always safe to assign
+// to innerHTML regardless of what the stored text contains.
 function parseSimpleMarkdown(text) {
     if (!text) return text;
 
-    // Handle **bold** text
-    return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Escape HTML, then apply **bold** formatting
+    return escapeHtml(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 }
 
 

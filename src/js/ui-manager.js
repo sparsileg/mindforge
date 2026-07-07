@@ -162,12 +162,12 @@ class UIManager {
             const totalCards = category.decks.reduce((sum, deck) => sum + deck.cards.length, 0);
 
             categoryEl.innerHTML = `
-        <div class="category-info">
-            <div class="category-name">${category.name}</div>
-            <div class="category-stats">${deckCount} decks • ${totalCards} cards</div>
-        </div>
-        <button class="category-menu-btn" data-category-id="${category.id}">⋯</button>
-        `;
+            <div class="category-info">
+                <div class="category-name">${escapeHtml(category.name)}</div>
+                <div class="category-stats">${deckCount} decks • ${totalCards} cards</div>
+            </div>
+            <button class="category-menu-btn" data-category-id="${category.id}">⋯</button>
+            `;
 
             // Click handler for category selection (but not menu button)
             categoryEl.addEventListener('click', (e) => {
@@ -215,7 +215,7 @@ class UIManager {
 
             deckEl.innerHTML = `
 				<div class="deck-card-header">
-					<h3>${deck.name}</h3>
+					<h3>${escapeHtml(deck.name)}</h3>
 					<button class="deck-menu-btn" data-deck-id="${deck.id}">⋯</button>
 				</div>
                 <p>${cardCount} total cards${stats.needsPractice > 0 ? ` • ${stats.needsPractice} needs practice` : ''}</p>
@@ -586,8 +586,9 @@ class UIManager {
             const cardEl = document.createElement('div');
             cardEl.className = 'preview-card';
 
-            // Prepare content
-            const frontContent = card.front || '';
+            // Prepare content — escape at render time.
+            // backContent is escaped inside parseSimpleMarkdown.
+            const frontContent = escapeHtml(card.front || '');
             const backContent = parseSimpleMarkdown(card.back || '');
             const imageHtml = card.image ?
                   `<div class="preview-card-image">${await this.getImageHtml(card.image)}</div>` : '';
@@ -671,8 +672,8 @@ class UIManager {
         const card = state.allCards.find(c => c.id === cardId);
         if (!card) return;
 
-        const frontPreview = card.front.length > 100 ?
-              card.front.substring(0, 100) + '...' : card.front;
+        const frontPreview = escapeHtml(card.front.length > 100 ?
+              card.front.substring(0, 100) + '...' : card.front);
 
         const template = document.getElementById('confirm-delete-template');
         const content = template.content.cloneNode(true);
@@ -783,7 +784,7 @@ class UIManager {
 
         const content = `
         <div class="deck-id-info">
-            <p><strong>Deck:</strong> ${deck.name}</p>
+            <p><strong>Deck:</strong> ${escapeHtml(deck.name)}</p>
             <p><strong>Category ID:</strong> ${categoryId}</p>
             <p><strong>Deck ID:</strong> ${deckId}</p>
         </div>
@@ -863,7 +864,7 @@ class UIManager {
 
                 deckLine.innerHTML = `
                 <div class="deck-info">
-                    <div class="deck-name">${deck.name}</div>
+                    <div class="deck-name">${escapeHtml(deck.name)}</div>
                     <div class="deck-stats">${deck.cards.length} cards${stats.needsPractice > 0 ? ` • ${stats.needsPractice} needs practice` : ''}</div>
                 </div>
                 <div class="deck-actions">

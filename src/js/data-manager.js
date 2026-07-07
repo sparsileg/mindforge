@@ -55,6 +55,9 @@ class DataManager {
             // Load data from IndexedDB
             await this.loadData();
 
+            // One-time repair of legacy storage-time escaping (Issue 1)
+            await this.repairEscapedText();
+
             // Set up listener for data changes from other tabs
             this.setupCrossTabSync();
 
@@ -98,6 +101,74 @@ class DataManager {
         }
     }
 
+    // One-time repair: unwind HTML escaping that was previously applied
+    // at storage time (Issue 1). Loops unescapeHtml until stable to undo
+    // multiple accumulated layers. Gated by a settings flag so it runs
+    // only once.
+    async repairEscapedText() {
+        const flag = await window.indexedDBManager.getData('settings', 'escape-repair-v1');
+        if (flag && flag.value && flag.value.completed) {
+            return; // Already repaired
+        }
+
+        const unescapeUntilStable = (text) => {
+            if (typeof text !== 'string' || text === '') return text;
+            let current = text;
+            for (let i = 0; i < 10; i++) {
+                const next = unescapeHtml(current);
+                if (next === current) break;
+                current = next;
+            }
+            return current;
+        };
+
+        let changedCount = 0;
+        const repairField = (obj, field) => {
+            const repaired = unescapeUntilStable(obj[field]);
+            if (repaired !== obj[field]) {
+                obj[field] = repaired;
+                changedCount++;
+            }
+        };
+
+        this.data.categories.forEach(category => {
+            repairField(category, 'name');
+            category.decks.forEach(deck => {
+                repairField(deck, 'name');
+                deck.cards.forEach(card => {
+                    repairField(card, 'front');
+                    repairField(card, 'back');
+                });
+            });
+        });
+
+        if (changedCount > 0) {
+            await this.saveData();
+        }
+
+        await window.indexedDBManager.saveData('settings', {
+            key: 'escape-repair-v1',
+            value: {
+                completed: true,
+                completedAt: new Date().toISOString(),
+                fieldsRepaired: changedCount
+            }
+        });
+
+        console.log(`Escape repair complete: ${changedCount} field(s) repaired`);
+        if (changedCount > 0) {
+            window.uiManager.showToast(
+                `Repaired ${changedCount} text field(s) from legacy escaping`, 'success'
+            );
+        }
+    }
+
+
+    // Get all data
+    getData() {
+        return this.data;
+    }
+
 
     // Get all data
     getData() {
@@ -121,9 +192,10 @@ class DataManager {
     }
 
     addCategory(name) {
+        // Store raw text — escaping happens at render time
         const category = {
             id: generateId(),
-            name: escapeHtml(name),
+            name: name,
             createdAt: new Date().toISOString(),
             decks: []
         };
@@ -162,9 +234,10 @@ class DataManager {
         const category = this.findCategory(categoryId);
         if (!category) return null;
 
+        // Store raw text — escaping happens at render time
         const deck = {
             id: generateId(),
-            name: escapeHtml(name),
+            name: name,
             createdAt: new Date().toISOString(),
             cards: []
         };

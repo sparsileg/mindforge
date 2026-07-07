@@ -177,9 +177,10 @@ class CardManager {
             }
         }
 
+        // Store raw text — escaping happens at render time
         const cardData = {
-            front: escapeHtml(front),
-            back: escapeHtml(back),
+            front: front,
+            back: back,
             image: imagePath
         };
 
@@ -228,9 +229,10 @@ class CardManager {
             }
         }
 
+        // Store raw text — escaping happens at render time
         const updates = {
-            front: escapeHtml(front),
-            back: escapeHtml(back),
+            front: front,
+            back: back,
             image: imagePath
         };
 
@@ -258,8 +260,8 @@ class CardManager {
         const card = window.dataManager.findCard(categoryId, deckId, cardId);
         if (!card) return;
 
-        const frontPreview = card.front.length > 100 ?
-              card.front.substring(0, 100) + '...' : card.front;
+        const frontPreview = escapeHtml(card.front.length > 100 ?
+              card.front.substring(0, 100) + '...' : card.front);
 
         const template = document.getElementById('confirm-delete-template');
         const content = template.content.cloneNode(true);
