@@ -104,6 +104,14 @@ class UIManager {
 
     // Screen management
     showScreen(screenId, data = {}) {
+        // If leaving the preview screen for anything else, release any
+        // object URLs created for its card images (Issue 42) — otherwise
+        // they'd stay alive until the next time preview happens to be
+        // re-entered.
+        if (this.currentScreen === 'preview-screen' && screenId !== 'preview-screen') {
+            this.revokePreviewImageUrls();
+        }
+
         // Hide all screens
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
@@ -277,6 +285,16 @@ class UIManager {
 
     closeModal() {
         this.modal.classList.remove('active');
+
+        // Release any tracked image-preview object URL from the add/edit
+        // card modal (Issue 42). This X-button / outside-click / Escape
+        // path bypasses cardManager's own cancel/save handlers, so this
+        // is the catch-all cleanup point. Safe to call unconditionally —
+        // it's a no-op when no card modal was open.
+        if (window.cardManager) {
+            window.cardManager.resetCardOperation();
+        }
+
         // Clear modal content
         setTimeout(() => {
             document.getElementById('modal-body').innerHTML = '';
@@ -551,13 +569,20 @@ class UIManager {
 
         document.getElementById('preview-title').textContent = `Preview: ${deck.name}`;
 
+        // Revoke any object URLs left over from a previous preview
+        // session before starting a new one — covers re-previewing while
+        // already on the preview screen (e.g. after editing/deleting a
+        // card and returning here).
+        this.revokePreviewImageUrls();
+
         // Initialize preview state
         this.previewState = {
             categoryId: category.id,
             deckId: deck.id,
             allCards: deck.cards,
             displayedCards: 0,
-            batchSize: APP_CONFIG.CARDS_PER_PREVIEW_BATCH
+            batchSize: APP_CONFIG.CARDS_PER_PREVIEW_BATCH,
+            objectUrls: []
         };
 
         // Clear previous content
@@ -567,6 +592,15 @@ class UIManager {
         await this.loadPreviewBatch();
 
         this.showScreen('preview-screen');
+    }
+
+    // Revoke every object URL created for the current preview session's
+    // card images (Issue 42).
+    revokePreviewImageUrls() {
+        if (this.previewState && this.previewState.objectUrls) {
+            this.previewState.objectUrls.forEach(url => URL.revokeObjectURL(url));
+            this.previewState.objectUrls = [];
+        }
     }
 
 
@@ -637,12 +671,17 @@ class UIManager {
     }
 
 
+    // Uses an object URL (not a data URL — Issue 42) and tracks it on
+    // previewState so it can be revoked when the preview session ends.
     async getImageHtml(imagePath) {
         if (!imagePath) return '';
 
-        const dataUrl = await window.cardManager.getImageDataUrl(imagePath);
-        if (dataUrl) {
-            return `<img src="${dataUrl}" alt="Card image">`;
+        const objectUrl = await window.cardManager.getImageObjectUrl(imagePath);
+        if (objectUrl) {
+            if (this.previewState && this.previewState.objectUrls) {
+                this.previewState.objectUrls.push(objectUrl);
+            }
+            return `<img src="${objectUrl}" alt="Card image">`;
         }
         return '<p style="color: var(--text-secondary); font-style: italic;">Image not found</p>';
     }
@@ -1019,3 +1058,5 @@ showAbout() {
 
 // Create global instance
 window.uiManager = new UIManager();
+
+// ----------------------------------------------------------------------

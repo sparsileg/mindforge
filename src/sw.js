@@ -1,6 +1,6 @@
 // update the version (at the same time as js/config.js) to trigger the
 // browser's update cycle. The old cache is discarded on activation and new store is created.
-const CACHE_VERSION = 'mindforge-cache-12';
+const CACHE_VERSION = 'mindforge-cache-14';
 
 // this explicit caching is because the app is a PWA. A PWA makes two
 // promises that other orderinary websites don't.

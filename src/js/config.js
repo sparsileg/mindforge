@@ -44,7 +44,6 @@ const APP_CONFIG = {
     VALID_IMAGE_TYPES: ['image/jpeg', 'image/png', 'image/gif', 'image/webp'],
 
     // UI Settings
-    AUTO_SAVE_INTERVAL: 30000,    // 30 seconds
     TOAST_DURATION: 3000,         // 3 seconds
     ANIMATION_DURATION: 300,      // 0.3 seconds
 

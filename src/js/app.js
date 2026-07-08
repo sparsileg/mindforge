@@ -74,21 +74,8 @@ class TheApp {
             // Handle navigation state if needed
         });
 
-        // Handle beforeunload to save data
-        window.addEventListener('beforeunload', (e) => {
-            // Auto-save data before closing
-            if (window.dataManager && window.dataManager.data) {
-                window.dataManager.saveData();
-            }
-        });
-
-        // Auto-save periodically
-        setInterval(() => {
-            if (window.dataManager && window.dataManager.data) {
-                window.dataManager.saveData();
-            }
-        }, APP_CONFIG.AUTO_SAVE_INTERVAL);
-
+        // Per-mutation saveData() calls make periodic/beforeunload saves
+        // redundant (Issue 14) — removed 2026-07.
     }
 
 

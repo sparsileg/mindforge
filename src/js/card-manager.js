@@ -4,6 +4,9 @@ class CardManager {
     constructor() {
         this.currentImageFile = null;
         this.currentImagePath = null;
+        this.currentPreviewObjectUrl = null; // object URL shown in add/edit modal preview
+        this.currentStudyImageUrl = null;    // object URL shown in study-mode card image
+        this.currentModalImageUrl = null;    // object URL shown in the zoom modal
     }
 
     // Show modal for adding new card
@@ -102,6 +105,10 @@ class CardManager {
                 validateImageFile(file);
                 this.currentImageFile = file;
 
+                // Replacing whatever was shown before (possibly an
+                // existing image's object URL) — revoke it first.
+                this.revokePreviewObjectUrl();
+
                 const dataUrl = await fileToDataUrl(file);
                 this.showImagePreview(dataUrl, true);
 
@@ -127,6 +134,7 @@ class CardManager {
         // Add remove functionality
         const removeBtn = previewContainer.querySelector('.remove-image-btn');
         removeBtn.addEventListener('click', () => {
+            this.revokePreviewObjectUrl();
             this.clearImagePreview();
             document.getElementById('card-image').value = '';
             this.currentImageFile = null;
@@ -136,11 +144,23 @@ class CardManager {
         });
     }
 
-    // Async version for loading from IndexedDB
+    // Async version for loading from IndexedDB — uses an object URL
+    // rather than a data URL, tracked so it can be revoked later.
     async showImagePreviewAsync(imagePath, isNewFile = false) {
-        const dataUrl = await this.getImageDataUrl(imagePath);
-        if (dataUrl) {
-            this.showImagePreview(dataUrl, isNewFile);
+        const objectUrl = await this.getImageObjectUrl(imagePath);
+        if (objectUrl) {
+            this.revokePreviewObjectUrl();
+            this.currentPreviewObjectUrl = objectUrl;
+            this.showImagePreview(objectUrl, isNewFile);
+        }
+    }
+
+    // Revoke the object URL currently shown in the add/edit modal's
+    // image preview, if any.
+    revokePreviewObjectUrl() {
+        if (this.currentPreviewObjectUrl) {
+            URL.revokeObjectURL(this.currentPreviewObjectUrl);
+            this.currentPreviewObjectUrl = null;
         }
     }
 
@@ -342,6 +362,9 @@ class CardManager {
         }
     }
 
+    // Returns a data URL (base64) — kept specifically for contexts that
+    // need a genuinely self-contained string, e.g. backup export.
+    // Prefer getImageObjectUrl() for on-screen display.
     async getImageDataUrl(imagePath) {
         if (!imagePath) return null;
 
@@ -352,6 +375,29 @@ class CardManager {
             if (imageData && imageData.blob) {
                 // Convert Blob to data URL only when needed for display
                 return await blobToDataUrl(imageData.blob);
+            }
+
+            return null;
+        } catch (error) {
+            console.error('Error retrieving image:', error);
+            return null;
+        }
+    }
+
+    // Returns a lightweight object URL (URL.createObjectURL) instead of
+    // a base64 data URL — avoids the ~33% memory inflation and main-thread
+    // FileReader work of getImageDataUrl(). Caller is responsible for
+    // calling URL.revokeObjectURL() on the result once it's no longer
+    // displayed.
+    async getImageObjectUrl(imagePath) {
+        if (!imagePath) return null;
+
+        try {
+            const filename = imagePath.split('/').pop();
+            const imageData = await window.indexedDBManager.getData('images', filename);
+
+            if (imageData && imageData.blob) {
+                return URL.createObjectURL(imageData.blob);
             }
 
             return null;
@@ -373,8 +419,12 @@ class CardManager {
         this.resetCardOperation();
     }
 
-    // Reset card operation state
+    // Reset card operation state — also releases any tracked preview
+    // object URL. Called by Cancel, by a successful Add/Edit save, and
+    // by the modal's X button (via uiManager.closeModal()), so this is
+    // the single catch-all cleanup point for the add/edit modal's image.
     resetCardOperation() {
+        this.revokePreviewObjectUrl();
         this.currentImageFile = null;
         this.currentImagePath = null;
     }
@@ -388,16 +438,24 @@ class CardManager {
         }
     }
 
-    // Utility method to display card image in study mode (now async)
+    // Utility method to display card image in study mode.
+    // Uses an object URL, tracked and revoked on every call (i.e. every
+    // card navigation) so only one study-mode image URL is ever alive.
     async renderCardImage(imagePath, container) {
+        if (this.currentStudyImageUrl) {
+            URL.revokeObjectURL(this.currentStudyImageUrl);
+            this.currentStudyImageUrl = null;
+        }
+
         if (!imagePath || !container) {
-            container.innerHTML = '';
+            if (container) container.innerHTML = '';
             return;
         }
 
-        const dataUrl = await this.getImageDataUrl(imagePath);
-        if (dataUrl) {
-            container.innerHTML = `<img src="${dataUrl}" alt="Card image" style="max-width: 100%; max-height: 60vh; width: auto; height: auto; border-radius: 8px; object-fit: contain;" onclick="window.cardManager.showImageModal('${dataUrl}')">`;
+        const objectUrl = await this.getImageObjectUrl(imagePath);
+        if (objectUrl) {
+            this.currentStudyImageUrl = objectUrl;
+            container.innerHTML = `<img src="${objectUrl}" alt="Card image" style="max-width: 100%; max-height: 60vh; width: auto; height: auto; border-radius: 8px; object-fit: contain;" onclick="window.cardManager.showImageModal('${imagePath}')">`;
         } else {
             container.innerHTML = '<p style="color: var(--text-secondary); font-style: italic;">Image not found</p>';
         }
@@ -432,26 +490,42 @@ class CardManager {
         }
     }
 
-    showImageModal(dataUrl) {
+    // Zoom modal — takes the image's stored path (not a pre-built URL),
+    // creates its own independent object URL, and revokes it whenever
+    // the modal closes (click-outside or Escape).
+    async showImageModal(imagePath) {
+        const objectUrl = await this.getImageObjectUrl(imagePath);
+        if (!objectUrl) return;
+
+        this.currentModalImageUrl = objectUrl;
+
         // Create modal overlay
         const overlay = document.createElement('div');
         overlay.className = 'image-modal-overlay';
 
         // Create image element
         const img = document.createElement('img');
-        img.src = dataUrl;
+        img.src = objectUrl;
         img.className = 'image-modal-image';
 
+        const closeImageModal = () => {
+            if (overlay.parentNode) {
+                document.body.removeChild(overlay);
+            }
+            if (this.currentModalImageUrl) {
+                URL.revokeObjectURL(this.currentModalImageUrl);
+                this.currentModalImageUrl = null;
+            }
+            document.removeEventListener('keydown', handleKeydown);
+        };
+
         // Close on click anywhere
-        overlay.addEventListener('click', () => {
-            document.body.removeChild(overlay);
-        });
+        overlay.addEventListener('click', closeImageModal);
 
         // Close on escape key
         const handleKeydown = (e) => {
             if (e.key === 'Escape') {
-                document.body.removeChild(overlay);
-                document.removeEventListener('keydown', handleKeydown);
+                closeImageModal();
             }
         };
         document.addEventListener('keydown', handleKeydown);
@@ -464,3 +538,5 @@ class CardManager {
 
 // Create global instance
 window.cardManager = new CardManager();
+
+// ----------------------------------------------------------------------
