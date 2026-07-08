@@ -1,6 +1,6 @@
 // update the version (at the same time as js/config.js) to trigger the
 // browser's update cycle. The old cache is discarded on activation and new store is created.
-const CACHE_VERSION = 'mindforge-cache-14';
+const CACHE_VERSION = 'mindforge-cache-19';
 
 // this explicit caching is because the app is a PWA. A PWA makes two
 // promises that other orderinary websites don't.
@@ -16,6 +16,7 @@ const ASSETS_TO_CACHE = [
     '/css/themes/light.css',
     '/css/themes/matrix.css',
     '/include/jszip.min.js',
+    '/include/papaparse.min.js',
     '/js/app.js',
     '/js/card-manager.js',
     '/js/category-manager.js',
@@ -103,3 +104,7 @@ self.addEventListener('fetch', event => {
             })
     );
 });
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------

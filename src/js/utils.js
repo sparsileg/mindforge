@@ -1,5 +1,4 @@
-// Utility functions
-
+// utils.js - Utility functions
 
 // Generate unique IDs
 function generateId() {
@@ -287,90 +286,60 @@ function fileToDataUrl(file) {
 function escapeCSVField(text) {
     if (!text) return '""';
 
-    // Escape newlines and quotes
-    let escaped = text.replace(/\r\n/g, '\\n').replace(/\n/g, '\\n').replace(/"/g, '""');
+    // RFC 4180 (Issue 45): quotes are escaped by doubling; embedded
+    // newlines are kept as real newlines inside the quoted field, rather
+    // than the literal two-character \n sequence used previously — that
+    // was self-consistent for round-tripping through this app, but broke
+    // opening exports cleanly in Excel/Sheets/Anki.
+    const escaped = text.replace(/"/g, '""');
 
     // Always wrap in quotes
     return `"${escaped}"`;
 }
 
 
-function unescapeCSVField(text) {
+// Issue 45: Papa Parse now handles quote-stripping and "" un-escaping
+// during import, so this no longer needs to do that. What it still
+// needs to do: undo the literal \n (backslash-n) two-character sequence
+// used by pre-Issue-45 exports, since that's just ordinary text as far
+// as CSV syntax is concerned — Papa Parse won't touch it.
+function unescapeLegacyNewlines(text) {
     if (!text) return '';
-
-    // Remove surrounding quotes if present
-    if (text.startsWith('"') && text.endsWith('"')) {
-        text = text.slice(1, -1);
-    }
-
-    // Unescape quotes and newlines
-    return text.replace(/""/g, '"').replace(/\\n/g, '\n');
-}
-
-
-function parseCSVLine(line) {
-    const fields = [];
-    let current = '';
-    let inQuotes = false;
-    let i = 0;
-
-    while (i < line.length) {
-        const char = line[i];
-
-        if (char === '"') {
-            if (inQuotes && line[i + 1] === '"') {
-                // Escaped quote
-                current += '"';
-                i += 2;
-            } else {
-                // Toggle quote state
-                inQuotes = !inQuotes;
-                i++;
-            }
-        } else if (char === ',' && !inQuotes) {
-            // Field separator
-            fields.push(current);
-            current = '';
-            i++;
-        } else {
-            current += char;
-            i++;
-        }
-    }
-
-    // Add the last field
-    fields.push(current);
-
-    return fields;
+    return text.replace(/\\n/g, '\n');
 }
 
 function validateCSVFormat(csvText) {
-    const lines = csvText.trim().split('\n');
+    // Issue 45: Papa Parse replaces the old split('\n')-then-parse-quotes
+    // approach, which could never correctly handle a quoted field
+    // containing a real embedded newline (it would split mid-field before
+    // quote-parsing even started).
+    const result = Papa.parse(csvText.trim(), { skipEmptyLines: true });
 
-    if (lines.length < 2) {
+    if (result.errors && result.errors.length > 0) {
+        const first = result.errors[0];
+        throw new Error(`CSV parse error: ${first.message} (row ${first.row + 1})`);
+    }
+
+    const rows = result.data;
+    if (rows.length < 2) {
         throw new Error('CSV must have at least a header row and one data row');
     }
 
-    const header = parseCSVLine(lines[0]);
+    const header = rows[0];
     if (header.length !== 2) {
         throw new Error('CSV must have exactly 2 columns');
     }
 
-    // Check if header looks right (case insensitive)
-    const col1 = header[0].toLowerCase().replace(/"/g, '').trim();
-    const col2 = header[1].toLowerCase().replace(/"/g, '').trim();
+    const col1 = (header[0] || '').toLowerCase().trim();
+    const col2 = (header[1] || '').toLowerCase().trim();
 
     if (col1 !== 'front' || col2 !== 'back') {
         throw new Error('CSV header must be "Front","Back"');
     }
 
-    // Validate each data row
-    for (let i = 1; i < lines.length; i++) {
-        if (lines[i].trim() === '') continue; // Skip empty lines
-
-        const fields = parseCSVLine(lines[i]);
-        if (fields.length !== 2) {
-            throw new Error(`Row ${i + 1} has ${fields.length} columns, expected 2`);
+    for (let i = 1; i < rows.length; i++) {
+        if (rows[i].length !== 2) {
+            throw new Error(`Row ${i + 1} has ${rows[i].length} columns, expected 2`);
         }
     }
 
@@ -479,3 +448,7 @@ function debugRecentSessions(count = 5) {
 // Make it available globally
 if (!window.DEBUG) window.DEBUG = {};
 window.DEBUG.debugRecentSessions = debugRecentSessions;
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------

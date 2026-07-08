@@ -1,4 +1,4 @@
-// Category management
+// category-manager.js - Category management
 
 class CategoryManager {
     constructor() {
@@ -330,15 +330,19 @@ class CategoryManager {
         }
     }
 
-    exportDeck() {
-        const context = window.uiManager.getCurrentContext();
-        if (!context.deck || !context.category) {
-            window.uiManager.showToast('No deck selected to export', 'error');
+    // Shared CSV construction for deck export (Issue 46).
+    // exportDeckById() delegates here. exportDeck() (the bare,
+    // context-only variant) had no remaining call sites — confirmed via
+    // grep — and was removed rather than kept as a second wrapper.
+    exportDeckToCSV(categoryId, deckId) {
+        const deck = window.dataManager.findDeck(categoryId, deckId);
+
+        if (!deck) {
+            window.uiManager.showToast('Deck not found', 'error');
             return;
         }
 
         try {
-            const deck = context.deck;
             const cards = deck.cards;
 
             if (cards.length === 0) {
@@ -433,16 +437,16 @@ class CategoryManager {
             // Validate CSV format
             validateCSVFormat(csvText);
 
-            // Parse CSV and create cards
-            const lines = csvText.trim().split('\n');
+            // Parse CSV and create cards. Papa Parse handles RFC 4180
+            // correctly, including quoted fields with real embedded
+            // newlines (Issue 45).
+            const result = Papa.parse(csvText.trim(), { skipEmptyLines: true });
+            const rows = result.data.slice(1); // skip header row
             const cards = [];
 
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim() === '') continue; // Skip empty lines
-
-                const fields = parseCSVLine(lines[i]);
-                const front = unescapeCSVField(fields[0]).trim();
-                const back = unescapeCSVField(fields[1]).trim();
+            rows.forEach(fields => {
+                const front = unescapeLegacyNewlines(fields[0] || '').trim();
+                const back = unescapeLegacyNewlines(fields[1] || '').trim();
 
                 if (front && back) {
                     cards.push({
@@ -451,7 +455,7 @@ class CategoryManager {
                         image: null
                     });
                 }
-            }
+            });
 
             if (cards.length === 0) {
                 window.uiManager.showToast('No valid cards found in CSV file', 'warning');
@@ -499,47 +503,7 @@ class CategoryManager {
 
     exportDeckById(deckId) {
         const context = window.uiManager.getCurrentContext();
-        const deck = window.dataManager.findDeck(context.category.id, deckId);
-
-        if (!deck) {
-            window.uiManager.showToast('Deck not found', 'error');
-            return;
-        }
-
-        try {
-            const cards = deck.cards;
-
-            if (cards.length === 0) {
-                window.uiManager.showToast('Cannot export empty deck', 'warning');
-                return;
-            }
-
-            // Create CSV content
-            let csvContent = '"Front","Back"\n';
-
-            cards.forEach(card => {
-                const front = escapeCSVField(card.front);
-                const back = escapeCSVField(card.back);
-                csvContent += `${front},${back}\n`;
-            });
-
-            // Create and download file
-            const blob = new Blob([csvContent], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${deck.name}-export.csv`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            URL.revokeObjectURL(url);
-            window.uiManager.showToast(`Deck "${deck.name}" exported successfully`, 'success');
-
-        } catch (error) {
-            window.uiManager.showToast('Error exporting deck: ' + error.message, 'error');
-        }
+        this.exportDeckToCSV(context.category.id, deckId);
     }
 
     confirmDeleteDeck(deckId) {
@@ -661,3 +625,7 @@ class CategoryManager {
 
 // Create global instance
 window.categoryManager = new CategoryManager();
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------

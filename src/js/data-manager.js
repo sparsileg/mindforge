@@ -723,35 +723,27 @@ class DataManager {
         }
 
         if (sessionData.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT && isFirstValidSessionToday) {
-            if (!stats.lastStudyDate) {
-                stats.currentStreak = 1;
+            // Issue 49: gap resets are checkStreakValidity()'s job alone —
+            // by the time this method runs, currentStreak is already 0 if
+            // there was a real gap since lastStudyDate. This method's only
+            // job is to start or extend a streak, never to reset one.
+            // (The old `lastStudyDate === today` branch here was dead code:
+            // isFirstValidSessionToday guarantees lastStudyDate can't
+            // already be today, since this method is the only place that
+            // sets it to today, and only on the first valid session.)
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = getLocalDateString(yesterday);
+
+            if (stats.lastStudyDate === yesterdayStr) {
+                stats.currentStreak++;
             } else {
-                const yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
-                const yesterdayStr = getLocalDateString(yesterday);
-
-                if (stats.lastStudyDate === yesterdayStr) {
-                    stats.currentStreak++;
-                } else if (stats.lastStudyDate === today) {
-                    // Already studied today - maintain current streak (don't reset)
-                } else {
-                    const yesterdayValidSessions = stats.studySessions.filter(session =>
-                        session.date === yesterdayStr &&
-                            session.cardsStudied >= APP_CONFIG.MIN_CARDS_FOR_DAY_COUNT
-                    );
-
-                    if (yesterdayValidSessions.length > 0) {
-                        stats.currentStreak++;
-                    } else {
-                        stats.currentStreak = 1;
-                    }
-                }
+                stats.currentStreak = 1;
             }
 
             if (stats.currentStreak > (stats.recordStreak || 0)) {
                 stats.recordStreak = stats.currentStreak;
             }
-
             stats.lastStudyDate = today;
         }
 
@@ -946,20 +938,30 @@ class DataManager {
 
         try {
             const data = await this.exportData();
-            const filename = `${APP_CONFIG.APP_NAME.toLowerCase()}-daily.json`;
+            const jsonFilename = `${APP_CONFIG.APP_NAME.toLowerCase()}-daily.json`;
+            const zipFilename = `${APP_CONFIG.APP_NAME.toLowerCase()}-daily.zip`;
 
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
+            // Issue 47: zip pipeline mirrors createBackup() in ui-manager.js
+            // (kept as a separate inline block here since this file is the
+            // sole scope of this issue, per the issue's own Files list).
+            const zip = new JSZip();
+            zip.file(jsonFilename, data);
+            const zipBlob = await zip.generateAsync({ type: 'blob' });
 
+            const url = URL.createObjectURL(zipBlob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = filename;
+            link.download = zipFilename;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
 
             URL.revokeObjectURL(url);
             console.log('✓ Daily backup created');
+
+            if (window.uiManager) {
+                window.uiManager.showToast('Daily backup saved', 'success');
+            }
         } catch (error) {
             console.error('✗ Daily backup failed:', error);
         }
