@@ -160,7 +160,7 @@ function getCardsForStudySession(cards, maxCards = APP_CONFIG.CARDS_PER_STUDY_SE
 
 
 // Calculate comprehensive study statistics
-function calculateAdvancedStudyStats(cards) {
+function calculateAdvancedStudyStats(cards, maxCards = APP_CONFIG.CARDS_PER_STUDY_SESSION) {
     // Local calendar date — keeps counts consistent with the scheduler
     const today = getLocalDateString();
     const total = cards.length;
@@ -189,10 +189,13 @@ function calculateAdvancedStudyStats(cards) {
         }
     });
 
-    // Calculate actual that need practice (limited by session size)
+    // Calculate actual that need practice (limited by session size).
+    // Issue 54: maxCards now reflects the user's configured
+    // cardsPerSession setting when the caller passes it, falling back to
+    // the config default only if no caller-provided value is given.
     const actualNeedsPractice = Math.min(
         overdueCards + dueToday + newCards,
-        APP_CONFIG.CARDS_PER_STUDY_SESSION
+        maxCards
     );
 
     return {
@@ -205,6 +208,7 @@ function calculateAdvancedStudyStats(cards) {
         needsPractice: actualNeedsPractice
     };
 }
+
 
 // Shuffle array (Fisher-Yates algorithm)
 function shuffleArray(array) {

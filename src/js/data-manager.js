@@ -665,6 +665,29 @@ class DataManager {
         return true;
     }
 
+    // Issue 51: collection-wide version of resetDeckStats(). Only touches
+    // per-card scheduling state — data.statistics (streaks, days studied,
+    // session history) and card content/categories/decks are untouched.
+    resetAllCardsStudyData() {
+        let count = 0;
+        this.data.categories.forEach(category => {
+            category.decks.forEach(deck => {
+                deck.cards.forEach(card => {
+                    card.difficulty = null;
+                    card.lastStudied = null;
+                    card.nextReview = null;
+                    card.interval = APP_CONFIG.DEFAULT_INTERVAL;
+                    card.easeFactor = APP_CONFIG.DEFAULT_EASE_FACTOR;
+                    card.graduationStep = 0;
+                    count++;
+                    this._syncEntity('card', this._cardRow(card, deck.id));
+                });
+            });
+        });
+        this.saveData();
+        return count;
+    }
+
     updateStudyStatistics(sessionData) {
         if (!this.data.statistics) {
             this.data.statistics = {

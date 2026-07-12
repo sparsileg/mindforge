@@ -218,8 +218,9 @@ class UIManager {
 			deckEl.className = 'deck-card';
 			deckEl.dataset.deckId = deck.id;
 
-			const cardCount = deck.cards.length;
-			const stats = calculateAdvancedStudyStats(deck.cards);
+            const cardCount = deck.cards.length;
+			const sessionSize = window.dataManager.getSettings().cardsPerSession || APP_CONFIG.CARDS_PER_STUDY_SESSION;
+			const stats = calculateAdvancedStudyStats(deck.cards, sessionSize);
 
             deckEl.innerHTML = `
 				<div class="deck-card-header">
@@ -387,6 +388,9 @@ class UIManager {
             break;
         case 'settings':
             this.showSettings();
+            break;
+        case 'reset-all-progress':
+            this.confirmResetAllProgress();
             break;
         case 'about':
             this.showAbout();
@@ -604,6 +608,22 @@ class UIManager {
     }
 
 
+    // Issue 52: lastStudied (not interval) is the reliable "unstudied"
+    // signal — interval is already set to APP_CONFIG.DEFAULT_INTERVAL at
+    // card creation time (addCard(), data-manager.js), so a default
+    // interval value alone doesn't mean the card is new.
+    formatCardSchedulingInfo(card) {
+        if (!card.lastStudied) {
+            return 'New';
+        }
+
+        const interval = typeof card.interval === 'number' ? card.interval : 0;
+        const intervalLabel = `${interval} day${interval === 1 ? '' : 's'}`;
+        const nextReviewLabel = card.nextReview ? formatDate(card.nextReview) : '—';
+
+        return `Interval: ${intervalLabel} • Next review: ${nextReviewLabel}`;
+    }
+
     async loadPreviewBatch() {
         const state = this.previewState;
         const container = document.getElementById('preview-content');
@@ -626,11 +646,13 @@ class UIManager {
             const backContent = parseSimpleMarkdown(card.back || '');
             const imageHtml = card.image ?
                   `<div class="preview-card-image">${await this.getImageHtml(card.image)}</div>` : '';
+            const schedulingText = this.formatCardSchedulingInfo(card);
 
             cardEl.innerHTML = `
         <button class="preview-card-delete" onclick="window.uiManager.deleteCardFromPreview('${card.id}')" title="Delete card">🗑️</button>
         <div class="preview-card-front">
             <div class="preview-card-label">Front</div>
+            <div class="preview-card-scheduling" style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.75rem;">${schedulingText}</div>
             ${imageHtml}
             <div class="preview-card-content">${frontContent}</div>
         </div>
@@ -894,7 +916,8 @@ class UIManager {
             deckList.className = 'category-deck-list';
 
             category.decks.forEach(deck => {
-                const stats = calculateAdvancedStudyStats(deck.cards);
+                const sessionSize = window.dataManager.getSettings().cardsPerSession || APP_CONFIG.CARDS_PER_STUDY_SESSION;
+                const stats = calculateAdvancedStudyStats(deck.cards, sessionSize);
                 const studyUrl = `${baseUrl}#/study/${category.id}/${deck.id}`;
                 const previewUrl = `${baseUrl}#/preview/${category.id}/${deck.id}`;
 
@@ -958,6 +981,19 @@ class UIManager {
 
         this.closeModal();
         this.showToast('Settings saved successfully', 'success');
+
+        // Issue 54: cardsPerSession affects calculateAdvancedStudyStats'
+        // needsPractice cap — refresh whatever's currently showing
+        // deck-derived counts, same pattern as handleResetAllProgress().
+        window.categoryManager.renderCategories();
+
+        const context = this.getCurrentContext();
+        if (context.screen === 'category-screen' && context.category) {
+            const updatedCategory = window.dataManager.findCategory(context.category.id);
+            this.showScreen('category-screen', { category: updatedCategory });
+        } else if (context.screen === 'welcome-screen') {
+            this.renderHomeOverview();
+        }
     }
 
     showCategoryMenu(event, categoryId) {
@@ -1054,9 +1090,63 @@ showAbout() {
         this.showTemplateModal('About', content, actions);
     }
 
+    // Issue 51: built with showModal() rather than reusing
+    // confirm-delete-template, so the destructive button can read
+    // "Reset All Progress" instead of the template's hardcoded "Delete".
+    confirmResetAllProgress() {
+        const totalCards = window.dataManager.getCategories()
+            .reduce((sum, cat) => sum + cat.decks.reduce((s, d) => s + d.cards.length, 0), 0);
+
+        const content = `
+            <p>This will reset <strong>ALL cards</strong> in every category and deck to unstudied.</p>
+            <p>Card content, categories, and decks will not be affected.</p>
+            <p><strong>This cannot be undone</strong> — consider creating a backup first.</p>
+            <p>${totalCards} card(s) will be affected.</p>
+        `;
+
+        const actions = [
+            {
+                text: 'Cancel',
+                class: 'btn-secondary',
+                action: 'reset-all-progress-cancel',
+                handler: () => this.closeModal()
+            },
+            {
+                text: 'Reset All Progress',
+                class: 'btn-danger',
+                action: 'reset-all-progress-confirm',
+                handler: () => this.handleResetAllProgress()
+            }
+        ];
+
+        this.showModal('Reset All Progress?', content, actions);
+    }
+
+    handleResetAllProgress() {
+        const count = window.dataManager.resetAllCardsStudyData();
+
+        this.closeModal();
+        this.showToast(`Reset ${count} card${count === 1 ? '' : 's'} to unstudied`, 'success');
+
+        // Not scoped to one category (unlike resetDeckStats' refresh
+        // pattern) — refresh the sidebar always, and whichever main view
+        // is currently showing card-derived stats.
+        window.categoryManager.renderCategories();
+
+        const context = this.getCurrentContext();
+        if (context.screen === 'category-screen' && context.category) {
+            const updatedCategory = window.dataManager.findCategory(context.category.id);
+            this.showScreen('category-screen', { category: updatedCategory });
+        } else if (context.screen === 'welcome-screen') {
+            this.renderHomeOverview();
+        }
+    }
+
 }
 
 // Create global instance
 window.uiManager = new UIManager();
 
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 // ----------------------------------------------------------------------

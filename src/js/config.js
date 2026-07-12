@@ -5,7 +5,7 @@ const APP_CONFIG = {
     APP_VERSION: '2.0.6',
 
     // Study Session Settings
-    CARDS_PER_STUDY_SESSION: 10,
+    CARDS_PER_STUDY_SESSION: 10, // default if no user setting
     MAX_NEW_CARDS_PER_SESSION: 5,
 
     // Rating System
@@ -55,7 +55,7 @@ const APP_CONFIG = {
     DECK_MENU_WIDTH: 160,
 
     // Preview settings
-    CARDS_PER_PREVIEW_BATCH: 50,
+    CARDS_PER_PREVIEW_BATCH: 50, // max shows 50 cards at a time (pagination)
 
     // Statistics Settings
     MAX_CARD_TIME_MINUTES: 10,
